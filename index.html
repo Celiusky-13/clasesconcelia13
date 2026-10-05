@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>clasesconcelia13</title>
+<title>ClasesConCelia13</title>
 <meta name="description" content="Mates de 1º a 4º de la ESO con explicaciones interactivas, juegos y técnicas de estudio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -426,6 +426,29 @@ table.ladder tr.done td { color: var(--muted); }
 
 footer { border-top: 2px solid var(--ink); padding-block: 22px; color: var(--muted); font-size: .9rem; }
 
+/* Theme toggle */
+.theme-btn {
+  display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--ink); background: var(--card);
+  border-radius: 999px; padding: 4px 12px 4px 8px; font-weight: 800; font-size: .9rem; cursor: pointer;
+}
+.theme-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.theme-btn .i-moon { fill: currentColor; stroke: none; }
+.theme-btn .i-sun { display: none; }
+.theme-btn.is-dark .i-sun { display: block; }
+.theme-btn.is-dark .i-moon { display: none; }
+
+/* Contact */
+.contact-box {
+  margin-top: 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: center;
+  background: var(--c4-soft); border: 2px solid var(--ink); border-radius: 20px; box-shadow: 5px 5px 0 var(--ink); padding: 22px;
+}
+@media (max-width: 720px) { .contact-box { grid-template-columns: 1fr; } }
+.mail-card { display: grid; gap: 8px; justify-items: start; background: var(--card); border: 2px solid var(--ink); border-radius: 16px; padding: 16px; min-width: 0; }
+.mail { font-family: var(--mono); font-weight: 700; font-size: clamp(.95rem, 2.6vw, 1.15rem); color: var(--c4); overflow-wrap: anywhere; user-select: all; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.contact-grid + .contact-box { margin-top: 8px; }
+footer a { color: var(--c4); font-weight: 700; }
+
 /* confetti */
 .confetti { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
 .confetti i { position: absolute; width: 9px; height: 14px; border-radius: 2px; top: -20px; animation: fall 1.4s ease-in forwards; }
@@ -443,14 +466,20 @@ footer { border-top: 2px solid var(--ink); padding-block: 22px; color: var(--mut
 
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="#inicio">clasesconcelia<span class="num">13</span></a>
+    <a class="brand" href="#inicio">ClasesConCelia<span class="num">13</span></a>
     <nav class="nav" aria-label="Secciones">
       <a href="#eso1">1º ESO</a>
       <a href="#eso2">2º ESO</a>
       <a href="#eso3">3º ESO</a>
       <a href="#eso4">4º ESO</a>
       <a href="#tecnicas">Técnicas de estudio</a>
+      <a href="#contacto">Contacto</a>
     </nav>
+    <button class="theme-btn" id="theme-btn" type="button" aria-label="Cambiar a tema oscuro">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+      <span class="lbl">Oscuro</span>
+    </button>
   </div>
 </header>
 
@@ -499,6 +528,18 @@ footer { border-top: 2px solid var(--ink); padding-block: 22px; color: var(--mut
     <div><b>Toca y prueba</b><p class="small">Las explicaciones cambian con los números que tú escribas.</p></div>
     <div><b>Sin cronómetro en los juegos</b><p class="small">Aquí se va a tu ritmo. Cuenta la racha, no la prisa.</p></div>
     <div><b>Soluciones escondidas</b><p class="small">Intenta el ejercicio primero y luego pulsa «Ver solución».</p></div>
+  </div>
+  <div class="contact-box" id="contacto-home">
+    <div class="stack" style="gap:6px">
+      <span class="eyebrow">Clases particulares</span>
+      <h2>¿Quieres clases con Celia?</h2>
+      <p>Clases particulares de matemáticas <b>online</b> o <b>presenciales</b>, para ESO. También si quieres <b>colaborar</b> en el proyecto, escríbeme.</p>
+    </div>
+    <div class="mail-card">
+      <span class="small">Escribe a</span>
+      <a class="mail" href="mailto:clasesconcelia13@gmail.com">clasesconcelia13@gmail.com</a>
+      <button class="btn" type="button" data-copy-mail>Copiar correo</button>
+    </div>
   </div>
 </section>
 
@@ -1063,12 +1104,44 @@ footer { border-top: 2px solid var(--ink); padding-block: 22px; color: var(--mut
   </div>
 </section>
 
+<!-- =================== CONTACTO =================== -->
+<section class="view" data-view="contacto" hidden>
+  <div class="course-head" style="--col: var(--c4)">
+    <span class="eyebrow">Contacto</span>
+    <span class="big" style="font-size:clamp(2.6rem,8vw,4.2rem)">Hablemos</span>
+    <p class="lead">¿Necesitas ayuda con las mates o quieres colaborar con ClasesConCelia13? Escríbeme y te respondo.</p>
+  </div>
+  <div class="section">
+    <div class="contact-grid">
+      <div class="tech"><h4>Clases online</h4><p>Por videollamada, con pizarra compartida y los ejercicios de esta web. Desde casa y a tu ritmo.</p></div>
+      <div class="tech"><h4>Clases presenciales</h4><p>Cara a cara, para quien prefiere papel, boli y alguien al lado.</p></div>
+      <div class="tech"><h4>Colaborar</h4><p>¿Eres profe, tienes ideas de ejercicios o quieres proponer algo? Me encantará leerte.</p></div>
+    </div>
+    <div class="contact-box">
+      <div class="stack" style="gap:6px">
+        <h3>Cuéntame en el correo</h3>
+        <ul class="remember">
+          <li>Curso y asignatura (por ejemplo, 1º ESO, Matemáticas).</li>
+          <li>Si prefieres online o presencial (y tu zona).</li>
+          <li>Qué días y horas te vienen bien.</li>
+        </ul>
+        <p class="small">Si eres menor de edad, que el correo lo envíe tu madre, padre o tutor.</p>
+      </div>
+      <div class="mail-card">
+        <span class="small">Escribe a</span>
+        <a class="mail" href="mailto:clasesconcelia13@gmail.com">clasesconcelia13@gmail.com</a>
+        <button class="btn" type="button" data-copy-mail>Copiar correo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
   <div class="wrap row" style="justify-content:space-between">
-    <span><b>clasesconcelia13</b> · Matemáticas de 1º a 4º de la ESO</span>
-    <span>Hecho con cariño para aprender jugando</span>
+    <span><b>ClasesConCelia13</b> · Matemáticas de 1º a 4º de la ESO</span>
+    <span>Clases y colaboraciones: <a href="mailto:clasesconcelia13@gmail.com">clasesconcelia13@gmail.com</a></span>
   </div>
 </footer>
 
@@ -1789,6 +1862,39 @@ footer { border-top: 2px solid var(--ink); padding-block: 22px; color: var(--mut
     function stopB() { run = false; clearTimeout(tm); btn.textContent = 'Empezar a respirar'; c.textContent = 'Listo'; c.style.transform = 'scale(.6)'; }
     btn.addEventListener('click', () => { if (run) { stopB(); return; } run = true; btn.textContent = 'Parar'; go(0, 0); });
   })();
+
+  /* ---------- Tema claro / oscuro ---------- */
+  (() => {
+    const btn = $('#theme-btn'), root = document.documentElement;
+    const darkMq = matchMedia('(prefers-color-scheme: dark)');
+    const saved = store.get('tema', null);
+    if (saved === 'dark' || saved === 'light') root.dataset.theme = saved;
+    const isDark = () => (root.dataset.theme || (darkMq.matches ? 'dark' : 'light')) === 'dark';
+    function paint() {
+      const d = isDark();
+      btn.classList.toggle('is-dark', d);
+      $('.lbl', btn).textContent = d ? 'Claro' : 'Oscuro';
+      btn.setAttribute('aria-label', d ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+    }
+    btn.addEventListener('click', () => {
+      const next = isDark() ? 'light' : 'dark';
+      root.dataset.theme = next; store.set('tema', next); paint();
+    });
+    darkMq.addEventListener('change', paint);
+    new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    paint();
+  })();
+
+  /* ---------- Copiar correo ---------- */
+  $$('[data-copy-mail]').forEach(b => b.addEventListener('click', async () => {
+    const mail = 'clasesconcelia13@gmail.com';
+    try { await navigator.clipboard.writeText(mail); b.textContent = '¡Copiado!'; }
+    catch {
+      const a = b.parentElement.querySelector('.mail'); const r = document.createRange(); r.selectNodeContents(a);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Seleccionado: pulsa Ctrl/Cmd+C';
+    }
+    setTimeout(() => { b.textContent = 'Copiar correo'; }, 2200);
+  }));
 
   /* ---------- arranque ---------- */
   drawStrip(); drawLadder(); renderStep(); renderOrder(); route();
