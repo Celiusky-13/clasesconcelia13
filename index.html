@@ -98,6 +98,7 @@ window.MathJax = {
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
@@ -226,11 +227,11 @@ main { padding-block: 28px 64px; }
   background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 14px 16px;
   display: grid; gap: 6px; align-content: start;
 }
-.topic .t { font-weight: 800; font-size: 1.02rem; display: flex; gap: 8px; align-items: baseline; }
+.topic .t { font-weight: 800; font-size: 1.02rem; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
 .topic .t .n { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .topic p { font-size: .92rem; color: var(--muted); }
 .topic.focus { border-color: var(--c1); border-width: 3px; background: var(--c1-soft); }
-.topic.focus .t::after { content: "¡Nos centramos aquí!"; font-family: var(--mono); font-size: .68rem; background: var(--c1); color: #fff; padding: 1px 7px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+.topic.focus .t::after { content: "¡Nos centramos aquí!"; font-family: var(--mono); font-size: .68rem; background: var(--c1); color: #fff; padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
 .k2c .topic.focus, .k3c .topic.focus, .k4c .topic.focus { border-color: var(--line); background: var(--card); }
 
 /* Explanation */
