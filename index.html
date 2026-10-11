@@ -512,6 +512,16 @@ table.ruffini tr:nth-child(2) td:first-child { border-bottom: 0; }
 table.ruffini td.rest { color: var(--c3); }
 .credit { font-size: .85rem; color: var(--muted); }
 .credit a { color: var(--acc); font-weight: 700; }
+.subject-seg { margin-top: 10px; }
+.subject-seg button[aria-pressed="true"] { background: var(--c5); color: var(--paper); }
+.grp-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+.grp-nav button { border: 2px solid var(--line); background: var(--card); border-radius: 999px; padding: 3px 12px; font-weight: 700; font-size: .85rem; cursor: pointer; }
+.grp-nav button:hover { border-color: var(--acc); color: var(--acc); }
+.bach-qs > li.grp { border: 0; background: none; padding: 10px 0 0; scroll-margin-top: 90px; }
+.bach-qs > li.grp h4 { font-size: 1.25rem; color: var(--acc); border-bottom: 2px solid var(--acc); padding-bottom: 4px; }
+.th-b ul, .th-b ol { margin: 6px 0; padding-left: 22px; display: grid; gap: 4px; }
+.plot .area { fill: var(--acc-soft); stroke: none; }
+[data-bach="b1s"] { --acc: var(--c3); --acc-soft: var(--c3-soft); }
 .practice { display: grid; gap: 12px; padding-bottom: 20px; margin-bottom: 6px; border-bottom: 3px dashed var(--acc); }
 .bach-qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .bach-qs > li { border: 2px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; background: var(--paper); }
@@ -628,8 +638,8 @@ footer a { color: var(--c4); font-weight: 700; }
     </a>
     <a class="course k5" href="#bach1">
       <span class="big">1º<small>Bach</small></span>
-      <span class="pill tag">Matemáticas I</span>
-      <p>10 temas completos: teoría, herramientas interactivas, ejercicios y 3 exámenes de prueba por tema.</p>
+      <span class="pill tag">Ciencias y Sociales</span>
+      <p>Matemáticas I (Ciencias, 10 temas) y Matemáticas Aplicadas a las CCSS I (Sociales, 8 temas): teoría, ejercicios y exámenes.</p>
       <span class="go">Practicar →</span>
     </a>
     <a class="course k6" href="#bach2">
@@ -1226,14 +1236,23 @@ footer a { color: var(--c4); font-weight: 700; }
 </section>
 
 <!-- =================== 1º BACH =================== -->
-<section class="view" data-view="bach1" data-bach="b1" hidden>
+<section class="view" data-view="bach1" hidden>
   <div class="course-head" style="--col: var(--c5)">
-    <span class="eyebrow">Bachillerato · Matemáticas I</span>
+    <span class="eyebrow">Bachillerato</span>
     <span class="big">1º Bach</span>
-    <p class="lead">Los <b>10 temas</b> de Matemáticas I. Cada uno tiene <b>teoría</b> con ejemplos, una <b>herramienta interactiva</b> en muchos de ellos, <b>ejercicios</b> con solución y <b>3 exámenes de prueba</b> con cronómetro y autocorrección.</p>
+    <p class="lead">Elige tu asignatura. Cada tema tiene <b>teoría con ejemplos resueltos</b>, <b>herramientas interactivas</b>, <b>ejercicios</b> para trabajar por tu cuenta y <b>3 exámenes de prueba</b> con cronómetro y autocorrección.</p>
+    <div class="seg subject-seg" role="group" aria-label="Asignatura">
+      <button type="button" data-subject="ciencias" aria-pressed="true">Ciencias · Matemáticas I</button>
+      <button type="button" data-subject="sociales" aria-pressed="false">Sociales · Matemáticas Aplicadas a las CCSS I</button>
+    </div>
   </div>
-  <div class="section">
-    <div class="note">Los temas siguen el orden de los libros libres de <a href="https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/MatematicasILL.htm" target="_blank" rel="noopener">Marea Verde</a> (licencia CC BY-NC-SA). En cada tema tienes el enlace a su capítulo y a sus soluciones para seguir practicando.</div>
+  <div class="section" data-subject-pane="ciencias" data-bach="b1">
+    <div class="note">Matemáticas I (Bachillerato de Ciencias): 10 temas en el orden de los libros libres de <a href="https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/MatematicasILL.htm" target="_blank" rel="noopener">Marea Verde</a> (licencia CC BY-NC-SA). En cada tema tienes el enlace a su capítulo y a sus soluciones.</div>
+    <div class="bach-topics"></div>
+    <div class="panel bach-exam" hidden></div>
+  </div>
+  <div class="section" data-subject-pane="sociales" data-bach="b1s" hidden>
+    <div class="note">Matemáticas Aplicadas a las Ciencias Sociales I: 8 temas en el orden de los libros libres de <a href="https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/SocialesILL.htm" target="_blank" rel="noopener">Marea Verde</a> (licencia CC BY-NC-SA). Incluye matemática financiera, combinatoria y distribuciones de probabilidad.</div>
     <div class="bach-topics"></div>
     <div class="panel bach-exam" hidden></div>
   </div>
@@ -1242,7 +1261,7 @@ footer a { color: var(--c4); font-weight: 700; }
 <!-- =================== 2º BACH =================== -->
 <section class="view" data-view="bach2" data-bach="b2" hidden>
   <div class="course-head" style="--col: var(--c6)">
-    <span class="eyebrow">Bachillerato · Matemáticas II</span>
+    <span class="eyebrow">Bachillerato · Ciencias · Matemáticas II</span>
     <span class="big">2º Bach</span>
     <p class="lead">Preparación de la <b>PAU</b> (antes EvAU) de Madrid, por bloques. Elige un tema y haz sus <b>3 exámenes de prueba</b>: 45 minutos, 10 puntos y soluciones paso a paso.</p>
   </div>
@@ -2060,7 +2079,9 @@ footer a { color: var(--c4); font-weight: 700; }
   drawStrip(); drawLadder(); renderStep(); renderOrder(); route();
 })();
 </script>
+<script src="b1comun.js"></script>
 <script src="bach1.js"></script>
+<script src="bach1s.js"></script>
 <script src="bach.js"></script>
 </body>
 </html>
