@@ -1,4 +1,4 @@
-/* ClasesConCelia13 · Exámenes de prueba de Bachillerato (estilo PAU/EvAU Madrid).
+/* ClasesConCelia13 · Bachillerato: datos de 2º (estilo PAU/EvAU Madrid), interfaz y herramientas interactivas.
    Cada tema tiene 3 exámenes de 3 ejercicios (3,5 + 3,5 + 3 = 10 puntos). */
 (() => {
   'use strict';
@@ -221,248 +221,246 @@
     ] }
   ];
 
-  /* =========================== 1º BACHILLERATO =========================== */
-  const B1 = [
-    { n: 'T1', name: 'Números reales, logaritmos y polinomios', desc: 'Radicales, logaritmos, identidades notables, polinomios y fracciones algebraicas.',
-      practice: [
-        { t: '4. Identidades notables', e: R`d) $(4x+5y)^2$ &nbsp;&nbsp; e) $\left(4x-\dfrac74\right)^2$ &nbsp;&nbsp; f) $(x^2-6y)(x^2+6y)$`,
-          s: R`d) Cuadrado de una suma, $(a+b)^2=a^2+2ab+b^2$: $16x^2+40xy+25y^2$. <br>e) Cuadrado de una diferencia: $16x^2-2\cdot4x\cdot\dfrac74+\dfrac{49}{16}=16x^2-14x+\dfrac{49}{16}$. <br>f) Suma por diferencia, $(a-b)(a+b)=a^2-b^2$: $x^4-36y^2$.` },
-        { t: '5. Operaciones con polinomios', e: R`Sean $M(x)=3x^2-5x-3$, $N(x)=x^2+3x+1$ y $K(x)=x^2-x+2$. Calcula: <br>a) $M(-1)$ &nbsp;&nbsp; b) $2M(x)-4K(x)$ &nbsp;&nbsp; c) $M(x)+3N(x)\cdot K(x)$`,
-          s: R`a) $M(-1)=3\cdot1+5-3=5$. <br>b) $(6x^2-10x-6)-(4x^2-4x+8)=2x^2-6x-14$. <br>c) Primero el producto: $N\cdot K=x^4+2x^3+5x+2$ (los términos en $x^2$ se anulan: $2x^2-3x^2+x^2=0$). Por 3: $3x^4+6x^3+15x+6$. Sumando $M$: $3x^4+6x^3+3x^2+10x+3$.` },
-        { t: '6. Producto de polinomios', e: R`Calcula $P(x)\cdot Q(x)$ con $P(x)=2x^6+3x^4+x^2-6$ y $Q(x)=x^3+x$.`,
-          s: R`Multiplicamos cada término por $x^3$ y por $x$: <br>$2x^9+3x^7+x^5-6x^3$ <br>$\phantom{2x^9}+2x^7+3x^5+x^3-6x$ <br>Agrupando: $2x^9+5x^7+4x^5-5x^3-6x$.` },
-        { t: '7. Divisiones de polinomios', e: R`a) $(x^5+7x^3-5x+1)\div(x^3+2x)$ &nbsp;&nbsp; b) $(x^3-5x^2+x)\div(-x^2-1)$`,
-          s: R`a) $x^5\div x^3=x^2$; restamos $x^5+2x^3$ y queda $5x^3-5x+1$. Luego $+5$; restamos $5x^3+10x$ y queda $-15x+1$. <br>Cociente $C(x)=x^2+5$, resto $R(x)=-15x+1$. <br>b) $x^3\div(-x^2)=-x$; restamos $x^3+x$ y queda $-5x^2$. Luego $+5$; restamos $-5x^2-5$ y queda $5$. <br>Cociente $C(x)=-x+5$, resto $R(x)=5$. <br>Comprobación: $(-x+5)(-x^2-1)+5=x^3-5x^2+x$ ✓` },
-        { t: '8. Simplifica', e: R`a) $\dfrac{x^2-5x+6}{x^2-2x}$ &nbsp;&nbsp; b) $\dfrac{3x^3-6x^2}{3x^4+24x^3-60x^2}$`,
-          s: R`a) Factorizamos: $\dfrac{(x-2)(x-3)}{x(x-2)}=\dfrac{x-3}{x}$. <br>b) Sacamos factor común $3x^2$: $\dfrac{3x^2(x-2)}{3x^2(x^2+8x-20)}$. Como $x^2+8x-20=(x+10)(x-2)$, queda $\dfrac{x-2}{(x+10)(x-2)}=\dfrac{1}{x+10}$.` },
-        { t: '9. Opera y simplifica', e: R`a) $\dfrac{x-1}{x^2-4}-\dfrac{x-2}{x^2+2x}$ &nbsp;&nbsp; b) $\dfrac{x-3}{x}\div\dfrac{x^2-9}{x^2+3x}$ &nbsp;&nbsp; c) $\dfrac{2x-1}{x^2+2x}\cdot\dfrac{x^3+2x^2}{4x}$`,
-          s: R`a) $x^2-4=(x-2)(x+2)$ y $x^2+2x=x(x+2)$; el m.c.m. es $x(x-2)(x+2)$: <br>$\dfrac{x(x-1)-(x-2)^2}{x(x-2)(x+2)}=\dfrac{x^2-x-x^2+4x-4}{x(x^2-4)}=\dfrac{3x-4}{x^3-4x}$. <br>b) Dividir es multiplicar por la inversa: $\dfrac{x-3}{x}\cdot\dfrac{x(x+3)}{(x-3)(x+3)}=1$. <br>c) $\dfrac{2x-1}{x(x+2)}\cdot\dfrac{x^2(x+2)}{4x}=\dfrac{(2x-1)x^2(x+2)}{4x^2(x+2)}=\dfrac{2x-1}{4}$.` }
-      ],
-      exams: [
-      [
-        Q(3.5, R`a) (1,5 p) Simplifica $\sqrt{12}+\sqrt{27}-\sqrt{48}$. <br>b) (2 p) Racionaliza $\dfrac{6}{\sqrt3}$ y $\dfrac{2}{\sqrt5-\sqrt3}$.`,
-          R`a) $2\sqrt3+3\sqrt3-4\sqrt3=\sqrt3$. <br>b) $\dfrac{6\sqrt3}{3}=2\sqrt3$; $\dfrac{2(\sqrt5+\sqrt3)}{5-3}=\sqrt5+\sqrt3$.`),
-        Q(3.5, R`Calcula: $\log_2 32$, $\log_3\dfrac19$, $\log 0{,}001$ y $\ln e^4$.`,
-          R`$5$, $-2$, $-3$ y $4$.`),
-        Q(3, R`Resuelve: a) $2^{x+1}+2^x=24$ &nbsp; b) $\log x+\log(x-3)=1$`,
-          R`a) $3\cdot2^x=24\Rightarrow2^x=8\Rightarrow x=3$. <br>b) $x(x-3)=10\Rightarrow x^2-3x-10=0\Rightarrow x=5$ (la solución $x=-2$ no vale: no existe $\log(-2)$).`)
-      ],
-      [
-        Q(3.5, R`Expresa como intervalos: a) $|x-3|<2$ &nbsp; b) $|2x+1|\ge3$`,
-          R`a) $-2<x-3<2\Rightarrow(1,5)$. <br>b) $2x+1\ge3$ o $2x+1\le-3$: $(-\infty,-2]\cup[1,\infty)$.`),
-        Q(3.5, R`Sabiendo que $\log2\approx0{,}301$ y $\log3\approx0{,}477$, calcula $\log12$, $\log1{,}5$ y $\log\sqrt8$.`,
-          R`$\log12=2\log2+\log3=1{,}079$. $\log1{,}5=\log3-\log2=0{,}176$. $\log\sqrt8=\frac32\log2=0{,}4515$.`),
-        Q(3, R`Resuelve $9^x-4\cdot3^x+3=0$.`,
-          R`Con $t=3^x$: $t^2-4t+3=0\Rightarrow t=1,\ t=3$. Entonces $x=0$ y $x=1$.`)
-      ],
-      [
-        Q(3.5, R`Calcula y da el resultado en notación científica: $\dfrac{3\cdot10^5\cdot4\cdot10^{-2}}{6\cdot10^4}$`,
-          R`$\dfrac{12\cdot10^3}{6\cdot10^4}=2\cdot10^{-1}$.`),
-        Q(3.5, R`Simplifica $\dfrac{\sqrt[3]{a^2}\cdot\sqrt a}{\sqrt[6]{a}}$ (con $a>0$).`,
-          R`$a^{\frac23+\frac12-\frac16}=a^{\frac{4+3-1}{6}}=a$.`),
-        Q(3, R`Resuelve: a) $2\log x-\log(x+6)=0$ &nbsp; b) $\log_2(x+1)+\log_2(x-1)=3$`,
-          R`a) $x^2=x+6\Rightarrow x=3$ ($x=-2$ no vale). <br>b) $x^2-1=8\Rightarrow x=3$ ($x=-3$ no vale).`)
-      ]
-    ] },
-    { n: 'T2', name: 'Ecuaciones, inecuaciones y sistemas', desc: 'Polinomios, bicuadradas, irracionales, Gauss e inecuaciones.', exams: [
-      [
-        Q(3.5, R`Resuelve: a) $x^4-5x^2+4=0$ &nbsp; b) $\sqrt{x+7}=x-5$`,
-          R`a) Con $t=x^2$: $t=1,4\Rightarrow x=\pm1,\pm2$. <br>b) Elevando: $x^2-11x+18=0\Rightarrow x=9,\ x=2$. Comprobando, solo vale $x=9$.`),
-        Q(3.5, R`Resuelve: a) $x^2-x-6\le0$ &nbsp; b) $\dfrac{x-1}{x+2}>0$`,
-          R`a) Raíces $-2$ y $3$: $[-2,3]$. <br>b) Signo positivo fuera de las raíces: $(-\infty,-2)\cup(1,\infty)$.`),
-        Q(3, R`Resuelve $\begin{cases}x+y=7\\xy=12\end{cases}$`,
-          R`$x(7-x)=12\Rightarrow x^2-7x+12=0$: soluciones $(3,4)$ y $(4,3)$.`)
-      ],
-      [
-        Q(3.5, R`Factoriza $P(x)=x^3-2x^2-5x+6$.`,
-          R`$P(1)=0$. Por Ruffini: $(x-1)(x^2-x-6)=(x-1)(x-3)(x+2)$.`),
-        Q(3.5, R`Resuelve por Gauss: $\begin{cases}x+y+z=6\\2x-y+z=3\\x+2y-z=2\end{cases}$`,
-          R`Haciendo ceros: $E_2-2E_1$: $-3y-z=-9$; $E_3-E_1$: $y-2z=-4$. De ahí $y=2$, $z=3$ y $x=1$.`),
-        Q(3, R`3 cuadernos y 2 bolígrafos cuestan 9 €; 2 cuadernos y 5 bolígrafos cuestan 8,75 €. ¿Cuánto cuesta cada cosa?`,
-          R`$3c+2b=9$, $2c+5b=8{,}75$. Multiplicando y restando: $11b=8{,}25\Rightarrow b=0{,}75$ €, $c=2{,}50$ €.`)
-      ],
-      [
-        Q(3.5, R`Simplifica $\dfrac{x^2-4}{x^2+4x+4}$.`,
-          R`$\dfrac{(x-2)(x+2)}{(x+2)^2}=\dfrac{x-2}{x+2}$.`),
-        Q(3.5, R`Resuelve el sistema de inecuaciones $\begin{cases}2x-1>3\\x^2-9<0\end{cases}$`,
-          R`$x>2$ y $-3<x<3$: solución $(2,3)$.`),
-        Q(3, R`Resuelve $\dfrac2x+\dfrac{3}{x+1}=2$.`,
-          R`$2(x+1)+3x=2x(x+1)\Rightarrow2x^2-3x-2=0\Rightarrow x=2,\ x=-\dfrac12$ (las dos valen).`)
-      ]
-    ] },
-    { n: 'T3', name: 'Trigonometría', desc: 'Razones, fórmulas, ecuaciones y resolución de triángulos.', exams: [
-      [
-        Q(3.5, R`Si $\sin\alpha=\dfrac35$ y $\alpha$ está en el 2º cuadrante, calcula $\cos\alpha$, $\tan\alpha$, $\sin2\alpha$ y $\cos2\alpha$.`,
-          R`$\cos\alpha=-\dfrac45$, $\tan\alpha=-\dfrac34$, $\sin2\alpha=2\cdot\dfrac35\cdot\left(-\dfrac45\right)=-\dfrac{24}{25}$, $\cos2\alpha=\dfrac{16}{25}-\dfrac9{25}=\dfrac7{25}$.`),
-        Q(3.5, R`Resuelve el triángulo con $a=10$, $B=45^\circ$, $C=60^\circ$.`,
-          R`$A=75^\circ$. Teorema del seno: $b=\dfrac{10\sin45^\circ}{\sin75^\circ}\approx7{,}32$, $c=\dfrac{10\sin60^\circ}{\sin75^\circ}\approx8{,}97$.`),
-        Q(3, R`Resuelve $2\sin^2x-\sin x-1=0$ en $[0,2\pi)$.`,
-          R`$\sin x=1$ o $\sin x=-\dfrac12$: $x=\dfrac\pi2,\ \dfrac{7\pi}6,\ \dfrac{11\pi}6$.`)
-      ],
-      [
-        Q(3.5, R`Demuestra que $\dfrac{1-\cos^2x}{\sin x\cos x}=\tan x$.`,
-          R`$1-\cos^2x=\sin^2x$, así que queda $\dfrac{\sin^2x}{\sin x\cos x}=\dfrac{\sin x}{\cos x}=\tan x$.`),
-        Q(3.5, R`En un triángulo, $a=7$, $b=8$ y $C=60^\circ$. Calcula $c$.`,
-          R`Teorema del coseno: $c^2=49+64-2\cdot7\cdot8\cdot\dfrac12=57\Rightarrow c=\sqrt{57}\approx7{,}55$.`),
-        Q(3, R`Desde un punto vemos lo alto de una torre con un ángulo de 30°. Si nos acercamos 20 m, el ángulo es de 45°. ¿Cuánto mide la torre?`,
-          R`Con $x$ = distancia final: $h=x$ y $h=\dfrac{x+20}{\sqrt3}$. Entonces $x\sqrt3=x+20\Rightarrow x=\dfrac{20}{\sqrt3-1}=10(\sqrt3+1)\approx27{,}32$ m.`)
-      ],
-      [
-        Q(3.5, R`a) Pasa $150^\circ$ a radianes y $\dfrac{3\pi}4$ rad a grados. <br>b) Calcula sin calculadora $\sin240^\circ$, $\cos330^\circ$ y $\tan135^\circ$.`,
-          R`a) $\dfrac{5\pi}{6}$ rad y $135^\circ$. <br>b) $-\dfrac{\sqrt3}2$, $\dfrac{\sqrt3}{2}$ y $-1$.`),
-        Q(3.5, R`Resuelve $\cos2x=\cos x$ en $[0,2\pi)$.`,
-          R`$2\cos^2x-\cos x-1=0\Rightarrow\cos x=1$ o $\cos x=-\dfrac12$: $x=0,\ \dfrac{2\pi}3,\ \dfrac{4\pi}3$.`),
-        Q(3, R`Un triángulo tiene $b=6$, $c=8$ y $A=30^\circ$. Calcula su área y el lado $a$.`,
-          R`Área $=\dfrac12\cdot6\cdot8\cdot\sin30^\circ=12$. $a^2=36+64-96\cos30^\circ\approx16{,}86\Rightarrow a\approx4{,}11$.`)
-      ]
-    ] },
-    { n: 'T4', name: 'Números complejos', desc: 'Forma binómica y polar, operaciones, potencias y raíces.', exams: [
-      [
-        Q(3.5, R`Calcula: a) $(2+3i)(1-i)$ &nbsp; b) $\dfrac{3+4i}{1+2i}$`,
-          R`a) $2-2i+3i+3=5+i$. <br>b) Multiplicando por el conjugado: $\dfrac{(3+4i)(1-2i)}{5}=\dfrac{11-2i}{5}$.`),
-        Q(3.5, R`Pasa $z=1+\sqrt3\,i$ a forma polar y calcula $z^6$.`,
-          R`$|z|=2$, $\arg z=60^\circ$: $z=2_{60^\circ}$. $z^6=64_{360^\circ}=64$.`),
-        Q(3, R`Resuelve $x^2+2x+5=0$.`,
-          R`$x=\dfrac{-2\pm\sqrt{-16}}{2}=-1\pm2i$.`)
-      ],
-      [
-        Q(3.5, R`Calcula $i^{27}$ e $i^{100}$.`,
-          R`$27=4\cdot6+3\Rightarrow i^{27}=i^3=-i$. $100$ es múltiplo de 4: $i^{100}=1$.`),
-        Q(3.5, R`Halla las raíces cúbicas de $-8$.`,
-          R`$-8=8_{180^\circ}$. Raíces: $2_{60^\circ}$, $2_{180^\circ}$, $2_{300^\circ}$, es decir $1+\sqrt3i$, $-2$ y $1-\sqrt3i$.`),
-        Q(3, R`Halla $m$ para que $\dfrac{m+2i}{1-i}$ sea imaginario puro.`,
-          R`$\dfrac{(m+2i)(1+i)}{2}=\dfrac{(m-2)+(m+2)i}{2}$. Parte real nula: $m=2$ (y queda $2i$).`)
-      ],
-      [
-        Q(3.5, R`Pasa a forma binómica $4_{150^\circ}$.`,
-          R`$4(\cos150^\circ+i\sin150^\circ)=4\left(-\dfrac{\sqrt3}2+\dfrac12i\right)=-2\sqrt3+2i$.`),
-        Q(3.5, R`Con $z_1=6_{70^\circ}$ y $z_2=2_{25^\circ}$, calcula $z_1z_2$ y $\dfrac{z_1}{z_2}$.`,
-          R`Producto: se multiplican módulos y se suman argumentos, $12_{95^\circ}$. Cociente: $3_{45^\circ}$.`),
-        Q(3, R`Resuelve: a) $z^2=-9$ &nbsp; b) $z^4=16$`,
-          R`a) $\pm3i$. <br>b) $16=16_{0^\circ}$: $2_{0^\circ},2_{90^\circ},2_{180^\circ},2_{270^\circ}$, es decir $2,\ 2i,\ -2,\ -2i$.`)
-      ]
-    ] },
-    { n: 'T5', name: 'Vectores y geometría analítica', desc: 'Producto escalar, rectas, distancias, ángulos y cónicas.', exams: [
-      [
-        Q(3.5, R`Con $\vec u=(3,4)$ y $\vec v=(-2,1)$, calcula $\vec u\cdot\vec v$, $|\vec u|$ y el ángulo que forman.`,
-          R`$\vec u\cdot\vec v=-2$, $|\vec u|=5$, $|\vec v|=\sqrt5$. $\cos\alpha=\dfrac{-2}{5\sqrt5}\Rightarrow\alpha\approx100{,}3^\circ$.`),
-        Q(3.5, R`Halla la ecuación general de la recta que pasa por $A(1,2)$ y $B(4,-1)$.`,
-          R`Vector $(3,-3)\parallel(1,-1)$, pendiente $-1$: $y-2=-(x-1)\Rightarrow x+y-3=0$.`),
-        Q(3, R`Distancia del punto $P(2,3)$ a la recta $3x-4y+1=0$.`,
-          R`$d=\dfrac{|6-12+1|}{5}=1$.`)
-      ],
-      [
-        Q(3.5, R`Posición relativa de $r:\ 2x-y+1=0$ y $s:\ 4x-2y+5=0$, y distancia entre ellas.`,
-          R`Coeficientes proporcionales pero no el término independiente: paralelas. Con $s:\ 2x-y+\frac52=0$: $d=\dfrac{|5/2-1|}{\sqrt5}=\dfrac{3\sqrt5}{10}\approx0{,}67$.`),
-        Q(3.5, R`Halla la recta perpendicular a $2x+y-3=0$ que pasa por $P(1,1)$.`,
-          R`La perpendicular tiene vector normal $(1,-2)$: $x-2y+C=0$ y pasa por $P$: $x-2y+1=0$.`),
-        Q(3, R`Halla el centro y el radio de la circunferencia $x^2+y^2-4x+6y-3=0$.`,
-          R`Completando cuadrados: $(x-2)^2+(y+3)^2=16$. Centro $(2,-3)$, radio 4.`)
-      ],
-      [
-        Q(3.5, R`Halla el simétrico de $A(1,2)$ respecto del punto $M(3,-1)$.`,
-          R`$A'=2M-A=(5,-4)$.`),
-        Q(3.5, R`Ángulo entre las rectas $y=2x+1$ e $y=-3x+2$.`,
-          R`$\tan\alpha=\left|\dfrac{-3-2}{1+2\cdot(-3)}\right|=1\Rightarrow\alpha=45^\circ$.`),
-        Q(3, R`Para la elipse $\dfrac{x^2}{25}+\dfrac{y^2}{9}=1$, halla semiejes, focos y excentricidad.`,
-          R`$a=5$, $b=3$, $c=\sqrt{25-9}=4$. Focos $(\pm4,0)$, excentricidad $\dfrac45$.`)
-      ]
-    ] },
-    { n: 'T6', name: 'Funciones, límites y continuidad', desc: 'Dominios, composición, inversa, límites y asíntotas.', exams: [
-      [
-        Q(3.5, R`Dominio de: a) $f(x)=\dfrac{\sqrt{x-2}}{x-5}$ &nbsp; b) $g(x)=\ln(4-x^2)$`,
-          R`a) $x\ge2$ y $x\neq5$: $[2,5)\cup(5,\infty)$. <br>b) $4-x^2>0$: $(-2,2)$.`),
-        Q(3.5, R`Calcula: a) $\displaystyle\lim_{x\to3}\frac{x^2-9}{x-3}$ &nbsp; b) $\displaystyle\lim_{x\to\infty}\frac{2x^3-x}{5x^3+2}$ &nbsp; c) $\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)$`,
-          R`a) $x+3\to6$. <br>b) $\dfrac25$. <br>c) Conjugado: $\dfrac{x}{\sqrt{x^2+x}+x}\to\dfrac12$.`),
-        Q(3, R`Halla $a$ para que $f(x)=\begin{cases}x+1 & x<2\\ax^2 & x\ge2\end{cases}$ sea continua.`,
-          R`$3=4a\Rightarrow a=\dfrac34$.`)
-      ],
-      [
-        Q(3.5, R`Asíntotas de $f(x)=\dfrac{2x+1}{x-3}$.`,
-          R`Vertical $x=3$ y horizontal $y=2$.`),
-        Q(3.5, R`Con $f(x)=x^2$ y $g(x)=x+1$, calcula $f\circ g$ y $g\circ f$. Halla la inversa de $h(x)=\dfrac{2x-1}{3}$.`,
-          R`$(f\circ g)(x)=(x+1)^2$, $(g\circ f)(x)=x^2+1$. Despejando $x$ en $y=\frac{2x-1}3$: $h^{-1}(x)=\dfrac{3x+1}{2}$.`),
-        Q(3, R`Calcula $\displaystyle\lim_{x\to2}\frac{x-2}{\sqrt{x+2}-2}$.`,
-          R`Multiplicando por el conjugado: $\dfrac{(x-2)(\sqrt{x+2}+2)}{x-2}=\sqrt{x+2}+2\to4$.`)
-      ],
-      [
-        Q(3.5, R`Calcula: a) $\displaystyle\lim_{x\to\infty}\left(1+\frac1{3x}\right)^x$ &nbsp; b) $\displaystyle\lim_{x\to1^-}\frac1{x-1}$ y $\displaystyle\lim_{x\to1^+}\frac1{x-1}$`,
-          R`a) $e^{1/3}$. <br>b) $-\infty$ y $+\infty$.`),
-        Q(3.5, R`Estudia la continuidad de $f(x)=\begin{cases}x^2 & x\le0\\x & 0<x\le2\\4-x & x>2\end{cases}$`,
-          R`Cada trozo es continuo. En $x=0$: $0=0$. En $x=2$: $2=2$. Es continua en $\mathbb R$.`),
-        Q(3, R`Halla las asíntotas de $f(x)=\dfrac{x^2+2x}{x-1}$.`,
-          R`Vertical $x=1$. Oblicua: $x^2+2x=(x-1)(x+3)+3$, así que $y=x+3$.`)
-      ]
-    ] },
-    { n: 'T7', name: 'Derivadas', desc: 'Definición, reglas, recta tangente, monotonía y optimización.', exams: [
-      [
-        Q(3.5, R`Calcula, usando la definición, la derivada de $f(x)=x^2$ en $x=3$.`,
-          R`$\displaystyle\lim_{h\to0}\frac{(3+h)^2-9}{h}=\lim_{h\to0}(6+h)=6$.`),
-        Q(3.5, R`Deriva: a) $(3x^2-1)^4$ &nbsp; b) $\dfrac{x}{x+1}$ &nbsp; c) $e^{x^2}$`,
-          R`a) $24x(3x^2-1)^3$. b) $\dfrac{1}{(x+1)^2}$. c) $2xe^{x^2}$.`),
-        Q(3, R`Recta tangente a $y=x^2-3x$ en $x=1$.`,
-          R`$f(1)=-2$, $f'(1)=-1$: $y=-x-1$.`)
-      ],
-      [
-        Q(3.5, R`Estudia monotonía y extremos de $f(x)=x^3-12x$.`,
-          R`$f'(x)=3x^2-12=0\Rightarrow x=\pm2$. Crece en $(-\infty,-2)\cup(2,\infty)$, decrece en $(-2,2)$. Máximo $(-2,16)$, mínimo $(2,-16)$.`),
-        Q(3.5, R`Deriva: a) $\ln(3x-2)$ &nbsp; b) $\sin x\cos x$ &nbsp; c) $\sqrt{x^2+1}$`,
-          R`a) $\dfrac{3}{3x-2}$. b) $\cos^2x-\sin^2x=\cos2x$. c) $\dfrac{x}{\sqrt{x^2+1}}$.`),
-        Q(3, R`Dos números positivos suman 12. Halla los que hacen máximo el producto de uno por el cuadrado del otro.`,
-          R`$P(y)=(12-y)y^2$, $P'(y)=24y-3y^2=0\Rightarrow y=8$. Los números son 4 y 8 (producto $4\cdot8^2=256$).`)
-      ],
-      [
-        Q(3.5, R`Estudia la curvatura y los puntos de inflexión de $f(x)=x^3-6x^2+4$.`,
-          R`$f''(x)=6x-12$. Cóncava ($\cap$) en $(-\infty,2)$, convexa ($\cup$) en $(2,\infty)$. Inflexión en $(2,-12)$.`),
-        Q(3.5, R`Halla el punto de $y=x^2-4x+1$ donde la tangente es paralela a $y=2x$, y escribe esa tangente.`,
-          R`$2x-4=2\Rightarrow x=3$, punto $(3,-2)$. Tangente: $y=2x-8$.`),
-        Q(3, R`Representa $f(x)=x^3-3x$: cortes, extremos y simetría.`,
-          R`Impar. Cortes: $x=0,\pm\sqrt3$. $f'(x)=3x^2-3$: máximo $(-1,2)$, mínimo $(1,-2)$. Inflexión en $(0,0)$.`)
-      ]
-    ] },
-    { n: 'T8', name: 'Estadística y probabilidad', desc: 'Estadística bidimensional, regresión y probabilidad.', exams: [
-      [
-        Q(3.5, R`Para los datos $x$: 1, 2, 3, 4, 5 e $y$: 2, 4, 5, 4, 5, calcula la covarianza, el coeficiente de correlación y la recta de regresión de $y$ sobre $x$. Estima $y$ para $x=6$.`,
-          R`$\bar x=3$, $\bar y=4$, $\sigma_{xy}=\frac{66}5-12=1{,}2$, $\sigma_x^2=2$, $\sigma_y^2=1{,}2$. $r=\dfrac{1{,}2}{\sqrt2\sqrt{1{,}2}}\approx0{,}77$. <br>Recta: $y=0{,}6x+2{,}2$; para $x=6$, $y=5{,}8$.`),
-        Q(3.5, R`Lanzamos un dado y una moneda. ¿Probabilidad de sacar número par y cara?`,
-          R`Son independientes: $\dfrac12\cdot\dfrac12=\dfrac14$.`),
-        Q(3, R`Sacamos dos cartas de una baraja española de 40 sin devolverlas. ¿Probabilidad de que las dos sean oros?`,
-          R`$\dfrac{10}{40}\cdot\dfrac9{39}=\dfrac3{52}$.`)
-      ],
-      [
-        Q(3.5, R`Calcula media y desviación típica de: 2, 4, 4, 4, 5, 5, 7, 9.`,
-          R`Media $=\dfrac{40}8=5$. Varianza $=\dfrac{9+1+1+1+0+0+4+16}{8}=4$, desviación típica $=2$.`),
-        Q(3.5, R`La urna A tiene 3 bolas blancas y 2 negras; la B, 1 blanca y 4 negras. Lanzamos una moneda para elegir urna y sacamos una bola. a) ¿Probabilidad de blanca? b) Si salió blanca, ¿probabilidad de que fuera de A?`,
-          R`a) $\dfrac12\cdot\dfrac35+\dfrac12\cdot\dfrac15=\dfrac25$. <br>b) $\dfrac{3/10}{2/5}=\dfrac34$.`),
-        Q(3, R`$P(A)=0{,}6$, $P(B)=0{,}5$, $P(A\cup B)=0{,}8$. ¿Son independientes?`,
-          R`$P(A\cap B)=0{,}6+0{,}5-0{,}8=0{,}3=P(A)P(B)$: sí lo son.`)
-      ],
-      [
-        Q(3.5, R`Interpreta un coeficiente de correlación $r=-0{,}92$.`,
-          R`Correlación lineal fuerte y negativa: cuando una variable crece, la otra decrece, y los puntos están muy cerca de una recta.`),
-        Q(3.5, R`Sabemos que $\bar x=10$, $\bar y=20$, $\sigma_x=2$, $\sigma_y=5$ y $r=0{,}8$. Halla la recta de regresión de $y$ sobre $x$ y estima $y$ para $x=12$.`,
-          R`Pendiente $=r\dfrac{\sigma_y}{\sigma_x}=2$: $y=20+2(x-10)=2x$. Para $x=12$: $y=24$.`),
-        Q(3, R`Lanzamos 3 monedas. Probabilidad de: a) al menos una cara; b) exactamente dos caras.`,
-          R`a) $1-\dfrac18=\dfrac78$. b) $\dfrac38$.`)
-      ]
-    ] }
-  ];
-
   /* =========================== Interfaz =========================== */
+  const B1 = window.CC13_B1 || [];
   const $ = (s, r = document) => r.querySelector(s);
   const store = {
     get(k, d) { try { const v = localStorage.getItem('cc13:' + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem('cc13:' + k, JSON.stringify(v)); } catch { /* sin almacenamiento */ } }
   };
-  const typeset = el => { if (window.MathJax && MathJax.typesetPromise) { MathJax.typesetClear && MathJax.typesetClear([el]); MathJax.typesetPromise([el]).catch(() => {}); } };
+  // MathJax pide no lanzar dos composiciones a la vez: las encadenamos.
+  let mjChain = Promise.resolve();
+  const typeset = el => { if (!(window.MathJax && MathJax.typesetPromise)) return; mjChain = mjChain.then(() => { MathJax.typesetClear && MathJax.typesetClear([el]); return MathJax.typesetPromise([el]); }).catch(() => {}); };
   const fmtNum = x => (Math.round(x * 10) / 10).toString().replace('.', ',');
+  const fmt = (x, d = 3) => { if (!Number.isFinite(x)) return '—'; const v = Number(x.toFixed(d)); return (Object.is(v, -0) ? 0 : v).toString().replace('.', ','); };
+  const safeAll = h => safe(h).replace(/\\\[[\s\S]*?\\\]/g, m => m.replace(/</g, '\\lt ').replace(/>/g, '\\gt '));
   const MINUTES = 45;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- utilidades de dibujo ---------- */
+  function frame(xmin, xmax, ymin, ymax, w = 400, h = 260) {
+    const X = x => (x - xmin) / (xmax - xmin) * w, Y = y => h - (y - ymin) / (ymax - ymin) * h;
+    let s = '';
+    for (let x = Math.ceil(xmin); x <= xmax; x++) s += `<line class="g" x1="${X(x)}" y1="0" x2="${X(x)}" y2="${h}"/>`;
+    for (let y = Math.ceil(ymin); y <= ymax; y++) s += `<line class="g" x1="0" y1="${Y(y)}" x2="${w}" y2="${Y(y)}"/>`;
+    if (xmin < 0 && xmax > 0) s += `<line class="ax" x1="${X(0)}" y1="0" x2="${X(0)}" y2="${h}"/>`;
+    if (ymin < 0 && ymax > 0) s += `<line class="ax" x1="0" y1="${Y(0)}" x2="${w}" y2="${Y(0)}"/>`;
+    const path = (f, cls = 'fn', a = xmin, b = xmax) => {
+      let d = '', pen = false;
+      for (let i = 0; i <= 400; i++) {
+        const x = a + (b - a) * i / 400, y = f(x);
+        if (!Number.isFinite(y) || y < ymin - 50 || y > ymax + 50) { pen = false; continue; }
+        const py = Math.max(-1000, Math.min(1000, Y(y)));
+        d += (pen ? 'L' : 'M') + X(x).toFixed(1) + ' ' + py.toFixed(1); pen = true;
+      }
+      return `<path class="${cls}" d="${d}"/>`;
+    };
+    const dot = (x, y, cls = 'pt', r = 5) => `<circle class="${cls}" cx="${X(x)}" cy="${Y(y)}" r="${r}"/>`;
+    const seg = (x1, y1, x2, y2, cls = 'fn2') => `<line class="${cls}" x1="${X(x1)}" y1="${Y(y1)}" x2="${X(x2)}" y2="${Y(y2)}"/>`;
+    const svg = inner => `<svg class="plot" viewBox="0 0 ${w} ${h}" role="img" aria-label="Gráfica">${s}${inner}</svg>`;
+    return { X, Y, path, dot, seg, svg };
+  }
+  const polyTex = c => {
+    const n = c.length - 1; let out = '';
+    c.forEach((a, i) => {
+      const p = n - i; if (a === 0) return;
+      const sign = a < 0 ? ' - ' : (out ? ' + ' : ''); const abs = Math.abs(a);
+      const coef = (abs === 1 && p > 0) ? '' : fmt(abs);
+      out += (a < 0 && !out ? '-' : sign) + coef + (p > 1 ? `x^{${p}}` : p === 1 ? 'x' : '');
+    });
+    return out || '0';
+  };
+
+  /* ---------- herramientas interactivas ---------- */
+  const TOOLS = {
+    complejo(el) {
+      el.innerHTML = `<h4>Pruébalo: el plano complejo</h4>
+        <div class="ctrl"><label>Parte real $a$ <input class="input" id="cx-a" type="number" step="any" value="1"></label>
+        <label>Parte imaginaria $b$ <input class="input" id="cx-b" type="number" step="any" value="1.732"></label></div>
+        <div class="tool-out"><div class="cx-plot"></div><div class="cx-info"></div></div>`;
+      const draw = () => {
+        const a = parseFloat($('#cx-a', el).value) || 0, b = parseFloat($('#cx-b', el).value) || 0;
+        const r = Math.hypot(a, b); let ang = Math.atan2(b, a) * 180 / Math.PI; if (ang < 0) ang += 360;
+        const L = Math.max(3, Math.ceil(Math.max(Math.abs(a), Math.abs(b)) + 1));
+        const F = frame(-L, L, -L, L, 300, 300);
+        $('.cx-plot', el).innerHTML = F.svg(F.seg(0, 0, a, b, 'fn') + F.seg(0, 0, a, -b, 'fn3') + F.dot(a, b) + F.dot(a, -b, 'pt2', 4));
+        $('.cx-info', el).innerHTML = `<p>$z=${fmt(a)}${b < 0 ? '-' : '+'}${fmt(Math.abs(b))}i$</p>
+          <p>Módulo: $r=\\sqrt{a^2+b^2}\\approx${fmt(r)}$</p>
+          <p>Argumento: $\\alpha\\approx${fmt(ang, 2)}^\\circ$ (${r === 0 ? 'no definido' : ['1.<sup>er</sup>', '2.º', '3.<sup>er</sup>', '4.º'][Math.min(3, Math.floor(ang / 90))] + ' cuadrante'})</p>
+          <p>Forma polar: $${fmt(r)}_{${fmt(ang, 2)}^\\circ}$</p>
+          <p class="small">En gris discontinuo, el conjugado $\\bar z=${fmt(a)}${b < 0 ? '+' : '-'}${fmt(Math.abs(b))}i$.</p>`;
+        typeset($('.cx-info', el));
+      };
+      el.addEventListener('input', draw); draw();
+    },
+
+    ruffini(el) {
+      el.innerHTML = `<h4>Pruébalo: regla de Ruffini</h4>
+        <div class="ctrl"><label>Coeficientes (de mayor a menor grado) <input class="input" id="rf-c" value="1, -2, -5, 6"></label>
+        <label>Dividir entre $x-a$, con $a=$ <input class="input" id="rf-a" type="number" step="any" value="1" style="max-width:90px"></label>
+        <button class="btn" type="button" id="rf-f">Factorizar (raíces enteras)</button></div>
+        <div class="rf-out"></div>`;
+      const read = () => $('#rf-c', el).value.split(/[,;\s]+/).filter(Boolean).map(Number).filter(Number.isFinite);
+      const div = (c, a) => { const q = [c[0]]; for (let i = 1; i < c.length; i++) q.push(c[i] + q[i - 1] * a); return { q: q.slice(0, -1), r: q[q.length - 1], row: q }; };
+      const draw = () => {
+        const c = read(), a = parseFloat($('#rf-a', el).value) || 0;
+        if (c.length < 2) { $('.rf-out', el).innerHTML = '<p class="small">Escribe al menos dos coeficientes, separados por comas.</p>'; return; }
+        const { q, r, row } = div(c, a);
+        const mid = row.map((_, i) => i === 0 ? '' : fmt(row[i - 1] * a));
+        $('.rf-out', el).innerHTML = `<div class="tbl"><table class="ruffini">
+          <tr><td></td>${c.map(v => `<td>${fmt(v)}</td>`).join('')}</tr>
+          <tr><td class="ra">${fmt(a)}</td>${mid.map(v => `<td>${v}</td>`).join('')}</tr>
+          <tr class="res"><td></td>${row.map((v, i) => `<td class="${i === row.length - 1 ? 'rest' : ''}">${fmt(v)}</td>`).join('')}</tr></table></div>
+          <p>Cociente: $${polyTex(q)}$ &nbsp;·&nbsp; Resto: $${fmt(r)}$</p>
+          <p class="small">Teorema del resto: $P(${fmt(a)})=${fmt(r)}$. ${r === 0 ? `Como es 0, $x=${fmt(a)}$ es raíz y $(x${a < 0 ? '+' : '-'}${fmt(Math.abs(a))})$ es un factor.` : 'Como no es 0, no es raíz.'}</p>`;
+        typeset($('.rf-out', el));
+      };
+      $('#rf-f', el).addEventListener('click', () => {
+        let c = read(); const facs = [];
+        if (c.length < 2 || !c.every(Number.isInteger)) { $('.rf-out', el).innerHTML = '<p class="small">La factorización automática solo funciona con coeficientes enteros.</p>'; return; }
+        while (c.length > 1 && c[c.length - 1] === 0) { facs.push('x'); c = c.slice(0, -1); }
+        let found = true;
+        while (c.length > 1 && found) {
+          found = false; const k = Math.abs(c[c.length - 1]);
+          for (let d = 1; d <= k && !found; d++) {
+            if (k % d) continue;
+            for (const s of [d, -d]) { const { q, r } = div(c, s); if (r === 0) { facs.push(s < 0 ? `(x+${-s})` : `(x-${s})`); c = q; found = true; break; } }
+          }
+        }
+        const factored = c.length === 1 ? (c[0] === 1 ? '' : c[0] === -1 ? '-' : fmt(c[0])) + facs.join('') : facs.join('') + `(${polyTex(c)})`;
+        $('.rf-out', el).innerHTML = `<p>Factorización: $${factored}$</p>
+          <p class="small">${c.length > 1 ? 'El último factor no tiene raíces enteras: prueba con la fórmula de 2.º grado si es de grado 2.' : 'Hemos encontrado todas las raíces enteras probando los divisores del término independiente.'}</p>`;
+        typeset($('.rf-out', el));
+      });
+      el.addEventListener('input', draw); draw();
+    },
+
+    progresiones(el) {
+      el.innerHTML = `<h4>Pruébalo: progresiones</h4>
+        <div class="ctrl"><label>Tipo <select class="input" id="pg-t"><option value="a">Aritmética</option><option value="g">Geométrica</option></select></label>
+        <label>$a_1$ <input class="input" id="pg-a" type="number" step="any" value="2"></label>
+        <label><span id="pg-dl">$d$</span> <input class="input" id="pg-d" type="number" step="any" value="3"></label>
+        <label>$n$ <input class="input" id="pg-n" type="number" min="1" max="40" value="8"></label></div>
+        <div class="pg-out"></div>`;
+      const draw = () => {
+        const t = $('#pg-t', el).value, a1 = parseFloat($('#pg-a', el).value) || 0, d = parseFloat($('#pg-d', el).value) || 0;
+        const n = Math.max(1, Math.min(40, parseInt($('#pg-n', el).value, 10) || 1));
+        $('#pg-dl', el).textContent = t === 'a' ? 'd (diferencia)' : 'r (razón)';
+        const terms = Array.from({ length: n }, (_, i) => t === 'a' ? a1 + i * d : a1 * d ** i);
+        const an = terms[n - 1], Sn = terms.reduce((s, v) => s + v, 0);
+        const shown = terms.slice(0, 15), mx = Math.max(1, ...shown.map(Math.abs));
+        const bars = shown.map((v, i) => { const h = Math.abs(v) / mx * 100; return `<rect class="${v < 0 ? 'neg' : 'pos'}" x="${i * 26 + 4}" y="${v < 0 ? 110 : 110 - h}" width="20" height="${Math.max(h, 1)}"/>`; }).join('');
+        const inf = t === 'g' && Math.abs(d) < 1 ? `<p>Como $|r|\\lt 1$, la suma infinita es $S_\\infty=\\dfrac{a_1}{1-r}\\approx${fmt(a1 / (1 - d))}$</p>` : '';
+        $('.pg-out', el).innerHTML = `<p class="terms">${shown.map(v => fmt(v)).join(', ')}${n > 15 ? ', …' : ''}</p>
+          <svg class="plot bars" viewBox="0 0 ${shown.length * 26 + 8} 220" role="img" aria-label="Términos"><line class="ax" x1="0" y1="110" x2="${shown.length * 26 + 8}" y2="110"/>${bars}</svg>
+          <p>$a_{${n}}=${t === 'a' ? `a_1+(n-1)d` : `a_1\\cdot r^{n-1}`}\\approx${fmt(an)}$ &nbsp;·&nbsp; $S_{${n}}\\approx${fmt(Sn)}$</p>${inf}`;
+        typeset(el);
+      };
+      el.addEventListener('input', draw); draw();
+    },
+
+    goniometrica(el) {
+      el.innerHTML = `<h4>Pruébalo: la circunferencia goniométrica</h4>
+        <div class="ctrl"><label style="flex:1">Ángulo: <b id="gn-v">60</b>° <input id="gn-a" type="range" min="0" max="360" value="60" style="width:100%"></label></div>
+        <div class="tool-out"><div class="gn-plot"></div><div class="gn-info"></div></div>`;
+      const draw = () => {
+        const deg = +$('#gn-a', el).value, t = deg * Math.PI / 180, c = Math.cos(t), s = Math.sin(t);
+        $('#gn-v', el).textContent = deg;
+        const F = frame(-1.6, 1.6, -1.6, 1.6, 300, 300);
+        const circ = `<circle class="fn" cx="${F.X(0)}" cy="${F.Y(0)}" r="${F.X(1) - F.X(0)}" fill="none"/>`;
+        const tan = Math.abs(c) > 0.05 && Math.abs(s / c) < 1.6 ? F.seg(1, 0, 1, s / c, 'tn') + F.seg(0, 0, 1, s / c, 'fn3') : '';
+        $('.gn-plot', el).innerHTML = F.svg(circ + tan + F.seg(0, 0, c, s, 'fn') + F.seg(0, 0, c, 0, 'cs') + F.seg(c, 0, c, s, 'sn') + F.dot(c, s));
+        const q = deg % 90 === 0 ? 'sobre un eje' : ['1.<sup>er</sup>', '2.º', '3.<sup>er</sup>', '4.º'][Math.floor(deg / 90) % 4] + ' cuadrante';
+        $('.gn-info', el).innerHTML = `<p>${deg}° $=${fmt(t, 4)}$ rad · ${q}</p>
+          <p><span class="k sn"></span>$\\sin=${fmt(s)}$</p><p><span class="k cs"></span>$\\cos=${fmt(c)}$</p>
+          <p><span class="k tn"></span>$\\tan=${Math.abs(c) < 1e-9 ? '\\text{no existe}' : fmt(s / c)}$</p>
+          <p class="small">El seno es la altura del punto y el coseno su abscisa. Comprueba que $\\sin^2+\\cos^2=1$.</p>`;
+        typeset($('.gn-info', el));
+      };
+      el.addEventListener('input', draw); draw();
+    },
+
+    familias(el) {
+      const fams = {
+        exp: { l: 'a^x', f: (x, a) => a ** x, d: 'Dominio $\\mathbb R$, recorrido $(0,\\infty)$. Crece si $a\\gt 1$, decrece si $0\\lt a\\lt 1$.', min: 0.2, max: 4, v: 2 },
+        log: { l: '\\log_a x', f: (x, a) => Math.log(x) / Math.log(a), d: 'Dominio $(0,\\infty)$. Pasa por $(1,0)$ y es la inversa de $a^x$.', min: 0.2, max: 4, v: 2 },
+        hip: { l: '\\dfrac{a}{x}', f: (x, a) => a / x, d: 'Dominio $\\mathbb R-\\{0\\}$. Asíntotas $x=0$ e $y=0$.', min: -4, max: 4, v: 1 },
+        raiz: { l: '\\sqrt{x-a}', f: (x, a) => x >= a ? Math.sqrt(x - a) : NaN, d: 'Dominio $[a,\\infty)$: el radicando no puede ser negativo.', min: -4, max: 4, v: 1 },
+        abs: { l: '|x-a|', f: (x, a) => Math.abs(x - a), d: 'La parte negativa de $x-a$ se refleja hacia arriba. Vértice en $x=a$.', min: -4, max: 4, v: 1 },
+        sen: { l: 'a\\sin x', f: (x, a) => a * Math.sin(x), d: 'Periodo $2\\pi$. El parámetro cambia la amplitud: recorrido $[-|a|,|a|]$.', min: -3, max: 3, v: 2 }
+      };
+      el.innerHTML = `<h4>Pruébalo: familias de funciones</h4>
+        <div class="ctrl"><label>Función <select class="input" id="fm-t">${Object.entries(fams).map(([k, o]) => `<option value="${k}">${o.l.replace(/\\dfrac\{a\}\{x\}/, 'a/x').replace(/\\log_a x/, 'logₐ x').replace(/\\sqrt\{x-a\}/, '√(x − a)').replace(/a\\sin x/, 'a·sen x')}</option>`).join('')}</select></label>
+        <label style="flex:1">$a=$ <b id="fm-v"></b> <input id="fm-a" type="range" step="0.1" style="width:100%"></label></div>
+        <div class="fm-plot"></div><p class="fm-info"></p>`;
+      const sel = $('#fm-t', el), sl = $('#fm-a', el);
+      const setRange = () => { const o = fams[sel.value]; sl.min = o.min; sl.max = o.max; sl.value = o.v; };
+      const draw = () => {
+        const o = fams[sel.value], a = +sl.value; $('#fm-v', el).textContent = fmt(a, 1);
+        const F = frame(-6, 6, -4, 4);
+        $('.fm-plot', el).innerHTML = F.svg(F.path(x => o.f(x, a)));
+        $('.fm-info', el).innerHTML = `$y=${o.l}$ con $a=${fmt(a, 1)}$. ${o.d}${sel.value === 'exp' || sel.value === 'log' ? (Math.abs(a - 1) < 0.05 ? ' <b>Con $a=1$ no es una función de este tipo.</b>' : '') : ''}`;
+        typeset($('.fm-info', el));
+      };
+      sel.addEventListener('change', () => { setRange(); draw(); }); sl.addEventListener('input', draw);
+      setRange(); draw();
+    },
+
+    tangente(el) {
+      const fs = {
+        x2: { l: 'x^2', f: x => x * x, d: x => 2 * x },
+        x3: { l: 'x^3-3x', f: x => x ** 3 - 3 * x, d: x => 3 * x * x - 3 },
+        sin: { l: '\\sin x', f: Math.sin, d: Math.cos },
+        exp: { l: 'e^x', f: Math.exp, d: Math.exp }
+      };
+      el.innerHTML = `<h4>Pruébalo: de la secante a la tangente</h4>
+        <div class="ctrl"><label>Función <select class="input" id="tg-f"><option value="x2">x²</option><option value="x3">x³ − 3x</option><option value="sin">sen x</option><option value="exp">eˣ</option></select></label>
+        <label style="flex:1">Punto $a=$ <b id="tg-av"></b><input id="tg-a" type="range" min="-2" max="2" step="0.1" value="1" style="width:100%"></label>
+        <label style="flex:1">Salto $h=$ <b id="tg-hv"></b><input id="tg-h" type="range" min="0.05" max="2" step="0.05" value="1.5" style="width:100%"></label></div>
+        <div class="tg-plot"></div><p class="tg-info"></p>`;
+      const draw = () => {
+        const o = fs[$('#tg-f', el).value], a = +$('#tg-a', el).value, h = +$('#tg-h', el).value;
+        $('#tg-av', el).textContent = fmt(a, 2); $('#tg-hv', el).textContent = fmt(h, 2);
+        const fa = o.f(a), fb = o.f(a + h), m = (fb - fa) / h, d = o.d(a);
+        const F = frame(-4, 4, -4, 6);
+        $('.tg-plot', el).innerHTML = F.svg(F.path(o.f) + F.path(x => fa + m * (x - a), 'fn3') + F.path(x => fa + d * (x - a), 'tn') + F.dot(a, fa) + F.dot(a + h, fb, 'pt2', 4));
+        $('.tg-info', el).innerHTML = `<span class="k fn3"></span>Secante: TVM en $[${fmt(a, 2)},\\,${fmt(a + h, 2)}]$ $=\\dfrac{f(a+h)-f(a)}{h}\\approx${fmt(m)}$ &nbsp; <span class="k tn"></span>Tangente: $f'(${fmt(a, 2)})\\approx${fmt(d)}$. <span class="small">Haz $h$ pequeño y verás que las dos pendientes se acercan.</span>`;
+        typeset($('.tg-info', el));
+      };
+      el.addEventListener('input', draw); draw();
+    },
+
+    regresion(el) {
+      el.innerHTML = `<h4>Pruébalo: nube de puntos y recta de regresión</h4>
+        <div class="tool-out"><label class="stack" style="gap:4px">Pares $x\\ y$ (uno por línea)
+          <textarea class="input" id="rg-d" rows="7" style="font-family:var(--mono)">1 10\n2 8\n3 7\n4 4\n5 1</textarea></label>
+          <div class="rg-plot"></div></div><div class="rg-info"></div>`;
+      const draw = () => {
+        const pts = $('#rg-d', el).value.split('\n').map(l => l.trim().replace(/,/g, '.').split(/[\s;]+/).map(Number)).filter(p => p.length >= 2 && p.every(Number.isFinite));
+        if (pts.length < 2) { $('.rg-info', el).innerHTML = '<p class="small">Escribe al menos dos pares de números.</p>'; $('.rg-plot', el).innerHTML = ''; return; }
+        const n = pts.length, mx = pts.reduce((s, p) => s + p[0], 0) / n, my = pts.reduce((s, p) => s + p[1], 0) / n;
+        const sxy = pts.reduce((s, p) => s + p[0] * p[1], 0) / n - mx * my, sx2 = pts.reduce((s, p) => s + p[0] ** 2, 0) / n - mx * mx, sy2 = pts.reduce((s, p) => s + p[1] ** 2, 0) / n - my * my;
+        const r = sxy / Math.sqrt(sx2 * sy2), m = sxy / sx2, b = my - m * mx;
+        const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+        const pad = (lo, hi) => { const d = (hi - lo) || 1; return [lo - d * 0.15, hi + d * 0.15]; };
+        const [x0, x1] = pad(Math.min(...xs), Math.max(...xs)), [y0, y1] = pad(Math.min(...ys), Math.max(...ys));
+        const F = frame(x0, x1, y0, y1, 300, 220);
+        $('.rg-plot', el).innerHTML = F.svg((sx2 > 0 ? F.path(x => m * x + b, 'tn') : '') + pts.map(p => F.dot(p[0], p[1])).join(''));
+        const tipo = !Number.isFinite(r) ? '' : Math.abs(r) > 0.8 ? 'fuerte' : Math.abs(r) > 0.5 ? 'moderada' : 'débil';
+        $('.rg-info', el).innerHTML = `<p>$\\bar x=${fmt(mx)}$, $\\bar y=${fmt(my)}$, $\\sigma_{xy}=${fmt(sxy)}$, $\\sigma_x=${fmt(Math.sqrt(sx2))}$, $\\sigma_y=${fmt(Math.sqrt(sy2))}$</p>
+          <p>$r=${fmt(r)}$ → correlación ${tipo} ${r > 0 ? 'positiva' : 'negativa'}. &nbsp; Recta: $y=${fmt(m)}x${b < 0 ? '-' : '+'}${fmt(Math.abs(b))}$</p>`;
+        typeset($('.rg-info', el));
+      };
+      el.addEventListener('input', draw); draw();
+    }
+  };
+
+  /* ---------- cursos ---------- */
   function mountCourse(key, topics) {
     const root = document.querySelector(`[data-bach="${key}"]`);
     if (!root) return;
     const grid = $('.bach-topics', root), area = $('.bach-exam', root);
-    let sel = null, ex = 0, timer = null, left = MINUTES * 60;
+    let sel = null, tab = 'teoria', ex = 0, timer = null, left = MINUTES * 60;
 
     function drawTopics() {
       grid.innerHTML = '';
@@ -472,9 +470,9 @@
         b.type = 'button'; b.className = 'bach-topic' + (sel === i ? ' on' : '');
         b.setAttribute('aria-pressed', sel === i);
         b.innerHTML = `<span class="t"><span class="n">${t.n}</span><span class="nm"></span></span><span class="d"></span>
-          <span class="meta">${t.practice ? '<span class="pill">Hoja de ejercicios</span>' : ''}<span class="pill">3 exámenes</span>${bests.length ? `<span class="pill ok">Mejor nota: ${fmtNum(Math.max(...bests))}</span>` : ''}</span>`;
+          <span class="meta">${t.theory ? '<span class="pill">Teoría</span>' : ''}${t.practice ? `<span class="pill">${t.practice.length} ejercicios</span>` : ''}<span class="pill">3 exámenes</span>${bests.length ? `<span class="pill ok">Mejor nota: ${fmtNum(Math.max(...bests))}</span>` : ''}</span>`;
         $('.nm', b).textContent = t.name; $('.d', b).textContent = t.desc;
-        b.addEventListener('click', () => { sel = i; ex = 0; drawTopics(); drawExam(true); });
+        b.addEventListener('click', () => { sel = i; ex = 0; tab = 'teoria'; drawTopics(); drawTopic(true); });
         grid.appendChild(b);
       });
     }
@@ -487,28 +485,19 @@
       const btn = $('[data-timer]', area); if (btn) btn.textContent = timer ? 'Pausar' : (left < MINUTES * 60 ? 'Seguir' : 'Empezar cronómetro');
     }
 
-    function drawExam(scroll) {
-      stopTimer(); left = MINUTES * 60;
-      if (sel === null) { area.hidden = true; return; }
-      const t = topics[sel], qs = t.exams[ex];
-      area.hidden = false;
-      const practice = t.practice ? `
-        <div class="practice">
-          <div><span class="eyebrow">${t.n} · Para el cuaderno</span><h3>Hoja de ejercicios</h3>
-          <p class="small">Hazlos en papel y luego compara con la solución.</p></div>
-          <ol class="bach-qs">
-            ${t.practice.map(p => `<li>
-              <div class="q-top"><b>${p.t}</b></div>
-              <div class="q-body">${safe(p.e)}</div>
-              <details><summary>Ver solución</summary><div class="q-sol">${safe(p.s)}</div></details>
-            </li>`).join('')}
-          </ol>
-        </div>` : '';
-      area.innerHTML = practice + `
-        <div class="exam-head">
-          <div><span class="eyebrow">${t.n} · ${t.name}</span><h3>Examen de prueba ${ex + 1}</h3></div>
-          <div class="row"><span class="clock">45:00</span><button class="btn" type="button" data-timer>Empezar cronómetro</button></div>
-        </div>
+    function theoryHTML(t) {
+      return `<div class="theory">${t.theory.map(s => `<section><h4>${s.h}</h4><div class="th-b">${safeAll(s.b)}</div></section>`).join('')}</div>
+        ${t.tool && TOOLS[t.tool] ? '<div class="tool" data-tool></div>' : ''}`;
+    }
+    function practiceHTML(t) {
+      return `<p class="small">Hazlos en papel y después compara con la solución.</p><ol class="bach-qs">
+        ${t.practice.map(p => `<li><div class="q-top"><b>${p.t}</b></div><div class="q-body">${safeAll(p.e)}</div>
+          <details><summary>Ver solución</summary><div class="q-sol">${safeAll(p.s)}</div></details></li>`).join('')}</ol>`;
+    }
+    function examHTML(t) {
+      const qs = t.exams[ex];
+      return `<div class="exam-head"><h3>Examen de prueba ${ex + 1}</h3>
+          <div class="row"><span class="clock">45:00</span><button class="btn" type="button" data-timer>Empezar cronómetro</button></div></div>
         <div class="seg" role="group" aria-label="Elegir examen">
           ${[0, 1, 2].map(k => `<button type="button" data-ex="${k}" aria-pressed="${k === ex}">Examen ${k + 1}</button>`).join('')}
         </div>
@@ -516,17 +505,17 @@
         <ol class="bach-qs">
           ${qs.map((q, k) => `<li>
             <div class="q-top"><b>Ejercicio ${k + 1}</b><span class="pill">${fmtNum(q.p)} puntos</span></div>
-            <div class="q-body">${q.e}</div>
-            <details><summary>Ver solución</summary><div class="q-sol">${q.s}</div></details>
+            <div class="q-body">${safeAll(q.e)}</div>
+            <details><summary>Ver solución</summary><div class="q-sol">${safeAll(q.s)}</div></details>
             <label class="self">Mi nota: <input class="input" type="text" inputmode="decimal" placeholder="0" maxlength="4" id="bq-${key}-${sel}-${ex}-${k}"> / ${fmtNum(q.p)}</label>
           </li>`).join('')}
         </ol>
-        <div class="grade-bar">
-          <span>Nota del examen: <b class="grade">–</b> / 10</span>
-          <button class="btn primary" type="button" data-save>Guardar nota</button>
-          <span class="small saved" aria-live="polite"></span>
-        </div>`;
-      area.querySelectorAll('[data-ex]').forEach(b => b.addEventListener('click', () => { ex = +b.dataset.ex; drawExam(false); }));
+        <div class="grade-bar"><span>Nota del examen: <b class="grade">–</b> / 10</span>
+          <button class="btn primary" type="button" data-save>Guardar nota</button><span class="small saved" aria-live="polite"></span></div>`;
+    }
+    function wireExam(t) {
+      const qs = t.exams[ex];
+      area.querySelectorAll('[data-ex]').forEach(b => b.addEventListener('click', () => { ex = +b.dataset.ex; drawTopic(false); }));
       $('[data-timer]', area).addEventListener('click', () => {
         if (timer) { stopTimer(); paintClock(); return; }
         timer = setInterval(() => { left--; if (left <= 0) { left = 0; stopTimer(); } paintClock(); }, 1000);
@@ -543,8 +532,28 @@
         $('.saved', area).textContent = prev !== null && g <= prev ? `Guardada. Tu mejor nota sigue siendo ${fmtNum(prev)}.` : '¡Nota guardada en este dispositivo!';
         drawTopics();
       });
+    }
+
+    function drawTopic(scroll) {
+      stopTimer(); left = MINUTES * 60;
+      if (sel === null) { area.hidden = true; return; }
+      const t = topics[sel];
+      const tabs = [t.theory && ['teoria', 'Teoría'], t.practice && ['ejercicios', 'Ejercicios'], ['examenes', 'Exámenes']].filter(Boolean);
+      if (!tabs.some(x => x[0] === tab)) tab = tabs[0][0];
+      area.hidden = false;
+      area.innerHTML = `
+        <div class="topic-head">
+          <div><span class="eyebrow">${t.n}</span><h3 class="topic-title"></h3></div>
+          ${t.mv ? `<div class="mv"><a href="${t.mv}" target="_blank" rel="noopener">Libro de Marea Verde (PDF)</a>${t.mvr ? ` · <a href="${t.mvr}" target="_blank" rel="noopener">Soluciones (PDF)</a>` : ''}</div>` : ''}
+        </div>
+        ${tabs.length > 1 ? `<div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === tab}">${l}</button>`).join('')}</div>` : ''}
+        <div class="tab-body">${tab === 'teoria' ? theoryHTML(t) : tab === 'ejercicios' ? practiceHTML(t) : examHTML(t)}</div>`;
+      $('.topic-title', area).textContent = t.name;
+      area.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => { tab = b.dataset.tab; drawTopic(false); }));
+      if (tab === 'examenes') wireExam(t);
+      const toolEl = $('[data-tool]', area); if (toolEl) TOOLS[t.tool](toolEl);
       typeset(area);
-      if (scroll) area.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      if (scroll) area.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     }
 
     drawTopics();
