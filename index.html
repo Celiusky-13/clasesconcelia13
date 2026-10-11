@@ -35,6 +35,10 @@ window.MathJax = {
   --c4-soft: #E6E0FF;
   --ct: #D99A00;
   --ct-soft: #FFF0C7;
+  --c5: #2459D6;
+  --c5-soft: #DCE6FF;
+  --c6: #4D7C0F;
+  --c6-soft: #E3F1CC;
   --ok: #17924A;
   --ok-soft: #D8F5E3;
   --bad: #C8323A;
@@ -64,6 +68,10 @@ window.MathJax = {
     --c4-soft: #2B2747;
     --ct: #FFC93D;
     --ct-soft: #3A3420;
+    --c5: #86A9FF;
+    --c5-soft: #1F2A45;
+    --c6: #A6D964;
+    --c6-soft: #25331A;
     --ok: #4BD486;
     --ok-soft: #1B3C2B;
     --bad: #FF7A80;
@@ -90,6 +98,10 @@ window.MathJax = {
   --c4-soft: #2B2747;
   --ct: #FFC93D;
   --ct-soft: #3A3420;
+  --c5: #86A9FF;
+  --c5-soft: #1F2A45;
+  --c6: #A6D964;
+  --c6-soft: #25331A;
   --ok: #4BD486;
   --ok-soft: #1B3C2B;
   --bad: #FF7A80;
@@ -426,6 +438,45 @@ table.ladder tr.done td { color: var(--muted); }
 
 footer { border-top: 2px solid var(--ink); padding-block: 22px; color: var(--muted); font-size: .9rem; }
 
+/* Bachillerato */
+.course.k5 { --col: var(--c5); --colsoft: var(--c5-soft); --tilt: .8deg; }
+.course.k6 { --col: var(--c6); --colsoft: var(--c6-soft); --tilt: -.8deg; }
+[data-bach] { --acc: var(--c5); --acc-soft: var(--c5-soft); }
+[data-bach="b2"] { --acc: var(--c6); --acc-soft: var(--c6-soft); }
+.bach-topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+.bach-topic {
+  display: grid; gap: 6px; align-content: start; text-align: left; cursor: pointer;
+  background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 14px 16px;
+}
+.bach-topic:hover { border-color: var(--acc); }
+.bach-topic.on { border-color: var(--acc); border-width: 3px; background: var(--acc-soft); }
+.bach-topic .t { font-weight: 800; font-size: 1.05rem; display: flex; gap: 8px; align-items: baseline; }
+.bach-topic .n { font-family: var(--mono); font-size: .8rem; color: var(--acc); }
+.bach-topic .d { font-size: .9rem; color: var(--muted); }
+.bach-topic .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+.bach-exam { display: grid; gap: 14px; scroll-margin-top: 90px; }
+.bach-exam .seg button[aria-pressed="true"] { background: var(--acc); color: var(--paper); }
+.bach-qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.bach-qs > li { border: 2px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; background: var(--paper); }
+.q-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.q-top b { font-family: var(--display); font-size: 1.15rem; color: var(--acc); }
+.q-body, .q-sol { overflow-x: auto; overflow-y: hidden; line-height: 1.9; }
+.q-sol { background: var(--soft); border-radius: 10px; padding: 10px 14px; margin-top: 8px; }
+.bach-qs details summary { cursor: pointer; font-weight: 800; color: var(--muted); }
+.bach-qs details[open] summary { color: var(--ok); }
+.self { display: flex; gap: 8px; align-items: center; font-weight: 800; font-size: .95rem; flex-wrap: wrap; }
+.self .input { width: 90px; }
+.grade-bar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding-top: 6px; border-top: 2px dashed var(--line); }
+.grade-bar .grade { font-family: var(--mono); font-size: 1.5rem; color: var(--acc); }
+.evau-box {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; align-items: center;
+  background: var(--c6-soft); border: 2px solid var(--ink); border-radius: 18px; box-shadow: 4px 4px 0 var(--ink); padding: 18px 20px;
+}
+@media (max-width: 720px) { .evau-box { grid-template-columns: 1fr; } }
+.evau-box .links { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.evau-box a { color: var(--c6); font-weight: 800; }
+
 /* Theme toggle */
 .theme-btn {
   display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--ink); background: var(--card);
@@ -472,6 +523,8 @@ footer a { color: var(--c4); font-weight: 700; }
       <a href="#eso2">2º ESO</a>
       <a href="#eso3">3º ESO</a>
       <a href="#eso4">4º ESO</a>
+      <a href="#bach1">1º Bach</a>
+      <a href="#bach2">2º Bach</a>
       <a href="#tecnicas">Técnicas de estudio</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -516,6 +569,18 @@ footer a { color: var(--c4); font-weight: 700; }
       <span class="pill tag">Trigonometría · Logaritmos</span>
       <p>Radicales, inecuaciones, funciones, vectores y combinatoria.</p>
       <span class="go">Ver temas →</span>
+    </a>
+    <a class="course k5" href="#bach1">
+      <span class="big">1º<small>Bach</small></span>
+      <span class="pill tag">Matemáticas I</span>
+      <p>8 temas, de logaritmos a derivadas. 3 exámenes de prueba por tema, con soluciones.</p>
+      <span class="go">Practicar →</span>
+    </a>
+    <a class="course k6" href="#bach2">
+      <span class="big">2º<small>Bach</small></span>
+      <span class="pill tag">Matemáticas II · PAU</span>
+      <p>Los bloques de la PAU (EvAU): matrices, geometría, análisis y probabilidad. 24 exámenes.</p>
+      <span class="go">Practicar →</span>
     </a>
     <a class="course kt" href="#tecnicas">
       <span class="big" style="font-size:2.4rem">Estudiar<small>mejor</small></span>
@@ -1101,6 +1166,45 @@ footer a { color: var(--c4); font-weight: 700; }
       </div>
     </div>
     <p class="note">Estas ideas ayudan a estudiar, pero no sustituyen la ayuda de un profesional. Si crees que tienes TDAH, dislexia o discalculia, habla con tu familia y con el orientador u orientadora del instituto.</p>
+  </div>
+</section>
+
+<!-- =================== 1º BACH =================== -->
+<section class="view" data-view="bach1" data-bach="b1" hidden>
+  <div class="course-head" style="--col: var(--c5)">
+    <span class="eyebrow">Bachillerato · Matemáticas I</span>
+    <span class="big">1º Bach</span>
+    <p class="lead">Elige un tema y haz sus <b>3 exámenes de prueba</b>. Cada examen tiene 3 ejercicios (3,5 + 3,5 + 3 puntos), cronómetro de 45 minutos y soluciones paso a paso para que te pongas nota.</p>
+  </div>
+  <div class="section">
+    <div class="note">Los ejercicios siguen el estilo de los exámenes de Bachillerato y de la PAU: enunciados por apartados, con puntuación y corrección de 0,1 en 0,1. Son la base de Matemáticas II.</div>
+    <div class="bach-topics"></div>
+    <div class="panel bach-exam" hidden></div>
+  </div>
+</section>
+
+<!-- =================== 2º BACH =================== -->
+<section class="view" data-view="bach2" data-bach="b2" hidden>
+  <div class="course-head" style="--col: var(--c6)">
+    <span class="eyebrow">Bachillerato · Matemáticas II</span>
+    <span class="big">2º Bach</span>
+    <p class="lead">Preparación de la <b>PAU</b> (antes EvAU) de Madrid, por bloques. Elige un tema y haz sus <b>3 exámenes de prueba</b>: 45 minutos, 10 puntos y soluciones paso a paso.</p>
+  </div>
+  <div class="section">
+    <div class="evau-box">
+      <div class="stack" style="gap:6px">
+        <span class="eyebrow">Recursos PAU / EvAU</span>
+        <h3>Exámenes oficiales de años anteriores</h3>
+        <p class="small">Cuando domines un tema aquí, practica con exámenes reales. La PAU de Madrid se organiza por bloques: álgebra, geometría, análisis y probabilidad, igual que estos temas.</p>
+      </div>
+      <ul class="links">
+        <li><a href="https://www.educa2.madrid.org/web/pgarciamoreno/selectividad" target="_blank" rel="noopener">Exámenes resueltos de Selectividad (EducaMadrid)</a></li>
+        <li><a href="https://www.examenesdepau.com/examenes/madrid/matematicas/" target="_blank" rel="noopener">PAU/EvAU de Matemáticas de Madrid, 1995–2026</a></li>
+        <li><a href="https://www.ebaumatematicas.com/matematicas-ii/" target="_blank" rel="noopener">Matemáticas II: modelos, ordinarias y extraordinarias</a></li>
+      </ul>
+    </div>
+    <div class="bach-topics"></div>
+    <div class="panel bach-exam" hidden></div>
   </div>
 </section>
 
@@ -1900,5 +2004,6 @@ footer a { color: var(--c4); font-weight: 700; }
   drawStrip(); drawLadder(); renderStep(); renderOrder(); route();
 })();
 </script>
+<script src="bach.js"></script>
 </body>
 </html>
