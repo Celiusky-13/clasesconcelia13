@@ -430,6 +430,71 @@
       el.addEventListener('input', draw); draw();
     },
 
+    financiera(el) {
+      el.innerHTML = `<h4>Pruébalo: calculadora financiera</h4>
+        <div class="seg" role="group" aria-label="Cálculo"><button type="button" data-fm="ahorro" aria-pressed="true">Ahorro (interés compuesto)</button><button type="button" data-fm="plan" aria-pressed="false">Plan de ahorro</button><button type="button" data-fm="prestamo" aria-pressed="false">Préstamo</button></div>
+        <div class="ctrl">
+          <label><span class="fn-lc">Capital inicial (€)</span> <input class="input" id="fn-c" type="number" step="any" value="3000"></label>
+          <label>Interés anual (%) <input class="input" id="fn-r" type="number" step="any" value="4"></label>
+          <label>Años <input class="input" id="fn-t" type="number" step="any" value="3"></label>
+          <label>Periodos al año <select class="input" id="fn-n"><option value="1">1 (anual)</option><option value="2">2 (semestral)</option><option value="4">4 (trimestral)</option><option value="12">12 (mensual)</option></select></label>
+        </div><div class="fn-out"></div>`;
+      let mode = 'ahorro';
+      const money = x => Number.isFinite(x) ? x.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €' : '—';
+      const draw = () => {
+        const C = parseFloat($('#fn-c', el).value) || 0, r = (parseFloat($('#fn-r', el).value) || 0) / 100, t = parseFloat($('#fn-t', el).value) || 0, n = +$('#fn-n', el).value;
+        const i = r / n, T = Math.round(t * n), g = (1 + i) ** T;
+        $('.fn-lc', el).textContent = mode === 'ahorro' ? 'Capital inicial (€)' : mode === 'plan' ? 'Aportación por periodo (€)' : 'Deuda (€)';
+        let html = '';
+        if (mode === 'ahorro') {
+          const M = C * g, simple = C * (1 + r * t), tae = (1 + i) ** n - 1;
+          html = `<p>Interés compuesto: $M=C\\left(1+\\frac rn\\right)^{T}$ → <b>${money(M)}</b> (intereses: ${money(M - C)})</p>
+            <p>Con interés simple serían ${money(simple)}.</p><p>TAE: <b>${fmt(tae * 100, 3)} %</b></p>`;
+        } else if (mode === 'plan') {
+          const Cap = i === 0 ? C * T : C * (1 + i) * (g - 1) / i;
+          html = `<p>Aportando ${money(C)} al principio de cada periodo durante ${T} periodos: <b>${money(Cap)}</b></p><p>Has aportado ${money(C * T)}; el resto, ${money(Cap - C * T)}, son intereses.</p>`;
+        } else {
+          const a = i === 0 ? C / T : C * i * g / (g - 1);
+          html = `<p>Cuota (pagando al final de cada periodo, ${T} pagos): <b>${money(a)}</b></p><p>Total pagado ${money(a * T)}; intereses ${money(a * T - C)}.</p>`;
+        }
+        $('.fn-out', el).innerHTML = html; typeset($('.fn-out', el));
+      };
+      el.querySelectorAll('[data-fm]').forEach(b => b.addEventListener('click', () => {
+        mode = b.dataset.fm; el.querySelectorAll('[data-fm]').forEach(x => x.setAttribute('aria-pressed', x === b));
+        if (mode === 'prestamo') { $('#fn-c', el).value = 20000; $('#fn-r', el).value = 6; $('#fn-t', el).value = 5; $('#fn-n', el).value = 12; }
+        if (mode === 'plan') { $('#fn-c', el).value = 1000; $('#fn-r', el).value = 4; $('#fn-t', el).value = 5; $('#fn-n', el).value = 1; }
+        if (mode === 'ahorro') { $('#fn-c', el).value = 3000; $('#fn-r', el).value = 4; $('#fn-t', el).value = 3; $('#fn-n', el).value = 1; }
+        draw();
+      }));
+      el.addEventListener('input', draw); draw();
+    },
+
+    normal(el) {
+      const erf = x => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; };
+      const Phi = z => 0.5 * (1 + erf(z / Math.SQRT2));
+      el.innerHTML = `<h4>Pruébalo: calculadora de la normal</h4>
+        <div class="ctrl"><label>Media $\\mu$ <input class="input" id="nm-m" type="number" step="any" value="65"></label>
+        <label>Desviación $\\sigma$ <input class="input" id="nm-s" type="number" step="any" min="0" value="8"></label>
+        <label>Desde $a$ <input class="input" id="nm-a" type="number" step="any" value="57"></label>
+        <label>Hasta $b$ <input class="input" id="nm-b" type="number" step="any" value="73"></label></div>
+        <p class="small">Deja $a$ o $b$ vacío para $-\\infty$ o $+\\infty$.</p><div class="nm-plot"></div><div class="nm-out"></div>`;
+      const draw = () => {
+        const m = parseFloat($('#nm-m', el).value) || 0, s = Math.max(1e-6, parseFloat($('#nm-s', el).value) || 1);
+        const av = $('#nm-a', el).value, bv = $('#nm-b', el).value;
+        const a = av === '' ? -Infinity : parseFloat(av), b = bv === '' ? Infinity : parseFloat(bv);
+        const za = (a - m) / s, zb = (b - m) / s, p = Math.max(0, Phi(zb) - Phi(za));
+        const F = frame(-4, 4, -0.03, 0.45, 400, 200), dens = z => Math.exp(-z * z / 2) / Math.sqrt(2 * Math.PI);
+        const lo = Math.max(-4, Number.isFinite(za) ? za : -4), hi = Math.min(4, Number.isFinite(zb) ? zb : 4);
+        let area = '';
+        if (hi > lo) { let d = `M${F.X(lo)} ${F.Y(0)}`; for (let k = 0; k <= 80; k++) { const z = lo + (hi - lo) * k / 80; d += `L${F.X(z).toFixed(1)} ${F.Y(dens(z)).toFixed(1)}`; } d += `L${F.X(hi)} ${F.Y(0)}Z`; area = `<path class="area" d="${d}"/>`; }
+        $('.nm-plot', el).innerHTML = F.svg(area + F.path(dens));
+        const zt = z => Number.isFinite(z) ? fmt(z, 2) : (z < 0 ? '-\\infty' : '+\\infty');
+        $('.nm-out', el).innerHTML = `<p>Tipificando: $P(${zt(za)}\\le Z\\le ${zt(zb)})$ → <b>${fmt(p, 4)}</b> (${fmt(p * 100, 2)} %)</p>`;
+        typeset($('.nm-out', el));
+      };
+      el.addEventListener('input', draw); draw();
+    },
+
     regresion(el) {
       el.innerHTML = `<h4>Pruébalo: nube de puntos y recta de regresión</h4>
         <div class="tool-out"><label class="stack" style="gap:4px">Pares $x\\ y$ (uno por línea)
@@ -470,7 +535,7 @@
         b.type = 'button'; b.className = 'bach-topic' + (sel === i ? ' on' : '');
         b.setAttribute('aria-pressed', sel === i);
         b.innerHTML = `<span class="t"><span class="n">${t.n}</span><span class="nm"></span></span><span class="d"></span>
-          <span class="meta">${t.theory ? '<span class="pill">Teoría</span>' : ''}${t.practice ? `<span class="pill">${t.practice.length} ejercicios</span>` : ''}<span class="pill">3 exámenes</span>${bests.length ? `<span class="pill ok">Mejor nota: ${fmtNum(Math.max(...bests))}</span>` : ''}</span>`;
+          <span class="meta">${t.theory ? '<span class="pill">Teoría</span>' : ''}${t.practice ? `<span class="pill">${t.practice.filter(p => !p.grp).length} ejercicios</span>` : ''}<span class="pill">3 exámenes</span>${bests.length ? `<span class="pill ok">Mejor nota: ${fmtNum(Math.max(...bests))}</span>` : ''}</span>`;
         $('.nm', b).textContent = t.name; $('.d', b).textContent = t.desc;
         b.addEventListener('click', () => { sel = i; ex = 0; tab = 'teoria'; drawTopics(); drawTopic(true); });
         grid.appendChild(b);
@@ -490,8 +555,14 @@
         ${t.tool && TOOLS[t.tool] ? '<div class="tool" data-tool></div>' : ''}`;
     }
     function practiceHTML(t) {
-      return `<p class="small">Hazlos en papel y después compara con la solución.</p><ol class="bach-qs">
-        ${t.practice.map(p => `<li><div class="q-top"><b>${p.t}</b></div><div class="q-body">${safeAll(p.e)}</div>
+      let n = 0;
+      const groups = t.practice.filter(p => p.grp).map(p => p.grp);
+      const nav = groups.length > 1 ? `<div class="grp-nav">${groups.map((g, i) => `<button type="button" data-grp="${i}">${g}</button>`).join('')}</div>` : '';
+      let gi = 0;
+      return `<p class="small">Para trabajar por tu cuenta: hazlos en papel y después compara con la solución.</p>${nav}<ol class="bach-qs">
+        ${t.practice.map(p => p.grp
+          ? `<li class="grp" id="grp-${gi++}"><h4>${p.grp}</h4></li>`
+          : `<li><div class="q-top"><b>${++n}. ${p.t}</b></div><div class="q-body">${safeAll(p.e)}</div>
           <details><summary>Ver solución</summary><div class="q-sol">${safeAll(p.s)}</div></details></li>`).join('')}</ol>`;
     }
     function examHTML(t) {
@@ -550,6 +621,9 @@
         <div class="tab-body">${tab === 'teoria' ? theoryHTML(t) : tab === 'ejercicios' ? practiceHTML(t) : examHTML(t)}</div>`;
       $('.topic-title', area).textContent = t.name;
       area.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => { tab = b.dataset.tab; drawTopic(false); }));
+      area.querySelectorAll('[data-grp]').forEach(b => b.addEventListener('click', () => {
+        const g = area.querySelector('#grp-' + b.dataset.grp); if (g) g.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      }));
       if (tab === 'examenes') wireExam(t);
       const toolEl = $('[data-tool]', area); if (toolEl) TOOLS[t.tool](toolEl);
       typeset(area);
@@ -561,5 +635,18 @@
   }
 
   mountCourse('b1', B1);
+  mountCourse('b1s', window.CC13_B1S || []);
   mountCourse('b2', B2);
+
+  /* ---------- 1º Bach: Ciencias / Sociales ---------- */
+  (() => {
+    const btns = [...document.querySelectorAll('[data-subject]')];
+    const show = s => {
+      btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.subject === s));
+      document.querySelectorAll('[data-subject-pane]').forEach(p => { p.hidden = p.dataset.subjectPane !== s; });
+      store.set('b1-subject', s);
+    };
+    btns.forEach(b => b.addEventListener('click', () => show(b.dataset.subject)));
+    show(store.get('b1-subject', 'ciencias') === 'sociales' ? 'sociales' : 'ciencias');
+  })();
 })();
