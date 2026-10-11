@@ -8,164 +8,200 @@
   const P = (t, e, s) => ({ t, e, s });
   const H = (h, b) => ({ h, b });
   const MV = 'https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/';
+  const X = window.CC13_B1X;
+  const G = X.G;
 
   window.CC13_B1 = [
     /* ------------------------------------------------------------------ 1 */
-    { n: 'T1', name: 'Números reales y complejos', desc: 'Racionales e irracionales, intervalos, errores, radicales, complejos y logaritmos.',
+    { n: 'T1', name: 'Números reales y complejos', desc: 'Reales, valor absoluto, intervalos, potencias, radicales, notación científica, logaritmos y complejos.',
       mv: MV + 'BC1_01_Complejos.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%201%20N%C3%BAmeros%20reales%20y%20complejos.pdf',
       tool: 'complejo',
-      theory: [
-        H('Números racionales e irracionales', R`Un número es <b>racional</b> ($\mathbb Q$) si se puede escribir como fracción. Su expresión decimal es exacta o periódica. Es <b>irracional</b> si tiene infinitas cifras decimales sin periodo, como $\sqrt2$, $\pi$ o $e$. Los dos juntos forman los <b>números reales</b> $\mathbb R$.
-          <div class="ej"><b>Fracción generatriz.</b> $0{,}\overline{36}=\dfrac{36}{99}=\dfrac4{11}$ &nbsp;·&nbsp; $1{,}2\overline{3}=\dfrac{123-12}{90}=\dfrac{111}{90}=\dfrac{37}{30}$</div>`),
-        H('Recta real, valor absoluto y distancia', R`Cada número real es un punto de la recta. El <b>valor absoluto</b> es la distancia al cero: $|x|=x$ si $x\ge0$ y $|x|=-x$ si $x<0$. La <b>distancia</b> entre $a$ y $b$ es $d(a,b)=|b-a|$.
-          <p>En las desigualdades, si multiplicas o divides por un número negativo, <b>el sentido cambia</b>: $-2x<6 \Rightarrow x>-3$.</p>`),
-        H('Intervalos y entornos', R`<div class="tbl"><table><tr><th>Intervalo</th><th>Desigualdad</th><th>Nombre</th></tr>
-          <tr><td>$(a,b)$</td><td>$a<x<b$</td><td>abierto</td></tr>
-          <tr><td>$[a,b]$</td><td>$a\le x\le b$</td><td>cerrado</td></tr>
-          <tr><td>$[a,b)$</td><td>$a\le x<b$</td><td>semiabierto</td></tr>
-          <tr><td>$(a,+\infty)$</td><td>$x>a$</td><td>semirrecta</td></tr></table></div>
-          El <b>entorno</b> de centro $a$ y radio $r$ es $E(a,r)=(a-r,a+r)=\{x: |x-a|<r\}$.`),
-        H('Aproximaciones, errores y notación científica', R`Si aproximamos un valor real $x$ por $x'$: <b>error absoluto</b> $E_a=|x-x'|$ y <b>error relativo</b> $E_r=\dfrac{E_a}{|x|}$ (se suele dar en %). <br>Notación científica: $a\cdot10^n$ con $1\le|a|<10$. Ejemplo: $0{,}000\,52=5{,}2\cdot10^{-4}$.`),
-        H('Radicales', R`$\sqrt[n]{a^m}=a^{m/n}$, $\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}$. Para sumar, los radicales deben ser semejantes: $\sqrt{12}+\sqrt{27}=2\sqrt3+3\sqrt3=5\sqrt3$. <br><b>Racionalizar</b>: $\dfrac{1}{\sqrt a}=\dfrac{\sqrt a}{a}$ y $\dfrac{1}{\sqrt a-\sqrt b}=\dfrac{\sqrt a+\sqrt b}{a-b}$ (multiplicando por el conjugado).`),
-        H('Números complejos en forma binómica', R`Como $x^2=-1$ no tiene solución real, se define $i=\sqrt{-1}$, es decir, $i^2=-1$. Un complejo es $z=a+bi$ ($a$ parte real, $b$ parte imaginaria). Su <b>conjugado</b> es $\bar z=a-bi$.
-          <p>Se suma y multiplica como con polinomios, recordando $i^2=-1$. Para <b>dividir</b> se multiplica arriba y abajo por el conjugado del denominador. Las potencias de $i$ se repiten cada 4: $i,\,-1,\,-i,\,1$.</p>
-          <div class="ej">$\dfrac{3+4i}{1+2i}=\dfrac{(3+4i)(1-2i)}{1+4}=\dfrac{11-2i}{5}$</div>`),
-        H('Forma polar y fórmula de Moivre', R`El <b>módulo</b> es $r=|z|=\sqrt{a^2+b^2}$ y el <b>argumento</b> $\alpha$ cumple $\tan\alpha=\frac ba$ (¡mira el cuadrante!). Se escribe $z=r_\alpha=r(\cos\alpha+i\sin\alpha)$.
-          <p>Producto y cociente: $r_\alpha\cdot s_\beta=(rs)_{\alpha+\beta}$, $\ \dfrac{r_\alpha}{s_\beta}=\left(\frac rs\right)_{\alpha-\beta}$. <b>Moivre</b>: $(r_\alpha)^n=(r^n)_{n\alpha}$.</p>
-          <p><b>Raíces n-ésimas</b>: $\sqrt[n]{r_\alpha}=\left(\sqrt[n]r\right)_{\frac{\alpha+360^\circ k}{n}}$, con $k=0,1,\dots,n-1$. Forman un polígono regular.</p>`),
-        H('Logaritmos', R`$\log_a x=y \iff a^y=x$ (con $a>0$, $a\neq1$, $x>0$).
-          <div class="tbl"><table><tr><th>Propiedad</th><th>Fórmula</th></tr>
-          <tr><td>Producto</td><td>$\log_a(xy)=\log_a x+\log_a y$</td></tr>
-          <tr><td>Cociente</td><td>$\log_a\frac xy=\log_a x-\log_a y$</td></tr>
-          <tr><td>Potencia</td><td>$\log_a x^n=n\log_a x$</td></tr>
-          <tr><td>Cambio de base</td><td>$\log_a x=\dfrac{\ln x}{\ln a}$</td></tr></table></div>
-          En las ecuaciones logarítmicas hay que <b>comprobar</b> las soluciones: no existe el logaritmo de un número negativo ni de 0.`)
+      theory: [...X.TH.reales, ...X.TH.potencias, ...X.TH.radicales, ...X.TH.notacion, ...X.TH.logaritmos,
+        H('Números complejos: por qué hacen falta', R`La ecuación $x^2+1=0$ no tiene solución real, porque ningún cuadrado es negativo. Para resolverla se inventa la <b>unidad imaginaria</b> $i$, con
+          <div class="ej">$i^2=-1\qquad\left(i=\sqrt{-1}\right)$</div>
+          Así, $\sqrt{-9}=\sqrt9\cdot\sqrt{-1}=3i$ y $x^2+9=0$ tiene las soluciones $\pm3i$. El nombre de "imaginario" no significa que no existan: se usan en electricidad, aerodinámica y ¡en el diseño de las alas de los aviones!`),
+        H('Potencias de i', R`<div class="tbl"><table><tr><td>$i^0=1$</td><td>$i^1=i$</td><td>$i^2=-1$</td><td>$i^3=-i$</td><td>$i^4=1$</td></tr></table></div>
+          Se repiten cada 4. Para calcular $i^n$, divide $n$ entre 4 y quédate con el resto: $i^{27}=i^{3}=-i$ porque $27=4\cdot6+3$; $\ i^{42}=i^2=-1$.`),
+        H('Forma binómica', R`Un número complejo es $z=a+bi$, con $a$ la <b>parte real</b> y $b$ la <b>parte imaginaria</b>. Si $b=0$ es un número real; si $a=0$, un <b>imaginario puro</b>.
+          <ul><li>Dos complejos son <b>iguales</b> si tienen igual la parte real y la imaginaria.</li>
+          <li><b>Opuesto</b>: $-z=-a-bi$. <b>Conjugado</b>: $\bar z=a-bi$.</li>
+          <li>Se representa en el plano por el punto $(a,b)$, su <b>afijo</b> (mira la herramienta de abajo).</li></ul>`),
+        H('Operaciones en forma binómica', R`<b>Suma y resta</b>: parte real con parte real e imaginaria con imaginaria. <br><b>Producto</b>: como con binomios, recordando $i^2=-1$: $(a+bi)(c+di)=(ac-bd)+(ad+bc)i$. <br>Un complejo por su conjugado da un número real: $z\cdot\bar z=a^2+b^2$. <br><b>División</b>: se multiplica arriba y abajo por el conjugado del denominador.
+          <div class="ej"><b>Ejemplo resuelto.</b> $z_1=3-2i$, $z_2=-1+4i$. $z_1z_2=-3+12i+2i-8i^2=5+14i$. <br>$\dfrac{z_1}{z_2}=\dfrac{(3-2i)(-1-4i)}{(-1)^2+4^2}=\dfrac{-3-12i+2i+8i^2}{17}=\dfrac{-11-10i}{17}$.</div>`),
+        H('Módulo y argumento', R`El <b>módulo</b> es la distancia del afijo al origen: $r=|z|=\sqrt{a^2+b^2}$. El <b>argumento</b> $\alpha$ es el ángulo con el eje real positivo: $\tan\alpha=\frac ba$. La calculadora da un ángulo entre $-90^\circ$ y $90^\circ$; hay que corregirlo según el <b>cuadrante</b>:
+          <div class="tbl"><table><tr><th>Cuadrante del afijo</th><th>Argumento</th></tr>
+          <tr><td>1.º ($a>0,b>0$)</td><td>$\arctan\frac ba$</td></tr>
+          <tr><td>2.º y 3.º ($a<0$)</td><td>$180^\circ+\arctan\frac ba$</td></tr>
+          <tr><td>4.º ($a>0,b<0$)</td><td>$360^\circ+\arctan\frac ba$</td></tr>
+          <tr><td>Sobre los ejes</td><td>$0^\circ$, $90^\circ$, $180^\circ$ o $270^\circ$</td></tr></table></div>
+          <div class="ej"><b>Ejemplo resuelto.</b> $z=-\sqrt3+i$: $r=\sqrt{3+1}=2$. $\arctan\frac{1}{-\sqrt3}=-30^\circ$, pero está en el 2.º cuadrante: $\alpha=150^\circ$.</div>`),
+        H('Formas polar y trigonométrica', R`<div class="ej">$z=r_\alpha=r(\cos\alpha+i\sin\alpha)\qquad a=r\cos\alpha,\quad b=r\sin\alpha$</div>
+          Para pasar de polar a binómica: $6_{30^\circ}=6\cos30^\circ+6i\sin30^\circ=3\sqrt3+3i$. Para pasar de binómica a polar: módulo y argumento.`),
+        H('Operaciones en forma polar', R`En polar, multiplicar y dividir es mucho más fácil:
+          <div class="tbl"><table>
+          <tr><td>Producto</td><td>$r_\alpha\cdot s_\beta=(r\cdot s)_{\alpha+\beta}$</td></tr>
+          <tr><td>Cociente</td><td>$\dfrac{r_\alpha}{s_\beta}=\left(\dfrac rs\right)_{\alpha-\beta}$</td></tr>
+          <tr><td>Potencia (Moivre)</td><td>$(r_\alpha)^n=(r^n)_{n\alpha}$</td></tr>
+          <tr><td>Inverso</td><td>$\dfrac1{r_\alpha}=\left(\dfrac1r\right)_{-\alpha}$</td></tr></table></div>
+          <div class="ej"><b>Ejemplo resuelto.</b> $(1+i)^{10}$: $1+i=\sqrt2_{45^\circ}$, así que $(1+i)^{10}=(\sqrt2)^{10}_{450^\circ}=32_{90^\circ}=32i$. ¡Hacerlo en binómica serían diez multiplicaciones!</div>
+          Multiplicar por $i=1_{90^\circ}$ es girar $90^\circ$ el afijo.`),
+        H('Moivre y la trigonometría', R`Con $r=1$, la fórmula de Moivre dice $(\cos\alpha+i\sin\alpha)^n=\cos n\alpha+i\sin n\alpha$. Para $n=2$, desarrollando el cuadrado: $\cos^2\alpha-\sin^2\alpha+2i\sin\alpha\cos\alpha$. Igualando partes reales e imaginarias obtenemos las fórmulas del ángulo doble:
+          <div class="ej">$\cos2\alpha=\cos^2\alpha-\sin^2\alpha\qquad\sin2\alpha=2\sin\alpha\cos\alpha$</div>`),
+        H('Raíces n-ésimas', R`Un complejo no nulo tiene exactamente $n$ raíces $n$-ésimas:
+          <div class="ej">$\sqrt[n]{r_\alpha}=\left(\sqrt[n]r\right)_{\frac{\alpha+360^\circ k}{n}},\qquad k=0,1,\dots,n-1$</div>
+          Todas tienen el mismo módulo y están repartidas a igual distancia: son los vértices de un <b>polígono regular</b> de $n$ lados.
+          <div class="ej"><b>Ejemplo resuelto.</b> Raíces cúbicas de $8i=8_{90^\circ}$: $2_{30^\circ}$, $2_{150^\circ}$ y $2_{270^\circ}$, es decir, $\sqrt3+i$, $-\sqrt3+i$ y $-2i$ (un triángulo equilátero).</div>`),
+        H('Ecuaciones en los complejos', R`Con los complejos, toda ecuación de 2.º grado tiene solución: si $\Delta<0$, $\sqrt\Delta$ es imaginaria.
+          <div class="ej">$x^2-4x+13=0\Rightarrow x=\dfrac{4\pm\sqrt{-36}}2=\dfrac{4\pm6i}2=2\pm3i$</div>
+          Las soluciones complejas de una ecuación con coeficientes reales aparecen siempre por parejas de <b>conjugados</b>. En general, un polinomio de grado $n$ tiene $n$ raíces complejas (<b>teorema fundamental del álgebra</b>). Ejemplo: $z^3+8=0\Rightarrow z=\sqrt[3]{-8}$, con raíces $1+\sqrt3i$, $-2$ y $1-\sqrt3i$.`)
       ],
-      practice: [
-        P('1. Fracción generatriz', R`Halla la fracción generatriz de $2{,}\overline5$ y de $0{,}1\overline6$.`, R`$2{,}\overline5=\dfrac{25-2}{9}=\dfrac{23}9$. $\quad0{,}1\overline6=\dfrac{16-1}{90}=\dfrac{15}{90}=\dfrac16$.`),
-        P('2. Clasifica', R`Di si son racionales o irracionales: $\sqrt{16}$, $-\frac34$, $\sqrt7$, $0{,}\overline3$, $\frac\pi2$.`, R`$\sqrt{16}=4$ racional (natural); $-\frac34$ racional; $\sqrt7$ irracional; $0{,}\overline3=\frac13$ racional; $\frac\pi2$ irracional.`),
-        P('3. Intervalos y entornos', R`Escribe como intervalo $|x+1|\le3$ y el entorno $E(2;\,0{,}5)$.`, R`$-3\le x+1\le3\Rightarrow[-4,2]$. $\quad E(2;0{,}5)=(1{,}5;\ 2{,}5)$.`),
-        P('4. Errores', R`Aproximamos $\sqrt2=1{,}414213\ldots$ por $1{,}41$. Calcula el error absoluto y el relativo.`, R`$E_a\approx0{,}004214$. $\ E_r=\dfrac{0{,}004214}{1{,}414214}\approx0{,}0030$, es decir, un $0{,}30\,\%$.`),
-        P('5. Notación científica', R`Calcula: a) $(2{,}5\cdot10^{-3})(4\cdot10^{7})$ &nbsp; b) $\dfrac{6\cdot10^8}{3\cdot10^{-2}}$`, R`a) $10\cdot10^4=1\cdot10^5$. $\quad$ b) $2\cdot10^{10}$.`),
-        P('6. Radicales', R`a) $\sqrt{50}-2\sqrt{18}+\sqrt8$ &nbsp; b) Racionaliza $\dfrac{3}{2+\sqrt2}$`, R`a) $5\sqrt2-6\sqrt2+2\sqrt2=\sqrt2$. <br>b) $\dfrac{3(2-\sqrt2)}{4-2}=\dfrac{6-3\sqrt2}{2}$.`),
-        P('7. Complejos en binómica', R`Calcula $(1+i)^2$, $(1+i)^8$ y $\dfrac{2-i}{3+i}$.`, R`$(1+i)^2=1+2i-1=2i$. $(1+i)^8=(2i)^4=16$. <br>$\dfrac{(2-i)(3-i)}{10}=\dfrac{6-2i-3i-1}{10}=\dfrac{1-i}{2}$.`),
-        P('8. Forma polar', R`Pasa $z=-1-i$ a polar y calcula $z^4$.`, R`$r=\sqrt2$; está en el 3.<sup>er</sup> cuadrante, $\alpha=225^\circ$: $z=\sqrt2_{225^\circ}$. <br>$z^4=4_{900^\circ}=4_{180^\circ}=-4$.`),
-        P('9. Raíces', R`Halla las raíces cuartas de $-16$.`, R`$-16=16_{180^\circ}$. Raíces: $2_{45^\circ},\,2_{135^\circ},\,2_{225^\circ},\,2_{315^\circ}$, es decir $\pm\sqrt2\pm\sqrt2\,i$.`),
-        P('10. Logaritmos', R`Calcula $\log_5125$, $\log_2\frac18$, $\log_93$. Desarrolla $\log\dfrac{x^2y}{\sqrt z}$ y calcula $\log_320$ con la calculadora.`, R`$3$, $-3$ y $\frac12$. <br>$2\log x+\log y-\frac12\log z$. <br>$\log_320=\dfrac{\ln20}{\ln3}\approx2{,}727$.`),
-        P('11. Ecuaciones', R`Resuelve: a) $\log_2x+\log_2(x+2)=3$ &nbsp; b) $3^{2x}-10\cdot3^x+9=0$`, R`a) $x(x+2)=8\Rightarrow x=2$ ($x=-4$ no vale). <br>b) $t=3^x$: $t^2-10t+9=0\Rightarrow t=1,9\Rightarrow x=0,\ x=2$.`)
+      practice: [...X.PR.reales, ...X.PR.potencias, ...X.PR.radicales, ...X.PR.notacion, ...X.PR.logaritmos,
+        G('Números complejos'),
+        P('Potencias de i', R`Calcula $i^{15}$, $i^{42}$, $i^{-1}$ y $i+i^2+i^3+i^4$.`, R`$-i$; $-1$; $\frac1i=\frac{-i}{1}=-i$; $\ i-1-i+1=0$.`),
+        P('Ecuaciones', R`Resuelve en $\mathbb C$: a) $x^2+9=0$ b) $x^2-4x+13=0$ c) $x^4-1=0$`, R`a) $\pm3i$ b) $2\pm3i$ c) $(x^2-1)(x^2+1)=0$: $\pm1,\ \pm i$.`),
+        P('Operaciones', R`Con $z_1=3-2i$ y $z_2=-1+4i$, calcula $z_1+z_2$, $z_1-z_2$, $z_1z_2$ y $\dfrac{z_1}{z_2}$.`, R`$2+2i$; $4-6i$; $5+14i$; $\dfrac{-11-10i}{17}$.`),
+        P('Halla x e y', R`a) $(x+2i)+(3-yi)=5+i$ &nbsp; b) $(2+xi)(1-i)$ es un número real.`, R`a) $x+3=5$, $2-y=1$: $x=2$, $y=1$. <br>b) $(2+x)+(x-2)i$: real si $x=2$.`),
+        P('Conjugado y módulo', R`Para $z=4-3i$, calcula $\bar z$, $|z|$ y $z\cdot\bar z$.`, R`$4+3i$; $5$; $25$.`),
+        P('De binómica a polar', R`a) $2+2i$ b) $-\sqrt3+i$ c) $-5$ d) $-4i$ e) $1-\sqrt3i$`, R`a) $2\sqrt2_{45^\circ}$ b) $2_{150^\circ}$ c) $5_{180^\circ}$ d) $4_{270^\circ}$ e) $2_{300^\circ}$`),
+        P('De polar a binómica', R`a) $6_{30^\circ}$ b) $2_{135^\circ}$ c) $3_{270^\circ}$ d) $4_{150^\circ}$`, R`a) $3\sqrt3+3i$ b) $-\sqrt2+\sqrt2i$ c) $-3i$ d) $-2\sqrt3+2i$`),
+        P('Operaciones en polar', R`Con $z_1=4_{50^\circ}$ y $z_2=2_{20^\circ}$, calcula $z_1z_2$, $\dfrac{z_1}{z_2}$ y $z_2^5$.`, R`$8_{70^\circ}$; $2_{30^\circ}$; $32_{100^\circ}$.`),
+        P('Moivre', R`Calcula $(1+i)^{10}$ y $(-1+\sqrt3i)^6$.`, R`$(\sqrt2_{45^\circ})^{10}=32_{90^\circ}=32i$. $\ (2_{120^\circ})^6=64_{720^\circ}=64$.`),
+        P('Raíces', R`a) Raíces cuadradas de $-4$. b) Raíces cúbicas de $8i$. c) Raíces cuartas de $-16$.`, R`a) $\pm2i$. b) $\sqrt3+i$, $-\sqrt3+i$, $-2i$. c) $\pm\sqrt2\pm\sqrt2i$.`),
+        P('Ecuación de grado 3', R`Resuelve $z^3+8=0$.`, R`$z^3=-8=8_{180^\circ}$: $2_{60^\circ}$, $2_{180^\circ}$, $2_{300^\circ}$, es decir, $1+\sqrt3i$, $-2$ y $1-\sqrt3i$.`),
+        P('Fórmulas del ángulo doble', R`Usa la fórmula de Moivre con $n=2$ para obtener $\cos2\alpha$ y $\sin2\alpha$.`, R`$(\cos\alpha+i\sin\alpha)^2=\cos^2\alpha-\sin^2\alpha+2i\sin\alpha\cos\alpha=\cos2\alpha+i\sin2\alpha$.`)
       ],
       exams: [
         [
-          Q(3.5, R`a) (1,5 p) Simplifica $\sqrt{12}+\sqrt{27}-\sqrt{48}$. <br>b) (2 p) Racionaliza $\dfrac{6}{\sqrt3}$ y $\dfrac{2}{\sqrt5-\sqrt3}$.`, R`a) $2\sqrt3+3\sqrt3-4\sqrt3=\sqrt3$. <br>b) $\dfrac{6\sqrt3}{3}=2\sqrt3$; $\ \dfrac{2(\sqrt5+\sqrt3)}{5-3}=\sqrt5+\sqrt3$.`),
-          Q(3.5, R`Pasa $z=1+\sqrt3\,i$ a forma polar y calcula $z^6$.`, R`$|z|=2$, $\arg z=60^\circ$: $z=2_{60^\circ}$. Moivre: $z^6=64_{360^\circ}=64$.`),
+          Q(3.5, R`a) (1,5 p) Simplifica $\sqrt{12}+\sqrt{27}-\sqrt{48}$. <br>b) (2 p) Racionaliza $\dfrac{6}{\sqrt3}$ y $\dfrac{2}{\sqrt5-\sqrt3}$.`, R`a) $2\sqrt3+3\sqrt3-4\sqrt3=\sqrt3$. <br>b) $2\sqrt3$; $\ \sqrt5+\sqrt3$.`),
+          Q(3.5, R`Pasa $z=1+\sqrt3\,i$ a forma polar y calcula $z^6$.`, R`$z=2_{60^\circ}$. $z^6=64_{360^\circ}=64$.`),
           Q(3, R`Resuelve: a) $2^{x+1}+2^x=24$ &nbsp; b) $\log x+\log(x-3)=1$`, R`a) $3\cdot2^x=24\Rightarrow x=3$. <br>b) $x(x-3)=10\Rightarrow x=5$ ($x=-2$ no vale).`)
         ],
         [
-          Q(3.5, R`Expresa como intervalos: a) $|x-3|<2$ &nbsp; b) $|2x+1|\ge3$`, R`a) $(1,5)$. <br>b) $2x+1\ge3$ o $2x+1\le-3$: $(-\infty,-2]\cup[1,\infty)$.`),
-          Q(3.5, R`Halla las raíces cúbicas de $-8$ en forma binómica.`, R`$-8=8_{180^\circ}$: $2_{60^\circ},\,2_{180^\circ},\,2_{300^\circ}$, es decir $1+\sqrt3i$, $-2$ y $1-\sqrt3i$.`),
-          Q(3, R`Resuelve $9^x-4\cdot3^x+3=0$.`, R`Con $t=3^x$: $t^2-4t+3=0\Rightarrow t=1,3$. Soluciones $x=0$ y $x=1$.`)
+          Q(3.5, R`a) Expresa como intervalos $|x-3|<2$ y $|2x+1|\ge3$. b) Simplifica $\dfrac{9^2\cdot27^{-1}\cdot3^5}{81\cdot3^{-2}}$.`, R`a) $(1,5)$; $(-\infty,-2]\cup[1,\infty)$. <br>b) $3^4=81$.`),
+          Q(3.5, R`Halla las raíces cúbicas de $-8$ en forma binómica.`, R`$2_{60^\circ},\,2_{180^\circ},\,2_{300^\circ}$: $1+\sqrt3i$, $-2$ y $1-\sqrt3i$.`),
+          Q(3, R`Resuelve $9^x-4\cdot3^x+3=0$ y $\log_2(x+1)+\log_2(x-1)=3$.`, R`$x=0$ y $x=1$. $\ x^2-1=8\Rightarrow x=3$.`)
         ],
         [
-          Q(3.5, R`Calcula: a) $(2+3i)(1-i)$ &nbsp; b) $\dfrac{3+4i}{1+2i}$ &nbsp; c) $i^{27}$`, R`a) $5+i$. <br>b) $\dfrac{11-2i}{5}$. <br>c) $27=4\cdot6+3$: $i^{27}=i^3=-i$.`),
-          Q(3.5, R`Sabiendo que $\log2\approx0{,}301$ y $\log3\approx0{,}477$, calcula $\log12$, $\log1{,}5$ y $\log\sqrt8$.`, R`$\log12=2\log2+\log3=1{,}079$. $\log1{,}5=\log3-\log2=0{,}176$. $\log\sqrt8=\frac32\log2=0{,}4515$.`),
-          Q(3, R`Halla $m$ para que $\dfrac{m+2i}{1-i}$ sea imaginario puro.`, R`$\dfrac{(m+2i)(1+i)}{2}=\dfrac{(m-2)+(m+2)i}{2}$. Parte real nula: $m=2$ (queda $2i$).`)
+          Q(3.5, R`Calcula: a) $(2+3i)(1-i)$ &nbsp; b) $\dfrac{3+4i}{1+2i}$ &nbsp; c) $i^{27}$`, R`a) $5+i$. b) $\dfrac{11-2i}{5}$. c) $-i$.`),
+          Q(3.5, R`Con $\log2\approx0{,}301$ y $\log3\approx0{,}477$, calcula $\log12$, $\log1{,}5$ y $\log\sqrt8$. Agrupa en un solo logaritmo $2\log x-3\log y+\log z$.`, R`$1{,}079$; $0{,}176$; $0{,}4515$. $\ \log\dfrac{x^2z}{y^3}$.`),
+          Q(3, R`Halla $m$ para que $\dfrac{m+2i}{1-i}$ sea imaginario puro.`, R`$\dfrac{(m-2)+(m+2)i}{2}$: $m=2$ (queda $2i$).`)
         ]
       ] },
 
     /* ------------------------------------------------------------------ 2 */
-    { n: 'T2', name: 'Álgebra', desc: 'Polinomios, Ruffini, fracciones algebraicas, ecuaciones, inecuaciones y Gauss.',
+    { n: 'T2', name: 'Álgebra', desc: 'Polinomios, Ruffini, factorización, fracciones algebraicas, ecuaciones, inecuaciones, Gauss y sistemas no lineales.',
       mv: MV + 'BC1_02_ALGEBRA.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%202%20%C3%81lgebra.pdf',
       tool: 'ruffini',
-      theory: [
-        H('Polinomios', R`Un polinomio es una suma de monomios: $P(x)=a_nx^n+\dots+a_1x+a_0$. El <b>grado</b> es el mayor exponente y el <b>valor numérico</b> $P(a)$ se obtiene sustituyendo $x$ por $a$.
-          <p>Identidades notables: $(a+b)^2=a^2+2ab+b^2$, $\ (a-b)^2=a^2-2ab+b^2$, $\ (a+b)(a-b)=a^2-b^2$.</p>`),
-        H('Regla de Ruffini y teorema del resto', R`Ruffini divide un polinomio entre $(x-a)$ de forma rápida (pruébalo en la herramienta de abajo). <br><b>Teorema del resto</b>: el resto de dividir $P(x)$ entre $(x-a)$ es $P(a)$. Si $P(a)=0$, $a$ es una <b>raíz</b> y $(x-a)$ es un factor.
-          <div class="ej">¿$x^3+kx^2-4$ divisible por $x-2$? $\ P(2)=8+4k-4=0\Rightarrow k=-1$.</div>`),
-        H('Raíces y factorización', R`Las raíces enteras de un polinomio con coeficientes enteros son <b>divisores del término independiente</b>. Pasos para factorizar: 1) sacar factor común; 2) identidades notables; 3) Ruffini con los divisores; 4) ecuación de 2.º grado para lo que quede.
-          <div class="ej">$x^3-2x^2-5x+6=(x-1)(x-3)(x+2)$</div>`),
-        H('Fracciones algebraicas', R`Se <b>simplifican</b> factorizando y tachando factores comunes (¡nunca sumandos!). Para sumar se busca el m.c.m. de los denominadores factorizados; para multiplicar, en línea; para dividir, en cruz.
-          <div class="ej">$\dfrac{x^2-5x+6}{x^2-2x}=\dfrac{(x-2)(x-3)}{x(x-2)}=\dfrac{x-3}{x}$</div>`),
-        H('Ecuaciones', R`2.º grado: $ax^2+bx+c=0\Rightarrow x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. El <b>discriminante</b> $\Delta=b^2-4ac$ dice cuántas soluciones hay. <br><b>Bicuadradas</b> ($ax^4+bx^2+c=0$): cambio $t=x^2$. <b>Irracionales</b>: aislar la raíz, elevar al cuadrado y <b>comprobar</b>. <b>Racionales</b>: multiplicar por el m.c.m. y descartar las que anulen un denominador.`),
-        H('Inecuaciones', R`1.<sup>er</sup> grado: como una ecuación, pero si multiplicas o divides por un negativo, cambia el sentido. <br>2.º grado y racionales: halla las raíces (de numerador y denominador), divide la recta en trozos y estudia el <b>signo</b> en cada uno.
-          <div class="ej">$x^2-x-6\le0$: raíces $-2$ y $3$; negativo entre ellas: $[-2,3]$.</div>`),
-        H('Sistemas: método de Gauss', R`Se transforma el sistema en uno <b>escalonado</b> (triangular) sumando a una ecuación múltiplos de otra, y se resuelve de abajo arriba. Clasificación: <b>compatible determinado</b> (una solución), <b>compatible indeterminado</b> (infinitas: aparece $0=0$), <b>incompatible</b> (aparece $0=k$ con $k\neq0$).
-          <p><b>Sistemas de inecuaciones lineales</b> con dos incógnitas: cada inecuación es un semiplano; la solución es la región común.</p>`)
-      ],
-      practice: [
-        P('4. Identidades notables', R`d) $(4x+5y)^2$ &nbsp;&nbsp; e) $\left(4x-\dfrac74\right)^2$ &nbsp;&nbsp; f) $(x^2-6y)(x^2+6y)$`,
-          R`d) $16x^2+40xy+25y^2$. <br>e) $16x^2-2\cdot4x\cdot\dfrac74+\dfrac{49}{16}=16x^2-14x+\dfrac{49}{16}$. <br>f) Suma por diferencia: $x^4-36y^2$.`),
-        P('5. Operaciones con polinomios', R`Sean $M(x)=3x^2-5x-3$, $N(x)=x^2+3x+1$ y $K(x)=x^2-x+2$. Calcula: <br>a) $M(-1)$ &nbsp;&nbsp; b) $2M(x)-4K(x)$ &nbsp;&nbsp; c) $M(x)+3N(x)\cdot K(x)$`,
-          R`a) $M(-1)=3+5-3=5$. <br>b) $(6x^2-10x-6)-(4x^2-4x+8)=2x^2-6x-14$. <br>c) $N\cdot K=x^4+2x^3+5x+2$ (los términos en $x^2$ se anulan). Por 3: $3x^4+6x^3+15x+6$. Más $M$: $3x^4+6x^3+3x^2+10x+3$.`),
-        P('6. Producto de polinomios', R`Calcula $P(x)\cdot Q(x)$ con $P(x)=2x^6+3x^4+x^2-6$ y $Q(x)=x^3+x$.`,
-          R`$2x^9+3x^7+x^5-6x^3\ +\ 2x^7+3x^5+x^3-6x=2x^9+5x^7+4x^5-5x^3-6x$.`),
-        P('7. Divisiones de polinomios', R`a) $(x^5+7x^3-5x+1)\div(x^3+2x)$ &nbsp;&nbsp; b) $(x^3-5x^2+x)\div(-x^2-1)$`,
-          R`a) Cociente $x^2+5$, resto $-15x+1$. <br>b) Cociente $-x+5$, resto $5$. Comprobación: $(-x+5)(-x^2-1)+5=x^3-5x^2+x$ ✓`),
-        P('8. Simplifica', R`a) $\dfrac{x^2-5x+6}{x^2-2x}$ &nbsp;&nbsp; b) $\dfrac{3x^3-6x^2}{3x^4+24x^3-60x^2}$`,
-          R`a) $\dfrac{x-3}{x}$. <br>b) $\dfrac{3x^2(x-2)}{3x^2(x+10)(x-2)}=\dfrac{1}{x+10}$.`),
-        P('9. Opera y simplifica', R`a) $\dfrac{x-1}{x^2-4}-\dfrac{x-2}{x^2+2x}$ &nbsp;&nbsp; b) $\dfrac{x-3}{x}\div\dfrac{x^2-9}{x^2+3x}$ &nbsp;&nbsp; c) $\dfrac{2x-1}{x^2+2x}\cdot\dfrac{x^3+2x^2}{4x}$`,
-          R`a) m.c.m. $x(x-2)(x+2)$: $\dfrac{x(x-1)-(x-2)^2}{x(x^2-4)}=\dfrac{3x-4}{x^3-4x}$. <br>b) $\dfrac{x-3}{x}\cdot\dfrac{x(x+3)}{(x-3)(x+3)}=1$. <br>c) $\dfrac{(2x-1)x^2(x+2)}{4x^2(x+2)}=\dfrac{2x-1}{4}$.`),
-        P('10. Teorema del resto', R`a) Halla el resto de $(x^{100}-3x+2)\div(x-1)$. <br>b) Halla $k$ para que $x^3+kx^2-4$ sea divisible por $x-2$.`, R`a) $P(1)=1-3+2=0$: es divisible. <br>b) $P(2)=4+4k=0\Rightarrow k=-1$.`),
-        P('11. Gauss', R`Clasifica: $\begin{cases}x+y+z=3\\2x+2y+2z=6\\x-y=0\end{cases}$`, R`La 2.ª es el doble de la 1.ª: queda $x+y+z=3,\ x=y$. Compatible indeterminado: $(\lambda,\lambda,3-2\lambda)$.`),
-        P('12. Sistema de inecuaciones', R`Representa la región $x\ge0,\ y\ge0,\ x+y\le4$.`, R`Es el triángulo de vértices $(0,0)$, $(4,0)$ y $(0,4)$ (incluye los lados).`)
-      ],
+      theory: X.TH.algebra,
+      practice: X.PR.algebra,
       exams: [
         [
-          Q(3.5, R`Resuelve: a) $x^4-5x^2+4=0$ &nbsp; b) $\sqrt{x+7}=x-5$`, R`a) $t=x^2$: $t=1,4\Rightarrow x=\pm1,\pm2$. <br>b) $x^2-11x+18=0\Rightarrow x=9,\ x=2$. Comprobando, solo vale $x=9$.`),
+          Q(3.5, R`Resuelve: a) $x^4-5x^2+4=0$ &nbsp; b) $\sqrt{x+7}=x-5$`, R`a) $x=\pm1,\pm2$. <br>b) $x^2-11x+18=0\Rightarrow x=9,\ x=2$. Comprobando, solo vale $x=9$.`),
           Q(3.5, R`Resuelve: a) $x^2-x-6\le0$ &nbsp; b) $\dfrac{x-1}{x+2}>0$`, R`a) $[-2,3]$. <br>b) $(-\infty,-2)\cup(1,\infty)$.`),
-          Q(3, R`Resuelve $\begin{cases}x+y=7\\xy=12\end{cases}$`, R`$x^2-7x+12=0$: soluciones $(3,4)$ y $(4,3)$.`)
+          Q(3, R`Resuelve $\begin{cases}x+y=7\\xy=12\end{cases}$`, R`$(3,4)$ y $(4,3)$.`)
         ],
         [
-          Q(3.5, R`Factoriza $P(x)=x^3-2x^2-5x+6$.`, R`$P(1)=0$. Ruffini: $(x-1)(x^2-x-6)=(x-1)(x-3)(x+2)$.`),
-          Q(3.5, R`Resuelve por Gauss: $\begin{cases}x+y+z=6\\2x-y+z=3\\x+2y-z=2\end{cases}$`, R`$E_2-2E_1$: $-3y-z=-9$; $E_3-E_1$: $y-2z=-4$. Entonces $y=2$, $z=3$, $x=1$.`),
-          Q(3, R`3 cuadernos y 2 bolígrafos cuestan 9 €; 2 cuadernos y 5 bolígrafos, 8,75 €. ¿Cuánto cuesta cada cosa?`, R`$3c+2b=9$, $2c+5b=8{,}75$. Reducción: $11b=8{,}25\Rightarrow b=0{,}75$ €, $c=2{,}50$ €.`)
+          Q(3.5, R`Factoriza $P(x)=x^3-2x^2-5x+6$ y simplifica $\dfrac{P(x)}{x^2-1}$.`, R`$P(x)=(x-1)(x-3)(x+2)$. $\ \dfrac{(x-1)(x-3)(x+2)}{(x-1)(x+1)}=\dfrac{(x-3)(x+2)}{x+1}$.`),
+          Q(3.5, R`Resuelve por Gauss: $\begin{cases}x+y+z=6\\2x-y+z=3\\x+2y-z=2\end{cases}$`, R`$-3y-z=-9$ y $y-2z=-4$: $y=2$, $z=3$, $x=1$.`),
+          Q(3, R`3 cuadernos y 2 bolígrafos cuestan 9 €; 2 cuadernos y 5 bolígrafos, 8,75 €. ¿Cuánto cuesta cada cosa?`, R`$b=0{,}75$ €, $c=2{,}50$ €.`)
         ],
         [
-          Q(3.5, R`Simplifica $\dfrac{x^2-4}{x^2+4x+4}$ y opera $\dfrac{2}{x}+\dfrac{3}{x+1}$.`, R`$\dfrac{(x-2)(x+2)}{(x+2)^2}=\dfrac{x-2}{x+2}$. $\quad\dfrac{2(x+1)+3x}{x(x+1)}=\dfrac{5x+2}{x^2+x}$.`),
-          Q(3.5, R`Resuelve $\begin{cases}2x-1>3\\x^2-9<0\end{cases}$`, R`$x>2$ y $-3<x<3$: $(2,3)$.`),
-          Q(3, R`Resuelve $\dfrac2x+\dfrac{3}{x+1}=2$.`, R`$2x^2-3x-2=0\Rightarrow x=2,\ x=-\dfrac12$ (las dos valen).`)
+          Q(3.5, R`a) Simplifica $\dfrac{x^2-4}{x^2+4x+4}$. b) Opera $\dfrac{2}{x}+\dfrac{3}{x+1}$. c) Halla $m$ para que $x^3-mx^2+5x-2$ dé resto 4 al dividir entre $x-2$.`, R`a) $\dfrac{x-2}{x+2}$. b) $\dfrac{5x+2}{x^2+x}$. c) $m=3$.`),
+          Q(3.5, R`Resuelve $\begin{cases}2x-1>3\\x^2-9<0\end{cases}$ y $\dfrac{2x}{x+4}\ge1$.`, R`$(2,3)$. $\ (-\infty,-4)\cup[4,\infty)$.`),
+          Q(3, R`Resuelve $\dfrac2x+\dfrac{3}{x+1}=2$ y $\sqrt{3x+1}-\sqrt{x-1}=2$.`, R`$x=2$, $x=-\frac12$. $\ x=1$, $x=5$.`)
         ]
       ] },
 
     /* ------------------------------------------------------------------ 3 */
-    { n: 'T3', name: 'Sucesiones', desc: 'Progresiones aritméticas y geométricas, límites de sucesiones y el número e.',
+    { n: 'T3', name: 'Sucesiones', desc: 'Formas de definir, progresiones aritméticas y geométricas, monotonía, límites, el número e y aplicaciones.',
       mv: MV + 'BC1_03_Sucesiones.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%203%20Sucesiones.pdf',
       tool: 'progresiones',
       theory: [
-        H('Qué es una sucesión', R`Una lista ordenada de números $a_1,a_2,a_3,\dots$ Se define con un <b>término general</b> ($a_n=n^2$) o de forma <b>recurrente</b>, a partir de los anteriores (Fibonacci: $a_{n}=a_{n-1}+a_{n-2}$).`),
-        H('Progresiones aritméticas', R`Cada término es el anterior más una cantidad fija $d$ (diferencia). <div class="ej">$a_n=a_1+(n-1)d\qquad S_n=\dfrac{(a_1+a_n)\,n}{2}$</div>`),
-        H('Progresiones geométricas', R`Cada término es el anterior por una cantidad fija $r$ (razón). <div class="ej">$a_n=a_1\cdot r^{\,n-1}\qquad S_n=\dfrac{a_1(r^n-1)}{r-1}$</div>
-          Si $|r|<1$, la suma de <b>infinitos</b> términos es finita: $S_\infty=\dfrac{a_1}{1-r}$. Así se explica la paradoja de Aquiles y la tortuga.`),
-        H('Monotonía y acotación', R`Es <b>creciente</b> si $a_{n+1}\ge a_n$ para todo $n$ y <b>decreciente</b> si $a_{n+1}\le a_n$. Para estudiarlo, mira el signo de $a_{n+1}-a_n$. Está <b>acotada</b> si todos sus términos están entre dos números.`),
-        H('Límite de una sucesión', R`<b>Convergente</b>: sus términos se acercan a un número $L$. <b>Divergente</b>: tienden a $\pm\infty$. <b>Oscilante</b>: ni una cosa ni otra, como $(-1)^n$. <br>Cocientes de polinomios: compara los grados (mayor arriba $\to\infty$; mayor abajo $\to0$; iguales $\to$ cociente de coeficientes principales).`),
-        H('El número e', R`$e=\displaystyle\lim_{n\to\infty}\left(1+\frac1n\right)^n=2{,}71828\ldots$ En general $\displaystyle\lim\left(1+\frac kn\right)^n=e^k$. <br>Aparece en el <b>interés compuesto</b>: $C=C_0\left(1+\frac rm\right)^{mt}$ y, si se capitaliza continuamente, $C=C_0\,e^{rt}$.`),
-        H('Funciones exponencial y logarítmica', R`$y=a^x$ ($a>0$) pasa por $(0,1)$, es siempre positiva y tiene asíntota $y=0$; crece si $a>1$ y decrece si $0<a<1$. Su inversa es $y=\log_ax$, que pasa por $(1,0)$ y solo existe para $x>0$. Las dos gráficas son simétricas respecto de $y=x$.`)
+        H('Qué es una sucesión', R`Una <b>sucesión</b> es una lista ordenada e infinita de números reales $a_1,a_2,a_3,\dots,a_n,\dots$ Cada número es un <b>término</b> y $a_n$ es el <b>término general</b> (el que ocupa el lugar $n$). Formalmente es una función que a cada natural $n\ge1$ le asigna $a_n$.`),
+        H('Formas de definir una sucesión', R`<ul><li>Con el <b>término general</b>: $a_n=\dfrac{(-1)^n}{n}$ da $-1,\frac12,-\frac13,\frac14,\dots$</li>
+          <li>De forma <b>recurrente</b>, a partir de los anteriores: $a_1=2$, $a_{n+1}=3a_n-1$ da $2,5,14,41,\dots$ La de <b>Fibonacci</b> es $1,1,2,3,5,8,\dots$ con $a_n=a_{n-1}+a_{n-2}$.</li>
+          <li>Con un <b>enunciado</b>: "la sucesión de los números primos" $2,3,5,7,11,\dots$ (no tiene fórmula sencilla).</li></ul>
+          Para encontrar el término general, busca qué cambia de un término al siguiente: si se suma algo fijo, si se multiplica, si son cuadrados ($n^2$), si alterna el signo ($(-1)^n$)…`),
+        H('Progresiones aritméticas', R`Cada término se obtiene <b>sumando</b> al anterior un número fijo $d$, la <b>diferencia</b>.
+          <div class="ej">$a_n=a_1+(n-1)d\qquad a_n=a_k+(n-k)d\qquad S_n=\dfrac{(a_1+a_n)\,n}{2}$</div>
+          La fórmula de la suma se basa en que los términos equidistantes de los extremos suman lo mismo: $a_1+a_n=a_2+a_{n-1}=\dots$ (el truco con el que Gauss, de niño, sumó del 1 al 100 en segundos: $\frac{101\cdot100}{2}=5050$).
+          <div class="ej"><b>Ejemplo resuelto.</b> Si $a_3=10$ y $a_8=25$: $5d=15\Rightarrow d=3$, $a_1=4$, $a_{20}=4+19\cdot3=61$ y $S_{20}=\frac{(4+61)\cdot20}2=650$.</div>
+          <b>Interpolar</b> $k$ medios aritméticos entre $a$ y $b$ es construir una progresión de $k+2$ términos de $a$ a $b$: $d=\dfrac{b-a}{k+1}$. Entre 3 y 23, con 4 medios, $d=4$: $3,7,11,15,19,23$.`),
+        H('Progresiones geométricas', R`Cada término se obtiene <b>multiplicando</b> el anterior por un número fijo $r$, la <b>razón</b>.
+          <div class="ej">$a_n=a_1\,r^{\,n-1}\qquad a_n=a_k\,r^{\,n-k}\qquad S_n=\dfrac{a_1(r^n-1)}{r-1}=\dfrac{a_n r-a_1}{r-1}\qquad P_n=\sqrt{(a_1a_n)^n}$</div>
+          ($P_n$ es el producto de los $n$ primeros términos).
+          <div class="ej"><b>Ejemplo resuelto.</b> Si $a_2=6$ y $a_5=162$: $r^3=27\Rightarrow r=3$, $a_1=2$. $S_6=\frac{2(3^6-1)}{2}=728$.</div>
+          <b>Interpolar</b> $k$ medios geométricos entre $a$ y $b$: $r=\sqrt[k+1]{\frac ba}$. Entre 2 y 162 con 3 medios: $r^4=81$, $r=\pm3$: $2,6,18,54,162$ (o $2,-6,18,-54,162$).`),
+        H('Suma de infinitos términos', R`Si $|r|<1$, los términos se hacen cada vez más pequeños y la suma de todos es un número finito:
+          <div class="ej">$S_\infty=\dfrac{a_1}{1-r}$</div>
+          <b>Paradoja de Aquiles y la tortuga</b>: Aquiles corre 10 veces más rápido y da 100 m de ventaja. Cuando llega donde estaba la tortuga, esta ha avanzado 10 m; cuando recorre esos 10, ella ha avanzado 1… Pero $100+10+1+\dots=\frac{100}{1-0{,}1}=111{,}\overline1$ m: la alcanza ahí.
+          <p>Los decimales periódicos son sumas infinitas: $0{,}\overline{12}=\frac{12}{100}+\frac{12}{10\,000}+\dots=\frac{0{,}12}{1-0{,}01}=\frac{12}{99}=\frac4{33}$.</p>`),
+        H('Aplicaciones de las progresiones geométricas', R`Muchas cosas crecen o decrecen un <b>porcentaje fijo</b> en cada periodo, y eso es una progresión geométrica:
+          <ul><li><b>Interés compuesto</b>: $C_n=C_0(1+r)^n$.</li>
+          <li><b>Poblaciones</b> que crecen un $p\,\%$ anual: $P_n=P_0\left(1+\frac p{100}\right)^n$.</li>
+          <li><b>Desintegración radiactiva</b> o depreciación de un coche (pierden un % cada año): razón menor que 1.</li></ul>
+          <div class="ej"><b>Ejemplo resuelto.</b> Una sustancia pierde el 10 % cada año. A los 5 años queda $0{,}9^5\approx0{,}59$, el 59 %. Se queda en la mitad cuando $0{,}9^n=0{,}5$: $n=\frac{\log0{,}5}{\log0{,}9}\approx6{,}6$ años.</div>`),
+        H('Monotonía y acotación', R`Una sucesión es <b>creciente</b> si $a_{n+1}\ge a_n$ para todo $n$, y <b>decreciente</b> si $a_{n+1}\le a_n$. Para estudiarlo se mira el <b>signo de $a_{n+1}-a_n$</b>.
+          <p>Está <b>acotada superiormente</b> si hay un número $K$ con $a_n\le K$ para todo $n$ (una <b>cota superior</b>; la menor es el <b>supremo</b>), e <b>inferiormente</b> si hay $k$ con $a_n\ge k$ (la mayor es el <b>ínfimo</b>).</p>
+          <div class="ej"><b>Ejemplo resuelto.</b> $a_n=\dfrac{2n+1}{n+1}$: $a_{n+1}-a_n=\dfrac{1}{(n+1)(n+2)}>0$, creciente. Empieza en $a_1=\frac32$ y se acerca a 2 sin llegar: $\frac32\le a_n<2$.</div>
+          <b>Propiedad importante</b>: toda sucesión monótona y acotada es convergente.`),
+        H('Límite de una sucesión', R`La sucesión es <b>convergente</b> si sus términos se acercan tanto como queramos a un número $L$: $\lim a_n=L$. Es decir, para cualquier distancia $\varepsilon>0$, a partir de cierto término todos están a menos de $\varepsilon$ de $L$.
+          <ul><li>Convergente: $\frac1n\to0$, $\ \frac{2n+1}{n+1}\to2$.</li>
+          <li><b>Divergente</b>: sus términos crecen (o decrecen) sin límite: $n^2\to+\infty$, $\ -2^n\to-\infty$.</li>
+          <li><b>Oscilante</b>: ni una cosa ni otra: $(-1)^n$ salta entre $-1$ y $1$.</li></ul>`),
+        H('Cálculo de límites de sucesiones', R`<div class="tbl"><table>
+          <tr><th>Situación</th><th>Qué hacer</th><th>Ejemplo</th></tr>
+          <tr><td>Polinomio</td><td>manda el término de mayor grado</td><td>$\lim(n^3-5n^2)=+\infty$</td></tr>
+          <tr><td>$\frac\infty\infty$ (cociente de polinomios)</td><td>comparar grados: mayor arriba $\to\pm\infty$; mayor abajo $\to0$; iguales $\to$ cociente de coeficientes principales</td><td>$\lim\dfrac{3n^2-n}{n^2+1}=3$</td></tr>
+          <tr><td>$\infty-\infty$ con raíces</td><td>multiplicar y dividir por el conjugado</td><td>$\lim(\sqrt{n^2+3n}-n)=\frac32$</td></tr>
+          <tr><td>$1^\infty$</td><td>$\lim a_n^{\,b_n}=e^{\lim b_n(a_n-1)}$</td><td>$\lim\left(\dfrac{n^2+1}{n^2-1}\right)^{n^2}=e^2$</td></tr></table></div>
+          Reglas con infinito: $\infty+\infty=\infty$, $k\cdot\infty=\infty$ si $k\neq0$, $\frac k\infty=0$. Son indeterminaciones $\frac\infty\infty$, $\infty-\infty$, $0\cdot\infty$ y $1^\infty$.`),
+        H('El número e', R`Observa qué pasa con $\left(1+\frac1n\right)^n$:
+          <div class="tbl"><table><tr><th>$n$</th><td>1</td><td>10</td><td>100</td><td>1000</td><td>1 000 000</td></tr>
+          <tr><th>$\left(1+\frac1n\right)^n$</th><td>2</td><td>2,5937</td><td>2,7048</td><td>2,7169</td><td>2,71828</td></tr></table></div>
+          Es creciente y acotada, así que converge. Su límite es el <b>número e</b> $=2{,}718281828\ldots$, un irracional. En general:
+          <div class="ej">$\lim\left(1+\dfrac kn\right)^n=e^k\qquad\lim\left(1+\dfrac1{a_n}\right)^{a_n}=e\ \text{ si } a_n\to\infty$</div>
+          Si un banco capitalizara los intereses en cada instante (<b>capitalización continua</b>), el capital sería $C=C_0e^{rt}$.`),
+        H('Funciones exponencial y logarítmica', R`$y=a^x$ ($a>0$, $a\neq1$): dominio $\mathbb R$, siempre positiva, pasa por $(0,1)$, asíntota horizontal $y=0$; crece si $a>1$ y decrece si $0<a<1$. Su inversa es $y=\log_ax$: dominio $(0,\infty)$, pasa por $(1,0)$, asíntota vertical $x=0$. Las dos gráficas son simétricas respecto de $y=x$. Las más usadas son $e^x$ y $\ln x$.`)
       ],
       practice: [
-        P('1. Término general', R`Halla el término general de: a) 3, 7, 11, 15… &nbsp; b) 2, 6, 18, 54… &nbsp; c) $1,\frac12,\frac13,\dots$ &nbsp; d) 1, 4, 9, 16…`, R`a) $4n-1$ &nbsp; b) $2\cdot3^{n-1}$ &nbsp; c) $\frac1n$ &nbsp; d) $n^2$`),
-        P('2. Aritmética', R`Con $a_1=5$ y $d=3$, calcula $a_{20}$ y $S_{20}$.`, R`$a_{20}=5+19\cdot3=62$. $\ S_{20}=\dfrac{(5+62)\cdot20}{2}=670$.`),
-        P('3. Dos términos', R`En una progresión aritmética $a_3=10$ y $a_8=25$. Halla $d$ y $a_1$.`, R`$5d=15\Rightarrow d=3$; $a_1=10-2\cdot3=4$.`),
-        P('4. Geométrica', R`Con $a_1=3$ y $r=2$, calcula $a_6$ y $S_6$.`, R`$a_6=3\cdot2^5=96$. $\ S_6=\dfrac{3(2^6-1)}{2-1}=189$.`),
-        P('5. Suma infinita', R`Calcula $8+4+2+1+\dots$ y escribe $0{,}\overline7$ como suma de una progresión geométrica.`, R`$S=\dfrac{8}{1-\frac12}=16$. $\ 0{,}\overline7=\dfrac7{10}+\dfrac7{100}+\dots=\dfrac{7/10}{1-1/10}=\dfrac79$.`),
-        P('6. Monotonía', R`Estudia la monotonía, cotas y límite de $a_n=\dfrac{2n+1}{n+1}$.`, R`$a_{n+1}-a_n=\dfrac{1}{(n+1)(n+2)}>0$: creciente. Acotada: $\frac32\le a_n<2$. Límite: 2.`),
-        P('7. Límites', R`a) $\lim\dfrac{3n^2-n}{n^2+1}$ &nbsp; b) $\lim\dfrac{n+1}{n^2}$ &nbsp; c) $\lim\left(1+\dfrac1n\right)^{3n}$ &nbsp; d) $\lim\left(1+\dfrac2n\right)^{n}$`, R`a) 3 &nbsp; b) 0 &nbsp; c) $e^3$ &nbsp; d) $e^2$`),
-        P('8. Interés compuesto', R`Ingresamos 1000 € al 4 % anual compuesto. ¿Cuánto hay a los 5 años?`, R`$1000\cdot1{,}04^5\approx1216{,}65$ €.`),
-        P('9. Bacterias', R`Una colonia de 100 bacterias se duplica cada hora. ¿Cuántas hay a las 10 horas? ¿Cuándo superan el millón?`, R`$100\cdot2^{10}=102\,400$. Necesitamos $2^n>10\,000$: como $2^{13}=8192$ y $2^{14}=16\,384$, a las 14 horas.`)
+        G('Términos y formas de definir'),
+        P('Término general', R`Halla el término general de: a) 3, 7, 11, 15… b) 2, 6, 18, 54… c) $1,\frac12,\frac13,\dots$ d) 1, 4, 9, 16… e) $-1,\frac12,-\frac13,\frac14,\dots$`, R`a) $4n-1$ b) $2\cdot3^{n-1}$ c) $\frac1n$ d) $n^2$ e) $\frac{(-1)^n}n$`),
+        P('Recurrente', R`Escribe los 4 primeros términos de $a_1=2$, $a_{n+1}=3a_n-1$, y los 8 primeros de Fibonacci.`, R`$2,5,14,41$. Fibonacci: $1,1,2,3,5,8,13,21$.`),
+        G('Progresiones aritméticas'),
+        P('Término y suma', R`Con $a_1=5$ y $d=3$, calcula $a_{20}$ y $S_{20}$.`, R`$a_{20}=62$; $S_{20}=670$.`),
+        P('Con dos términos', R`En una progresión aritmética $a_3=10$ y $a_8=25$. Halla $d$, $a_1$ y $S_{20}$.`, R`$d=3$, $a_1=4$, $a_{20}=61$, $S_{20}=650$.`),
+        P('Interpolación aritmética', R`Interpola 4 medios aritméticos entre 3 y 23.`, R`$d=\frac{20}5=4$: $3,\ 7,\ 11,\ 15,\ 19,\ 23$.`),
+        P('Impares', R`Suma los 50 primeros números impares. ¿Cuántos impares consecutivos, desde el 1, suman 400?`, R`$2500$. La suma de los $n$ primeros impares es $n^2$: $n=20$.`),
+        G('Progresiones geométricas'),
+        P('Término y suma', R`Con $a_1=3$ y $r=2$, calcula $a_6$ y $S_6$.`, R`$a_6=96$; $S_6=189$.`),
+        P('Interpolación geométrica', R`Interpola 3 medios geométricos entre 2 y 162.`, R`$r^4=81\Rightarrow r=\pm3$: $2,6,18,54,162$ o $2,-6,18,-54,162$.`),
+        P('Producto de términos', R`Calcula el producto de los 5 primeros términos de la progresión $1,2,4,\dots$`, R`$P_5=\sqrt{(1\cdot16)^5}=4^5=1024$ (y en efecto, $1\cdot2\cdot4\cdot8\cdot16=1024$).`),
+        P('Sumas infinitas', R`a) $8+4+2+1+\dots$ b) Escribe $0{,}\overline{12}$ como fracción usando una suma infinita.`, R`a) $\frac8{1-1/2}=16$. b) $\frac{0{,}12}{1-0{,}01}=\frac{12}{99}=\frac4{33}$.`),
+        P('Pelota que bota', R`Una pelota cae desde 10 m y en cada bote sube la mitad. ¿Qué distancia total recorre?`, R`$10+2\cdot\frac{5}{1-\frac12}=10+20=30$ m.`),
+        G('Monotonía, límites y número e'),
+        P('Monotonía', R`Estudia la monotonía y las cotas de a) $a_n=\frac{2n+1}{n+1}$ b) $b_n=n^2-6n$.`, R`a) Creciente; $\frac32\le a_n<2$. <br>b) $b_{n+1}-b_n=2n-5$: decrece hasta $n=3$ y luego crece; no es monótona. Mínimo $b_3=-9$; acotada inferiormente.`),
+        P('Límites', R`a) $\lim\frac{3n^2-n}{n^2+1}$ b) $\lim\frac{n^3-2n}{5n^2+1}$ c) $\lim(\sqrt{n^2+3n}-n)$ d) $\lim\left(1+\frac2n\right)^n$ e) $\lim\left(1-\frac1n\right)^n$ f) $\lim\left(\frac{n^2+1}{n^2-1}\right)^{n^2}$`, R`a) 3 b) $+\infty$ c) $\frac32$ d) $e^2$ e) $e^{-1}$ f) $e^{\lim n^2\cdot\frac{2}{n^2-1}}=e^2$`),
+        G('Aplicaciones'),
+        P('Interés compuesto', R`1000 € al 4 % anual compuesto. ¿Cuánto hay a los 5 años?`, R`$1000\cdot1{,}04^5\approx1216{,}65$ €.`),
+        P('Bacterias', R`Una colonia de 100 bacterias se duplica cada hora. ¿Cuántas hay a las 10 horas? ¿Cuándo superan el millón?`, R`$102\,400$. Como $2^{13}=8192<10\,000<2^{14}$, a las 14 horas.`),
+        P('Desintegración', R`Una sustancia pierde el 10 % cada año. ¿Qué porcentaje queda a los 5 años? ¿Cuándo queda la mitad?`, R`$0{,}9^5\approx59\,\%$. $\ n=\frac{\log0{,}5}{\log0{,}9}\approx6{,}6$ años.`)
       ],
       exams: [
         [
-          Q(3.5, R`Un anfiteatro tiene 20 filas. La primera tiene 15 asientos y cada fila tiene 3 más que la anterior. ¿Cuántos asientos hay en la última fila? ¿Y en total?`, R`Aritmética con $a_1=15$, $d=3$: $a_{20}=15+19\cdot3=72$. Total $S_{20}=\dfrac{(15+72)\cdot20}{2}=870$.`),
-          Q(3.5, R`En una progresión geométrica $a_2=6$ y $a_5=162$. Halla la razón, $a_1$ y la suma de los 6 primeros términos.`, R`$r^3=\dfrac{162}{6}=27\Rightarrow r=3$, $a_1=2$. $\ S_6=\dfrac{2(3^6-1)}{2}=728$.`),
-          Q(3, R`Calcula: a) $\lim\dfrac{2n^3+1}{4n^3-n}$ &nbsp; b) $\lim\left(\sqrt{n^2+n}-n\right)$ &nbsp; c) $\lim\left(\dfrac{n+3}{n}\right)^n$`, R`a) $\frac12$. <br>b) Conjugado: $\dfrac{n}{\sqrt{n^2+n}+n}\to\frac12$. <br>c) $\left(1+\frac3n\right)^n\to e^3$.`)
+          Q(3.5, R`Un anfiteatro tiene 20 filas. La primera tiene 15 asientos y cada fila tiene 3 más que la anterior. ¿Cuántos asientos hay en la última fila? ¿Y en total?`, R`$a_{20}=15+19\cdot3=72$. Total $S_{20}=\frac{(15+72)\cdot20}2=870$.`),
+          Q(3.5, R`En una progresión geométrica $a_2=6$ y $a_5=162$. Halla la razón, $a_1$ y la suma de los 6 primeros términos.`, R`$r=3$, $a_1=2$, $S_6=728$.`),
+          Q(3, R`Calcula: a) $\lim\dfrac{2n^3+1}{4n^3-n}$ b) $\lim\left(\sqrt{n^2+n}-n\right)$ c) $\lim\left(\dfrac{n+3}{n}\right)^n$`, R`a) $\frac12$ b) $\frac12$ c) $e^3$`)
         ],
         [
-          Q(3.5, R`Estudia la monotonía, las cotas y el límite de $a_n=\dfrac{n+3}{2n}$.`, R`$a_{n+1}-a_n=\dfrac{-3}{2n(n+1)}<0$: decreciente. Cota superior $a_1=2$; tiende a $\frac12$, que es cota inferior.`),
-          Q(3.5, R`Una pelota cae desde 10 m y en cada bote sube la mitad de la altura anterior. ¿Qué distancia total recorre?`, R`Bajada inicial 10 m. Después sube y baja $5+2{,}5+\dots$: $2\cdot\dfrac{5}{1-\frac12}=20$ m. Total: 30 m.`),
-          Q(3, R`Ingresamos 5000 € al 3 % anual compuesto. ¿Cuántos años completos tardan en superar los 6000 €?`, R`$1{,}03^n>1{,}2\Rightarrow n>\dfrac{\ln1{,}2}{\ln1{,}03}\approx6{,}17$. Hacen falta 7 años.`)
+          Q(3.5, R`Estudia la monotonía, las cotas y el límite de $a_n=\dfrac{n+3}{2n}$.`, R`$a_{n+1}-a_n=\dfrac{-3}{2n(n+1)}<0$: decreciente. Cota superior $a_1=2$; tiende a $\frac12$ (cota inferior).`),
+          Q(3.5, R`Una pelota cae desde 10 m y en cada bote sube la mitad de la altura anterior. ¿Qué distancia total recorre? Interpola además 3 medios geométricos entre 2 y 162.`, R`30 m. $\ r=\pm3$: $2,6,18,54,162$.`),
+          Q(3, R`Ingresamos 5000 € al 3 % anual compuesto. ¿Cuántos años completos tardan en superar los 6000 €?`, R`$n>\frac{\ln1{,}2}{\ln1{,}03}\approx6{,}17$: 7 años.`)
         ],
         [
-          Q(3.5, R`a) Suma los 50 primeros números impares. b) ¿Cuántos impares consecutivos, empezando en 1, suman 400?`, R`a) $1+3+\dots+99=\dfrac{(1+99)\cdot50}{2}=2500$. <br>b) La suma de los $n$ primeros impares es $n^2$: $n^2=400\Rightarrow n=20$.`),
-          Q(3.5, R`Tres números en progresión aritmética suman 15 y su producto es 105. Hállalos.`, R`$a-d,\ a,\ a+d$: $3a=15\Rightarrow a=5$. $5(25-d^2)=105\Rightarrow d=\pm2$. Los números son 3, 5 y 7.`),
-          Q(3, R`Calcula: a) $\lim\left(1+\dfrac1{2n}\right)^{n}$ &nbsp; b) $\lim\left(\dfrac{2n+1}{2n-1}\right)^{n}$ &nbsp; c) $\lim\dfrac{n^2+1}{n^3}$`, R`a) $e^{1/2}=\sqrt e$. <br>b) $1^\infty$: $e^{\lim n\cdot\frac{2}{2n-1}}=e^1=e$. <br>c) 0.`)
+          Q(3.5, R`a) Suma los 50 primeros números impares. b) Interpola 4 medios aritméticos entre 3 y 23.`, R`a) 2500. b) $3,7,11,15,19,23$.`),
+          Q(3.5, R`Tres números en progresión aritmética suman 15 y su producto es 105. Hállalos.`, R`$a=5$, $d=\pm2$: 3, 5 y 7.`),
+          Q(3, R`Calcula: a) $\lim\left(1+\dfrac1{2n}\right)^{n}$ b) $\lim\left(\dfrac{2n+1}{2n-1}\right)^{n}$ c) $\lim\dfrac{n^2+1}{n^3}$`, R`a) $\sqrt e$ b) $e$ c) 0`)
         ]
       ] },
 
@@ -271,37 +307,11 @@
       ] },
 
     /* ------------------------------------------------------------------ 6 */
-    { n: 'T6', name: 'Funciones', desc: 'Tipos de funciones, composición, inversa, dominio, recorrido, simetrías y signo.',
+    { n: 'T6', name: 'Funciones', desc: 'Tipos de funciones, a trozos, interpolación, composición, inversa, dominio, recorrido, simetrías y signo.',
       mv: MV + 'BC1_06_Funciones.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%206%20Funciones.pdf',
       tool: 'familias',
-      theory: [
-        H('Tipos de funciones', R`<div class="tbl"><table>
-          <tr><th>Tipo</th><th>Ejemplo</th><th>Dominio</th></tr>
-          <tr><td>Polinómica</td><td>$x^3-2x$</td><td>$\mathbb R$</td></tr>
-          <tr><td>Racional</td><td>$\frac{1}{x-2}$</td><td>quita los ceros del denominador</td></tr>
-          <tr><td>Raíz (índice par)</td><td>$\sqrt{x-1}$</td><td>radicando $\ge0$</td></tr>
-          <tr><td>Exponencial</td><td>$2^x$</td><td>$\mathbb R$</td></tr>
-          <tr><td>Logarítmica</td><td>$\ln(x+3)$</td><td>argumento $>0$</td></tr>
-          <tr><td>Trigonométrica</td><td>$\sin x$, $\tan x$</td><td>$\tan$: quita $\frac\pi2+k\pi$</td></tr></table></div>
-          Las funciones <b>a trozos</b> usan una fórmula distinta en cada intervalo. El <b>valor absoluto</b> $|f(x)|$ refleja hacia arriba la parte negativa de la gráfica. En economía, las funciones de <b>oferta y demanda</b> se cortan en el precio de equilibrio.`),
-        H('Operaciones y composición', R`$(f+g)(x)=f(x)+g(x)$, $(f\cdot g)(x)=f(x)g(x)$… La <b>composición</b> aplica una función detrás de otra: $(g\circ f)(x)=g\big(f(x)\big)$. ¡El orden importa!
-          <div class="ej">$f(x)=x^2,\ g(x)=x+1$: $(f\circ g)(x)=(x+1)^2$ y $(g\circ f)(x)=x^2+1$.</div>`),
-        H('Función inversa', R`$f^{-1}$ deshace lo que hace $f$: $(f\circ f^{-1})(x)=x$. Para hallarla: escribe $y=f(x)$, despeja $x$ y cambia los nombres. Su gráfica es la simétrica de la de $f$ respecto de la recta $y=x$. Ejemplo: la inversa de $e^x$ es $\ln x$.`),
-        H('Dominio y recorrido', R`El <b>dominio</b> son los $x$ donde la función existe. El <b>recorrido</b> o imagen son los valores $y$ que alcanza. <div class="ej">$f(x)=x^2-4x+5=(x-2)^2+1$ tiene recorrido $[1,\infty)$.</div>`),
-        H('Simetrías y periodicidad', R`<b>Par</b>: $f(-x)=f(x)$, simétrica respecto del eje $Y$ (como $x^2$, $\cos x$). <b>Impar</b>: $f(-x)=-f(x)$, simétrica respecto del origen (como $x^3$, $\sin x$). <b>Periódica</b> de periodo $T$: $f(x+T)=f(x)$. $\sin(kx)$ tiene periodo $\frac{2\pi}{k}$.`),
-        H('Cortes con los ejes y signo', R`Corte con el eje $Y$: $(0,f(0))$. Con el eje $X$: resolver $f(x)=0$. Para el <b>signo</b>, marca en la recta los ceros y los puntos fuera del dominio, y prueba un valor en cada trozo.`)
-      ],
-      practice: [
-        P('1. Dominios', R`a) $\dfrac{x+1}{x^2-9}$ &nbsp; b) $\sqrt{6-2x}$ &nbsp; c) $\log(x^2-4)$ &nbsp; d) $\dfrac{\sqrt x}{x-4}$ &nbsp; e) $\dfrac{1}{\sqrt{x+2}}$`, R`a) $\mathbb R-\{\pm3\}$ &nbsp; b) $(-\infty,3]$ &nbsp; c) $(-\infty,-2)\cup(2,\infty)$ &nbsp; d) $[0,4)\cup(4,\infty)$ &nbsp; e) $(-2,\infty)$`),
-        P('2. Recorridos', R`a) $f(x)=x^2-4x+5$ &nbsp; b) $g(x)=2^x+3$`, R`a) $(x-2)^2+1$: $[1,\infty)$. &nbsp; b) $2^x>0$: $(3,\infty)$.`),
-        P('3. Simetrías', R`¿Son pares, impares o ninguna? $x^4-3x^2$, $\ x^3-x$, $\ x^2+x$, $\ \dfrac{\sin x}{x}$`, R`Par, impar, ninguna y par.`),
-        P('4. Composición', R`Con $f(x)=\sqrt x$ y $g(x)=x^2+1$, calcula $f\circ g$ y $g\circ f$.`, R`$(f\circ g)(x)=\sqrt{x^2+1}$ y $(g\circ f)(x)=x+1$ (para $x\ge0$).`),
-        P('5. Inversas', R`a) $f(x)=\dfrac{3x+2}{x-1}$ &nbsp; b) $g(x)=e^{2x-1}$`, R`a) $x(y-3)=y+2\Rightarrow f^{-1}(x)=\dfrac{x+2}{x-3}$. <br>b) $g^{-1}(x)=\dfrac{\ln x+1}{2}$.`),
-        P('6. Cortes y signo', R`Estudia los cortes y el signo de $f(x)=\dfrac{x^2-1}{x+2}$.`, R`Cortes: $(\pm1,0)$ y $\left(0,-\frac12\right)$. Negativa en $(-\infty,-2)\cup(-1,1)$ y positiva en $(-2,-1)\cup(1,\infty)$.`),
-        P('7. Valor absoluto', R`Escribe a trozos $|x-2|$ y $|x^2-4|$.`, R`$|x-2|=2-x$ si $x<2$; $x-2$ si $x\ge2$. <br>$|x^2-4|=4-x^2$ si $-2<x<2$; $x^2-4$ en el resto.`),
-        P('8. Periodos', R`¿Qué periodo tienen $\sin(2x)$ y $\tan\left(\frac x2\right)$?`, R`$\pi$ y $2\pi$.`),
-        P('9. Oferta y demanda', R`La demanda es $D(p)=100-2p$ y la oferta $O(p)=3p-25$. Halla el precio y la cantidad de equilibrio.`, R`$100-2p=3p-25\Rightarrow p=25$, cantidad 50.`)
-      ],
+      theory: X.TH.funciones,
+      practice: X.PR.funciones,
       exams: [
         [
           Q(3.5, R`Halla el dominio de: a) $\sqrt{x^2-5x+6}$ &nbsp; b) $\ln\dfrac{x-1}{x+3}$`, R`a) $x^2-5x+6\ge0$: $(-\infty,2]\cup[3,\infty)$. <br>b) $\dfrac{x-1}{x+3}>0$: $(-\infty,-3)\cup(1,\infty)$.`),
