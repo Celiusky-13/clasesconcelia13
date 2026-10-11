@@ -223,7 +223,22 @@
 
   /* =========================== 1º BACHILLERATO =========================== */
   const B1 = [
-    { n: 'T1', name: 'Números reales y logaritmos', desc: 'Radicales, racionalización, intervalos, logaritmos y exponenciales.', exams: [
+    { n: 'T1', name: 'Números reales, logaritmos y polinomios', desc: 'Radicales, logaritmos, identidades notables, polinomios y fracciones algebraicas.',
+      practice: [
+        { t: '4. Identidades notables', e: R`d) $(4x+5y)^2$ &nbsp;&nbsp; e) $\left(4x-\dfrac74\right)^2$ &nbsp;&nbsp; f) $(x^2-6y)(x^2+6y)$`,
+          s: R`d) Cuadrado de una suma, $(a+b)^2=a^2+2ab+b^2$: $16x^2+40xy+25y^2$. <br>e) Cuadrado de una diferencia: $16x^2-2\cdot4x\cdot\dfrac74+\dfrac{49}{16}=16x^2-14x+\dfrac{49}{16}$. <br>f) Suma por diferencia, $(a-b)(a+b)=a^2-b^2$: $x^4-36y^2$.` },
+        { t: '5. Operaciones con polinomios', e: R`Sean $M(x)=3x^2-5x-3$, $N(x)=x^2+3x+1$ y $K(x)=x^2-x+2$. Calcula: <br>a) $M(-1)$ &nbsp;&nbsp; b) $2M(x)-4K(x)$ &nbsp;&nbsp; c) $M(x)+3N(x)\cdot K(x)$`,
+          s: R`a) $M(-1)=3\cdot1+5-3=5$. <br>b) $(6x^2-10x-6)-(4x^2-4x+8)=2x^2-6x-14$. <br>c) Primero el producto: $N\cdot K=x^4+2x^3+5x+2$ (los términos en $x^2$ se anulan: $2x^2-3x^2+x^2=0$). Por 3: $3x^4+6x^3+15x+6$. Sumando $M$: $3x^4+6x^3+3x^2+10x+3$.` },
+        { t: '6. Producto de polinomios', e: R`Calcula $P(x)\cdot Q(x)$ con $P(x)=2x^6+3x^4+x^2-6$ y $Q(x)=x^3+x$.`,
+          s: R`Multiplicamos cada término por $x^3$ y por $x$: <br>$2x^9+3x^7+x^5-6x^3$ <br>$\phantom{2x^9}+2x^7+3x^5+x^3-6x$ <br>Agrupando: $2x^9+5x^7+4x^5-5x^3-6x$.` },
+        { t: '7. Divisiones de polinomios', e: R`a) $(x^5+7x^3-5x+1)\div(x^3+2x)$ &nbsp;&nbsp; b) $(x^3-5x^2+x)\div(-x^2-1)$`,
+          s: R`a) $x^5\div x^3=x^2$; restamos $x^5+2x^3$ y queda $5x^3-5x+1$. Luego $+5$; restamos $5x^3+10x$ y queda $-15x+1$. <br>Cociente $C(x)=x^2+5$, resto $R(x)=-15x+1$. <br>b) $x^3\div(-x^2)=-x$; restamos $x^3+x$ y queda $-5x^2$. Luego $+5$; restamos $-5x^2-5$ y queda $5$. <br>Cociente $C(x)=-x+5$, resto $R(x)=5$. <br>Comprobación: $(-x+5)(-x^2-1)+5=x^3-5x^2+x$ ✓` },
+        { t: '8. Simplifica', e: R`a) $\dfrac{x^2-5x+6}{x^2-2x}$ &nbsp;&nbsp; b) $\dfrac{3x^3-6x^2}{3x^4+24x^3-60x^2}$`,
+          s: R`a) Factorizamos: $\dfrac{(x-2)(x-3)}{x(x-2)}=\dfrac{x-3}{x}$. <br>b) Sacamos factor común $3x^2$: $\dfrac{3x^2(x-2)}{3x^2(x^2+8x-20)}$. Como $x^2+8x-20=(x+10)(x-2)$, queda $\dfrac{x-2}{(x+10)(x-2)}=\dfrac{1}{x+10}$.` },
+        { t: '9. Opera y simplifica', e: R`a) $\dfrac{x-1}{x^2-4}-\dfrac{x-2}{x^2+2x}$ &nbsp;&nbsp; b) $\dfrac{x-3}{x}\div\dfrac{x^2-9}{x^2+3x}$ &nbsp;&nbsp; c) $\dfrac{2x-1}{x^2+2x}\cdot\dfrac{x^3+2x^2}{4x}$`,
+          s: R`a) $x^2-4=(x-2)(x+2)$ y $x^2+2x=x(x+2)$; el m.c.m. es $x(x-2)(x+2)$: <br>$\dfrac{x(x-1)-(x-2)^2}{x(x-2)(x+2)}=\dfrac{x^2-x-x^2+4x-4}{x(x^2-4)}=\dfrac{3x-4}{x^3-4x}$. <br>b) Dividir es multiplicar por la inversa: $\dfrac{x-3}{x}\cdot\dfrac{x(x+3)}{(x-3)(x+3)}=1$. <br>c) $\dfrac{2x-1}{x(x+2)}\cdot\dfrac{x^2(x+2)}{4x}=\dfrac{(2x-1)x^2(x+2)}{4x^2(x+2)}=\dfrac{2x-1}{4}$.` }
+      ],
+      exams: [
       [
         Q(3.5, R`a) (1,5 p) Simplifica $\sqrt{12}+\sqrt{27}-\sqrt{48}$. <br>b) (2 p) Racionaliza $\dfrac{6}{\sqrt3}$ y $\dfrac{2}{\sqrt5-\sqrt3}$.`,
           R`a) $2\sqrt3+3\sqrt3-4\sqrt3=\sqrt3$. <br>b) $\dfrac{6\sqrt3}{3}=2\sqrt3$; $\dfrac{2(\sqrt5+\sqrt3)}{5-3}=\sqrt5+\sqrt3$.`),
@@ -457,7 +472,7 @@
         b.type = 'button'; b.className = 'bach-topic' + (sel === i ? ' on' : '');
         b.setAttribute('aria-pressed', sel === i);
         b.innerHTML = `<span class="t"><span class="n">${t.n}</span><span class="nm"></span></span><span class="d"></span>
-          <span class="meta"><span class="pill">3 exámenes</span>${bests.length ? `<span class="pill ok">Mejor nota: ${fmtNum(Math.max(...bests))}</span>` : ''}</span>`;
+          <span class="meta">${t.practice ? '<span class="pill">Hoja de ejercicios</span>' : ''}<span class="pill">3 exámenes</span>${bests.length ? `<span class="pill ok">Mejor nota: ${fmtNum(Math.max(...bests))}</span>` : ''}</span>`;
         $('.nm', b).textContent = t.name; $('.d', b).textContent = t.desc;
         b.addEventListener('click', () => { sel = i; ex = 0; drawTopics(); drawExam(true); });
         grid.appendChild(b);
@@ -477,7 +492,19 @@
       if (sel === null) { area.hidden = true; return; }
       const t = topics[sel], qs = t.exams[ex];
       area.hidden = false;
-      area.innerHTML = `
+      const practice = t.practice ? `
+        <div class="practice">
+          <div><span class="eyebrow">${t.n} · Para el cuaderno</span><h3>Hoja de ejercicios</h3>
+          <p class="small">Hazlos en papel y luego compara con la solución.</p></div>
+          <ol class="bach-qs">
+            ${t.practice.map(p => `<li>
+              <div class="q-top"><b>${p.t}</b></div>
+              <div class="q-body">${safe(p.e)}</div>
+              <details><summary>Ver solución</summary><div class="q-sol">${safe(p.s)}</div></details>
+            </li>`).join('')}
+          </ol>
+        </div>` : '';
+      area.innerHTML = practice + `
         <div class="exam-head">
           <div><span class="eyebrow">${t.n} · ${t.name}</span><h3>Examen de prueba ${ex + 1}</h3></div>
           <div class="row"><span class="clock">45:00</span><button class="btn" type="button" data-timer>Empezar cronómetro</button></div>
