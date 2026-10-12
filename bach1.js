@@ -1,5 +1,4 @@
 /* ClasesConCelia13 · 1º Bachillerato, Matemáticas I.
-   Organizado según los 10 capítulos de los libros libres de Marea Verde (apuntesmareaverde.org.es, CC BY-NC-SA).
    Teoría, ejercicios y exámenes redactados para esta web. */
 (() => {
   'use strict';
@@ -7,14 +6,104 @@
   const Q = (p, e, s) => ({ p, e, s });
   const P = (t, e, s) => ({ t, e, s });
   const H = (h, b) => ({ h, b });
-  const MV = 'https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/';
   const X = window.CC13_B1X;
   const G = X.G;
+  /* ---------------- Ejercicios de examen solo de Ciencias (1 punto) ---------------- */
+  const E = (e, s) => ({ p: 1, e, s });
+  const EXC = {};
+  EXC.suc = [
+    [
+      E(R`Término general de 5, 9, 13, 17… ¿Es 101 un término?`, R`$a_n=4n+1$. $4n+1=101\Rightarrow n=25$: sí, el 25.º.`),
+      E(R`Progresión aritmética con $a_1=-3$ y $d=4$: calcula $a_{15}$ y $S_{15}$.`, R`$a_{15}=53$; $S_{15}=\frac{(-3+53)\cdot15}2=375$.`),
+      E(R`Progresión geométrica con $a_1=81$ y $r=\frac13$: calcula $a_5$ y $S_5$.`, R`$a_5=1$; $S_5=81+27+9+3+1=121$.`),
+      E(R`Calcula $6+2+\frac23+\dots$`, R`$\frac6{1-\frac13}=9$.`),
+      E(R`Estudia la monotonía, las cotas y el límite de $a_n=3-\frac2n$.`, R`$a_{n+1}-a_n=\frac2{n(n+1)}>0$: creciente. $1\le a_n<3$; límite 3.`),
+      E(R`$\lim\dfrac{5n^2-3}{2n^2+n}$`, R`$\frac52$.`),
+      E(R`$\lim\left(1+\dfrac1n\right)^{4n}$`, R`$e^4$.`)
+    ],
+    [
+      E(R`Escribe los 4 primeros términos de $a_1=1$, $a_{n+1}=2a_n+1$.`, R`$1,3,7,15$.`),
+      E(R`Progresión aritmética con $a_5=17$ y $a_{12}=38$. Halla $d$ y $a_1$.`, R`$7d=21\Rightarrow d=3$, $a_1=5$.`),
+      E(R`Interpola 3 medios aritméticos entre 10 y 30.`, R`$d=5$: $15,20,25$.`),
+      E(R`Progresión geométrica con $a_3=12$ y $a_6=96$. Halla $r$, $a_1$ y $a_{10}$.`, R`$r^3=8\Rightarrow r=2$, $a_1=3$, $a_{10}=1536$.`),
+      E(R`Escribe $0{,}\overline5$ como suma infinita y calcúlala.`, R`$\frac5{10}+\frac5{100}+\dots=\frac{0{,}5}{0{,}9}=\frac59$.`),
+      E(R`$\lim\left(\sqrt{n^2+6n}-n\right)$`, R`$\frac{6n}{\sqrt{n^2+6n}+n}\to3$.`),
+      E(R`50 bacterias se triplican cada 2 horas. ¿Cuántas hay a las 10 horas?`, R`5 periodos: $50\cdot3^5=12\,150$.`)
+    ],
+    [
+      E(R`Término general y límite de $\frac12,\frac23,\frac34,\frac45,\dots$`, R`$\frac n{n+1}\to1$.`),
+      E(R`Suma los múltiplos de 3 desde 3 hasta 99.`, R`33 términos: $\frac{(3+99)\cdot33}2=1683$.`),
+      E(R`Producto de los 4 primeros términos de $2,4,8,\dots$`, R`$\sqrt{(2\cdot16)^4}=1024$.`),
+      E(R`Interpola 2 medios geométricos entre 3 y 81.`, R`$r^3=27$: $9$ y $27$.`),
+      E(R`$\lim\left(\dfrac{n+1}{n-2}\right)^n$`, R`$e^{\lim n\frac{3}{n-2}}=e^3$.`),
+      E(R`$\lim\dfrac{(2n-1)^3}{n^3+4}$`, R`$8$.`),
+      E(R`Un coche de 20 000 € pierde el 15 % de su valor cada año. ¿Cuánto vale a los 4 años?`, R`$20\,000\cdot0{,}85^4\approx10\,440{,}12$ €.`)
+    ]
+  ];
+  EXC.trig = [
+    [
+      E(R`Pasa $225^\circ$ a radianes y $\frac{7\pi}6$ a grados.`, R`$\frac{5\pi}4$ y $210^\circ$.`),
+      E(R`Si $\sin\alpha=\frac5{13}$ y $\alpha$ está en el 2.º cuadrante, calcula $\cos\alpha$ y $\tan\alpha$.`, R`$-\frac{12}{13}$ y $-\frac5{12}$.`),
+      E(R`Calcula sin calculadora $\sin120^\circ$, $\cos225^\circ$, $\tan330^\circ$.`, R`$\frac{\sqrt3}2$, $-\frac{\sqrt2}2$, $-\frac{\sqrt3}3$.`),
+      E(R`Calcula $\cos75^\circ$.`, R`$\cos(45^\circ+30^\circ)=\frac{\sqrt6-\sqrt2}4$.`),
+      E(R`Simplifica $\sin(180^\circ-\alpha)+\cos(90^\circ-\alpha)$.`, R`$2\sin\alpha$.`),
+      E(R`Resuelve $2\sin x+1=0$ en $[0^\circ,360^\circ)$.`, R`$210^\circ$ y $330^\circ$.`),
+      E(R`En un triángulo rectángulo, el cateto opuesto a $30^\circ$ mide 6. Halla la hipotenusa y el otro cateto.`, R`$12$ y $6\sqrt3\approx10{,}39$.`)
+    ],
+    [
+      E(R`Si $\tan\alpha=\frac34$ con $\alpha$ agudo, calcula $\sin\alpha$, $\cos\alpha$ y $\sin2\alpha$.`, R`$\frac35$, $\frac45$, $\frac{24}{25}$.`),
+      E(R`Demuestra que $\tan x+\dfrac1{\tan x}=\dfrac1{\sin x\cos x}$.`, R`$\frac{\sin x}{\cos x}+\frac{\cos x}{\sin x}=\frac{\sin^2x+\cos^2x}{\sin x\cos x}$ ✓`),
+      E(R`Resuelve $2\cos^2x-\cos x=0$ en $[0^\circ,360^\circ)$.`, R`$\cos x=0$: $90^\circ,270^\circ$; $\cos x=\frac12$: $60^\circ,300^\circ$.`),
+      E(R`Si $\tan\alpha=2$, calcula $\tan(\alpha+45^\circ)$.`, R`$\frac{2+1}{1-2}=-3$.`),
+      E(R`Triángulo con $b=5$, $c=8$ y $A=60^\circ$. Calcula $a$.`, R`$a^2=25+64-40=49$: $a=7$.`),
+      E(R`Área del triángulo con $a=5$, $b=7$ y $C=150^\circ$.`, R`$\frac12\cdot35\cdot\frac12=8{,}75$.`),
+      E(R`A 50 m de un edificio vemos la azotea con $35^\circ$ de elevación. ¿Altura?`, R`$50\tan35^\circ\approx35{,}01$ m.`)
+    ],
+    [
+      E(R`Calcula $\sin(-60^\circ)$, $\cos480^\circ$ y $\tan(-135^\circ)$.`, R`$-\frac{\sqrt3}2$, $-\frac12$, $1$.`),
+      E(R`Si $\cos\alpha=\frac19$ con $\alpha$ agudo, calcula $\sin\frac\alpha2$ y $\cos\frac\alpha2$.`, R`$\sqrt{\frac{8/9}2}=\frac23$ y $\sqrt{\frac{10/9}2}=\frac{\sqrt5}3$.`),
+      E(R`Calcula $\cos75^\circ+\cos15^\circ$.`, R`$2\cos45^\circ\cos30^\circ=\frac{\sqrt6}2$.`),
+      E(R`Resuelve $\sin2x=\sin x$ en $[0^\circ,360^\circ)$.`, R`$\sin x(2\cos x-1)=0$: $0^\circ,180^\circ,60^\circ,300^\circ$.`),
+      E(R`$a=10$, $A=30^\circ$, $B=45^\circ$. Calcula $b$.`, R`$b=\frac{10\sin45^\circ}{\sin30^\circ}=10\sqrt2\approx14{,}14$.`),
+      E(R`Radio de la circunferencia circunscrita si $a=10$ y $A=30^\circ$.`, R`$2R=\frac{10}{0{,}5}=20$: $R=10$.`),
+      E(R`Dos personas separadas 100 m ven un globo, situado entre ellas, con $45^\circ$ y $60^\circ$. ¿A qué altura está?`, R`$x\sqrt3=100-x\Rightarrow x\approx36{,}6$; $h=x\sqrt3\approx63{,}4$ m.`)
+    ]
+  ];
+  EXC.geo = [
+    [
+      E(R`Distancia y punto medio de $A(-2,3)$ y $B(4,-5)$.`, R`$10$ y $(1,-1)$.`),
+      E(R`Módulo y vector unitario de $\vec u=(5,12)$.`, R`$13$; $\left(\frac5{13},\frac{12}{13}\right)$.`),
+      E(R`¿Están alineados $A(1,2)$, $B(3,6)$ y $C(-1,-2)$?`, R`$\vec{AB}=(2,4)$, $\vec{AC}=(-2,-4)$: sí.`),
+      E(R`Recta que pasa por $(2,1)$ y $(5,7)$, en forma explícita y general.`, R`$m=2$: $y=2x-3$; $2x-y-3=0$.`),
+      E(R`Ángulo entre $\vec u=(1,2)$ y $\vec v=(2,-1)$.`, R`$\vec u\cdot\vec v=0$: $90^\circ$.`),
+      E(R`Distancia del origen a $3x-4y+10=0$.`, R`$\frac{10}5=2$.`),
+      E(R`Ecuación general de la circunferencia de centro $(-3,4)$ y radio 5.`, R`$x^2+y^2+6x-8y=0$.`)
+    ],
+    [
+      E(R`Simétrico de $P(3,5)$ respecto de $M(1,1)$.`, R`$(-1,-3)$.`),
+      E(R`Paramétricas, continua y general de la recta por $(-1,4)$ con vector $(2,-3)$.`, R`$x=-1+2t$, $y=4-3t$; $\frac{x+1}2=\frac{y-4}{-3}$; $3x+2y-5=0$.`),
+      E(R`Paralela a $2x+5y-1=0$ por $(0,3)$.`, R`$2x+5y-15=0$.`),
+      E(R`Perpendicular a $y=3x-1$ por $(3,0)$.`, R`$x+3y-3=0$.`),
+      E(R`Posición relativa de $3x-y+2=0$ y $6x-2y+4=0$.`, R`Coincidentes (una es el doble de la otra).`),
+      E(R`Mediatriz del segmento de $A(-1,2)$ a $B(3,6)$.`, R`$x+y-5=0$.`),
+      E(R`Elementos de la elipse $\frac{x^2}{36}+\frac{y^2}{20}=1$.`, R`$a=6$, $b=2\sqrt5$, $c=4$, focos $(\pm4,0)$, $e=\frac23$.`)
+    ],
+    [
+      E(R`Halla $k$ para que $(k,3)\cdot(2,-1)=4$.`, R`$2k-3=4\Rightarrow k=\frac72$.`),
+      E(R`Proyección de $(4,3)$ sobre $(3,4)$.`, R`$\frac{24}5$.`),
+      E(R`Punto de corte de $2x+y=5$ y $x-y=1$.`, R`$(2,1)$.`),
+      E(R`Distancia entre $6x-8y+3=0$ y $3x-4y-1=0$.`, R`$6x-8y-2=0$: $\frac{|3+2|}{10}=\frac12$.`),
+      E(R`Centro y radio de $x^2+y^2+2x-4y-4=0$.`, R`$(-1,2)$, $r=3$.`),
+      E(R`Hipérbola con focos $(\pm5,0)$ y $a=3$. Ecuación y asíntotas.`, R`$b=4$: $\frac{x^2}9-\frac{y^2}{16}=1$; $y=\pm\frac43x$.`),
+      E(R`Parábola con foco $(0,2)$ y directriz $y=-2$.`, R`$x^2=8y$.`)
+    ]
+  ];
+  const fill = (base, ...extra) => base.map((ex, k) => [...ex.map(q => ({ ...q, p: 1 })), ...extra.flatMap(x => x[k])]);
 
   window.CC13_B1 = [
     /* ------------------------------------------------------------------ 1 */
     { n: 'T1', name: 'Números reales y complejos', desc: 'Reales, valor absoluto, intervalos, potencias, radicales, notación científica, logaritmos y complejos.',
-      mv: MV + 'BC1_01_Complejos.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%201%20N%C3%BAmeros%20reales%20y%20complejos.pdf',
+
       tool: 'complejo',
       theory: [...X.TH.reales, ...X.TH.potencias, ...X.TH.radicales, ...X.TH.notacion, ...X.TH.logaritmos,
         H('Números complejos: por qué hacen falta', R`La ecuación $x^2+1=0$ no tiene solución real, porque ningún cuadrado es negativo. Para resolverla se inventa la <b>unidad imaginaria</b> $i$, con
@@ -90,7 +179,7 @@
 
     /* ------------------------------------------------------------------ 2 */
     { n: 'T2', name: 'Álgebra', desc: 'Polinomios, Ruffini, factorización, fracciones algebraicas, ecuaciones, inecuaciones, Gauss y sistemas no lineales.',
-      mv: MV + 'BC1_02_ALGEBRA.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%202%20%C3%81lgebra.pdf',
+
       tool: 'ruffini',
       theory: X.TH.algebra,
       practice: X.PR.algebra,
@@ -114,7 +203,7 @@
 
     /* ------------------------------------------------------------------ 3 */
     { n: 'T3', name: 'Sucesiones', desc: 'Formas de definir, progresiones aritméticas y geométricas, monotonía, límites, el número e y aplicaciones.',
-      mv: MV + 'BC1_03_Sucesiones.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%203%20Sucesiones.pdf',
+
       tool: 'progresiones',
       theory: [
         H('Qué es una sucesión', R`Una <b>sucesión</b> es una lista ordenada e infinita de números reales $a_1,a_2,a_3,\dots,a_n,\dots$ Cada número es un <b>término</b> y $a_n$ es el <b>término general</b> (el que ocupa el lugar $n$). Formalmente es una función que a cada natural $n\ge1$ le asigna $a_n$.`),
@@ -206,34 +295,98 @@
       ] },
 
     /* ------------------------------------------------------------------ 4 */
-    { n: 'T4', name: 'Trigonometría', desc: 'Razones, fórmulas de suma y ángulo doble, ecuaciones y resolución de triángulos.',
-      mv: MV + 'BC1_04_Trigonometria.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%204%20Trigonometr%C3%ADa.pdf',
+    { n: 'T4', name: 'Trigonometría', desc: 'Ángulos, razones, reducción, fórmulas, identidades, ecuaciones, teoremas del seno y del coseno y problemas.',
+
       tool: 'goniometrica',
       theory: [
-        H('Ángulos: grados y radianes', R`$\pi\text{ rad}=180^\circ$. Para pasar de grados a radianes multiplica por $\frac{\pi}{180}$. Ejemplos: $90^\circ=\frac\pi2$, $60^\circ=\frac\pi3$, $45^\circ=\frac\pi4$.`),
-        H('Razones de un ángulo agudo', R`En un triángulo rectángulo: $\sin\alpha=\frac{\text{opuesto}}{\text{hipotenusa}}$, $\cos\alpha=\frac{\text{contiguo}}{\text{hipotenusa}}$, $\tan\alpha=\frac{\sin\alpha}{\cos\alpha}$. <div class="ej">Relación fundamental: $\sin^2\alpha+\cos^2\alpha=1$, y también $1+\tan^2\alpha=\dfrac1{\cos^2\alpha}$.</div>`),
-        H('Ángulos cualesquiera', R`En la circunferencia de radio 1, el coseno es la coordenada $x$ y el seno la $y$ (muévelo en la herramienta). Signos: 1.<sup>er</sup> cuadrante todo +; 2.º solo el seno +; 3.º solo la tangente +; 4.º solo el coseno +. <br>Reducción: $\sin(180^\circ-\alpha)=\sin\alpha$, $\cos(180^\circ-\alpha)=-\cos\alpha$, $\sin(-\alpha)=-\sin\alpha$, $\cos(-\alpha)=\cos\alpha$.`),
-        H('Suma, resta, ángulo doble y mitad', R`<div class="tbl"><table>
-          <tr><td>$\sin(a\pm b)=\sin a\cos b\pm\cos a\sin b$</td></tr>
-          <tr><td>$\cos(a\pm b)=\cos a\cos b\mp\sin a\sin b$</td></tr>
-          <tr><td>$\tan(a\pm b)=\dfrac{\tan a\pm\tan b}{1\mp\tan a\tan b}$</td></tr>
-          <tr><td>$\sin2a=2\sin a\cos a\qquad\cos2a=\cos^2a-\sin^2a$</td></tr>
-          <tr><td>$\sin\dfrac a2=\pm\sqrt{\dfrac{1-\cos a}{2}}\qquad\cos\dfrac a2=\pm\sqrt{\dfrac{1+\cos a}{2}}$</td></tr></table></div>`),
-        H('Transformar sumas en productos', R`$\sin A+\sin B=2\sin\frac{A+B}2\cos\frac{A-B}2$, $\ \sin A-\sin B=2\cos\frac{A+B}2\sin\frac{A-B}2$ <br>$\cos A+\cos B=2\cos\frac{A+B}2\cos\frac{A-B}2$, $\ \cos A-\cos B=-2\sin\frac{A+B}2\sin\frac{A-B}2$`),
-        H('Ecuaciones trigonométricas', R`Se pasa todo a una sola razón (con las fórmulas) y se resuelve como una ecuación normal. Cada valor da <b>dos</b> ángulos en $[0^\circ,360^\circ)$, y las soluciones generales se repiten cada $360^\circ$ (o $180^\circ$ para la tangente).
-          <div class="ej">$\sin2x=\cos x\Rightarrow\cos x(2\sin x-1)=0\Rightarrow x=90^\circ,270^\circ,30^\circ,150^\circ$</div>`),
-        H('Teoremas del seno y del coseno', R`<b>Seno</b>: $\dfrac a{\sin A}=\dfrac b{\sin B}=\dfrac c{\sin C}$. Se usa con dos ángulos y un lado, o con dos lados y el ángulo opuesto a uno (¡puede haber dos triángulos!). <br><b>Coseno</b>: $a^2=b^2+c^2-2bc\cos A$. Se usa con tres lados o con dos lados y el ángulo que forman. <br>Área: $S=\frac12\,bc\sin A$.`)
+        H('Medida de ángulos', R`<b>Grados sexagesimales</b>: la vuelta completa son 360°, y cada grado tiene 60 minutos ($60'$) y cada minuto 60 segundos ($60''$). <b>Radianes</b>: un radián es el ángulo cuyo arco mide lo mismo que el radio. La vuelta completa son $2\pi$ rad.
+          <div class="ej">$\pi\text{ rad}=180^\circ\qquad\text{grados}\to\text{rad: }\cdot\dfrac{\pi}{180}\qquad\text{rad}\to\text{grados: }\cdot\dfrac{180}{\pi}$</div>
+          <div class="tbl"><table><tr><th>Grados</th><td>30°</td><td>45°</td><td>60°</td><td>90°</td><td>180°</td><td>270°</td><td>360°</td></tr>
+          <tr><th>Radianes</th><td>$\frac\pi6$</td><td>$\frac\pi4$</td><td>$\frac\pi3$</td><td>$\frac\pi2$</td><td>$\pi$</td><td>$\frac{3\pi}2$</td><td>$2\pi$</td></tr></table></div>
+          <div class="ej"><b>Ejemplo resuelto.</b> $2{,}5$ rad $=2{,}5\cdot\frac{180}\pi\approx143{,}24^\circ=143^\circ\,14'\,22''$.</div>`),
+        H('Razones trigonométricas de un ángulo agudo', R`En un triángulo rectángulo con hipotenusa $a$ y catetos $b$ (opuesto a $\alpha$) y $c$ (contiguo):
+          <div class="ej">$\sin\alpha=\dfrac ba\qquad\cos\alpha=\dfrac ca\qquad\tan\alpha=\dfrac bc=\dfrac{\sin\alpha}{\cos\alpha}$</div>
+          Las inversas son la cosecante $\frac1{\sin\alpha}$, la secante $\frac1{\cos\alpha}$ y la cotangente $\frac1{\tan\alpha}$. Por el teorema de Tales, las razones no dependen del tamaño del triángulo, solo del ángulo.`),
+        H('Razones de 30°, 45° y 60°', R`Salen de un cuadrado cortado por la diagonal (45°) y de un triángulo equilátero partido por la altura (30° y 60°):
+          <div class="tbl"><table><tr><th></th><th>30°</th><th>45°</th><th>60°</th></tr>
+          <tr><th>sen</th><td>$\frac12$</td><td>$\frac{\sqrt2}2$</td><td>$\frac{\sqrt3}2$</td></tr>
+          <tr><th>cos</th><td>$\frac{\sqrt3}2$</td><td>$\frac{\sqrt2}2$</td><td>$\frac12$</td></tr>
+          <tr><th>tg</th><td>$\frac{\sqrt3}3$</td><td>$1$</td><td>$\sqrt3$</td></tr></table></div>
+          Truco: los senos de 30°, 45° y 60° son $\frac{\sqrt1}2,\frac{\sqrt2}2,\frac{\sqrt3}2$, y los cosenos, al revés.`),
+        H('Relaciones fundamentales', R`<div class="ej">$\sin^2\alpha+\cos^2\alpha=1\qquad\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}\qquad1+\tan^2\alpha=\dfrac1{\cos^2\alpha}\qquad1+\cot^2\alpha=\dfrac1{\sin^2\alpha}$</div>
+          Con ellas, sabiendo una razón y el cuadrante, se calculan las demás.
+          <div class="ej"><b>Ejemplo resuelto.</b> $\tan\alpha=2$ y $\alpha$ en el 3.<sup>er</sup> cuadrante. $\frac1{\cos^2\alpha}=1+4=5\Rightarrow\cos\alpha=-\frac1{\sqrt5}$ (negativo en el 3.º). $\sin\alpha=\tan\alpha\cos\alpha=-\frac2{\sqrt5}$.</div>`),
+        H('Ángulos cualesquiera: la circunferencia goniométrica', R`En una circunferencia de radio 1 centrada en el origen, el ángulo $\alpha$ se mide desde el eje $X$ en sentido antihorario. Su punto en la circunferencia es $(\cos\alpha,\sin\alpha)$ (mueve el deslizador de la herramienta).
+          <div class="tbl"><table><tr><th>Cuadrante</th><th>sen</th><th>cos</th><th>tg</th></tr>
+          <tr><td>1.º (0°–90°)</td><td>+</td><td>+</td><td>+</td></tr><tr><td>2.º (90°–180°)</td><td>+</td><td>−</td><td>−</td></tr>
+          <tr><td>3.º (180°–270°)</td><td>−</td><td>−</td><td>+</td></tr><tr><td>4.º (270°–360°)</td><td>−</td><td>+</td><td>−</td></tr></table></div>
+          Ángulos mayores de 360° tienen las mismas razones que el ángulo que queda al quitar vueltas: $\sin750^\circ=\sin30^\circ=\frac12$. Los negativos se miden en sentido horario: $-30^\circ$ equivale a $330^\circ$.`),
+        H('Reducción al primer cuadrante', R`<div class="tbl"><table>
+          <tr><th>Relación</th><th>Seno</th><th>Coseno</th><th>Ejemplo</th></tr>
+          <tr><td>Suplementarios $180^\circ-\alpha$</td><td>$\sin\alpha$</td><td>$-\cos\alpha$</td><td>$\sin150^\circ=\sin30^\circ$</td></tr>
+          <tr><td>Difieren en 180°: $180^\circ+\alpha$</td><td>$-\sin\alpha$</td><td>$-\cos\alpha$</td><td>$\cos210^\circ=-\cos30^\circ$</td></tr>
+          <tr><td>Opuestos: $-\alpha$ o $360^\circ-\alpha$</td><td>$-\sin\alpha$</td><td>$\cos\alpha$</td><td>$\cos330^\circ=\cos30^\circ$</td></tr>
+          <tr><td>Complementarios $90^\circ-\alpha$</td><td>$\cos\alpha$</td><td>$\sin\alpha$</td><td>$\sin60^\circ=\cos30^\circ$</td></tr></table></div>
+          La tangente se obtiene dividiendo: $\tan(180^\circ+\alpha)=\tan\alpha$, $\tan(180^\circ-\alpha)=-\tan\alpha$.`),
+        H('Razones de la suma y la resta', R`<div class="ej">$\sin(a\pm b)=\sin a\cos b\pm\cos a\sin b\qquad\cos(a\pm b)=\cos a\cos b\mp\sin a\sin b\qquad\tan(a\pm b)=\dfrac{\tan a\pm\tan b}{1\mp\tan a\tan b}$</div>
+          <div class="ej"><b>Ejemplo resuelto.</b> $\cos15^\circ=\cos(45^\circ-30^\circ)=\frac{\sqrt2}2\cdot\frac{\sqrt3}2+\frac{\sqrt2}2\cdot\frac12=\frac{\sqrt6+\sqrt2}4$.</div>`),
+        H('Ángulo doble y ángulo mitad', R`Haciendo $b=a$ en las fórmulas de la suma:
+          <div class="ej">$\sin2a=2\sin a\cos a\qquad\cos2a=\cos^2a-\sin^2a=1-2\sin^2a=2\cos^2a-1\qquad\tan2a=\dfrac{2\tan a}{1-\tan^2a}$</div>
+          Despejando de $\cos2a$ salen las del ángulo mitad (el signo depende del cuadrante de $\frac a2$):
+          <div class="ej">$\sin\dfrac a2=\pm\sqrt{\dfrac{1-\cos a}2}\qquad\cos\dfrac a2=\pm\sqrt{\dfrac{1+\cos a}2}\qquad\tan\dfrac a2=\pm\sqrt{\dfrac{1-\cos a}{1+\cos a}}$</div>`),
+        H('Transformar sumas en productos', R`<div class="ej">$\sin A+\sin B=2\sin\frac{A+B}2\cos\frac{A-B}2\qquad\sin A-\sin B=2\cos\frac{A+B}2\sin\frac{A-B}2$ <br>$\cos A+\cos B=2\cos\frac{A+B}2\cos\frac{A-B}2\qquad\cos A-\cos B=-2\sin\frac{A+B}2\sin\frac{A-B}2$</div>
+          Sirven para simplificar y para resolver ecuaciones: $\sin75^\circ+\sin15^\circ=2\sin45^\circ\cos30^\circ=\frac{\sqrt6}2$.`),
+        H('Identidades trigonométricas', R`Una identidad se cumple para todos los ángulos. Para demostrarla, se transforma uno de los lados (normalmente el más complicado) hasta llegar al otro, usando las relaciones fundamentales y las fórmulas.
+          <div class="ej"><b>Ejemplo resuelto.</b> $\dfrac{\sin2x}{1+\cos2x}=\dfrac{2\sin x\cos x}{1+2\cos^2x-1}=\dfrac{2\sin x\cos x}{2\cos^2x}=\tan x$.</div>`),
+        H('Ecuaciones trigonométricas', R`1) Se usan las fórmulas para dejar <b>un solo ángulo</b> y <b>una sola razón</b>. 2) Se resuelve como una ecuación algebraica (a veces factorizando). 3) Cada valor da normalmente <b>dos ángulos</b> en $[0^\circ,360^\circ)$. 4) Las soluciones generales se repiten cada $360^\circ$ ($2\pi$), o cada $180^\circ$ para la tangente.
+          <div class="ej"><b>Ejemplo resuelto.</b> $\cos2x+\sin x=0\Rightarrow1-2\sin^2x+\sin x=0\Rightarrow2\sin^2x-\sin x-1=0\Rightarrow\sin x=1$ o $\sin x=-\frac12$. Soluciones: $90^\circ$, $210^\circ$, $330^\circ$ (más $360^\circ k$).</div>
+          ¡No dividas entre $\cos x$ o $\sin x$! Perderías soluciones: mejor saca factor común.`),
+        H('Sistemas trigonométricos', R`Se resuelven como sistemas normales tomando las razones como incógnitas.
+          <div class="ej"><b>Ejemplo resuelto.</b> $\begin{cases}\sin x+\cos y=1\\\sin x-\cos y=0\end{cases}$ Sumando: $\sin x=\frac12$, $\cos y=\frac12$. En $[0^\circ,360^\circ)$: $x=30^\circ$ o $150^\circ$; $y=60^\circ$ o $300^\circ$.</div>`),
+        H('Triángulos rectángulos', R`Con un lado y un ángulo agudo, o con dos lados, se resuelven con las razones y Pitágoras.
+          <div class="ej"><b>Ejemplo resuelto.</b> Hipotenusa 10 y un ángulo de 35°: catetos $10\sin35^\circ\approx5{,}74$ y $10\cos35^\circ\approx8{,}19$; el otro ángulo, $55^\circ$.</div>
+          En problemas: el <b>ángulo de elevación</b> se mide hacia arriba desde la horizontal, y el de <b>depresión</b>, hacia abajo.`),
+        H('Teorema del seno', R`En cualquier triángulo, los lados son proporcionales a los senos de los ángulos opuestos, y la constante es el diámetro de la circunferencia circunscrita:
+          <div class="ej">$\dfrac a{\sin A}=\dfrac b{\sin B}=\dfrac c{\sin C}=2R$</div>
+          Se usa cuando conoces dos ángulos y un lado, o dos lados y el ángulo opuesto a uno de ellos. En este último caso (<b>caso ambiguo</b>) puede haber dos triángulos, uno o ninguno, porque $\sin B=\sin(180^\circ-B)$.`),
+        H('Teorema del coseno', R`<div class="ej">$a^2=b^2+c^2-2bc\cos A\qquad b^2=a^2+c^2-2ac\cos B\qquad c^2=a^2+b^2-2ab\cos C$</div>
+          Generaliza Pitágoras (si $A=90^\circ$, $\cos A=0$). Se usa con los tres lados o con dos lados y el ángulo que forman.`),
+        H('Resolución de triángulos', R`<div class="tbl"><table><tr><th>Datos</th><th>Método</th></tr>
+          <tr><td>Tres lados</td><td>coseno para dos ángulos; el tercero, por $A+B+C=180^\circ$</td></tr>
+          <tr><td>Dos lados y el ángulo comprendido</td><td>coseno para el tercer lado; después seno</td></tr>
+          <tr><td>Un lado y dos ángulos</td><td>el tercer ángulo, y luego seno</td></tr>
+          <tr><td>Dos lados y un ángulo opuesto</td><td>seno (¡caso ambiguo!)</td></tr></table></div>
+          <div class="ej"><b>Ejemplo resuelto.</b> $A=40^\circ$, $B=65^\circ$, $c=12$: $C=75^\circ$, $a=\frac{12\sin40^\circ}{\sin75^\circ}\approx7{,}99$, $b=\frac{12\sin65^\circ}{\sin75^\circ}\approx11{,}26$.</div>`),
+        H('Área de un triángulo', R`<div class="ej">$S=\dfrac12\,bc\sin A\qquad$ Fórmula de Herón: $S=\sqrt{s(s-a)(s-b)(s-c)}$, con $s=\frac{a+b+c}2$</div>
+          Por ejemplo, con lados 13, 14 y 15: $s=21$ y $S=\sqrt{21\cdot8\cdot7\cdot6}=84$.`),
+        H('Problemas de doble observación', R`Para medir algo inaccesible (la altura de una torre al otro lado de un río) se mira desde dos puntos y se plantea un sistema con las dos tangentes.
+          <div class="ej"><b>Ejemplo resuelto.</b> Vemos una torre con 30° y, acercándonos 20 m, con 45°. Si $x$ es la distancia final: $h=x\tan45^\circ=x$ y $h=(x+20)\tan30^\circ$. Entonces $x\sqrt3=x+20\Rightarrow h=x=10(\sqrt3+1)\approx27{,}32$ m.</div>`)
       ],
       practice: [
-        P('1. Suma de ángulos', R`Calcula sin calculadora $\sin75^\circ$ y $\tan105^\circ$.`, R`$\sin(45^\circ+30^\circ)=\dfrac{\sqrt2}2\dfrac{\sqrt3}2+\dfrac{\sqrt2}2\dfrac12=\dfrac{\sqrt6+\sqrt2}{4}$. <br>$\tan(60^\circ+45^\circ)=\dfrac{\sqrt3+1}{1-\sqrt3}=-2-\sqrt3$.`),
-        P('2. Ángulo doble', R`Si $\cos\alpha=-\frac13$ y $\alpha$ está en el 3.<sup>er</sup> cuadrante, calcula $\sin\alpha$, $\tan\alpha$, $\sin2\alpha$ y $\cos2\alpha$.`, R`$\sin\alpha=-\dfrac{2\sqrt2}3$, $\tan\alpha=2\sqrt2$, $\sin2\alpha=\dfrac{4\sqrt2}9$, $\cos2\alpha=\dfrac19-\dfrac89=-\dfrac79$.`),
-        P('3. Reducción', R`Calcula $\sin150^\circ$, $\cos210^\circ$, $\tan300^\circ$ y $\sin(-30^\circ)$.`, R`$\frac12$, $-\frac{\sqrt3}2$, $-\sqrt3$ y $-\frac12$.`),
-        P('4. Ángulo mitad', R`Si $\cos\alpha=\frac18$ y $\alpha$ es agudo, calcula $\cos\frac\alpha2$.`, R`$\sqrt{\dfrac{1+1/8}{2}}=\sqrt{\dfrac9{16}}=\dfrac34$.`),
-        P('5. Suma a producto', R`Calcula $\sin75^\circ+\sin15^\circ$.`, R`$2\sin45^\circ\cos30^\circ=2\cdot\dfrac{\sqrt2}2\cdot\dfrac{\sqrt3}2=\dfrac{\sqrt6}{2}$.`),
-        P('6. Ecuaciones', R`a) $\tan x=\sqrt3$ (todas las soluciones) &nbsp; b) $\sin2x=\cos x$ en $[0^\circ,360^\circ)$`, R`a) $x=60^\circ+180^\circ k$. <br>b) $x=30^\circ,90^\circ,150^\circ,270^\circ$.`),
-        P('7. Identidad', R`Demuestra que $(\sin x+\cos x)^2=1+\sin2x$.`, R`$\sin^2x+2\sin x\cos x+\cos^2x=1+\sin2x$.`),
-        P('8. Tres lados', R`Resuelve el triángulo de lados $a=5$, $b=7$, $c=8$ y calcula su área.`, R`$\cos A=\dfrac{49+64-25}{112}=\dfrac{11}{14}\Rightarrow A\approx38{,}21^\circ$. $\cos B=\dfrac{25+64-49}{80}=\dfrac12\Rightarrow B=60^\circ$. $C\approx81{,}79^\circ$. <br>Área $=\frac12\cdot5\cdot8\cdot\sin60^\circ=10\sqrt3\approx17{,}32$.`),
-        P('9. Caso ambiguo', R`Resuelve el triángulo con $a=6$, $b=8$, $A=40^\circ$.`, R`$\sin B=\dfrac{8\sin40^\circ}{6}\approx0{,}857$: $B\approx58{,}99^\circ$ o $B\approx121{,}01^\circ$. Hay <b>dos triángulos</b>: con $C\approx81{,}01^\circ$ o con $C\approx18{,}99^\circ$.`)
+        G('Ángulos y razones'),
+        P('Conversiones', R`a) Pasa $2{,}5$ rad a grados, minutos y segundos. b) Pasa $210^\circ$ y $150^\circ$ a radianes.`, R`a) $143^\circ\,14'\,22''$. b) $\frac{7\pi}6$ y $\frac{5\pi}6$.`),
+        P('Ángulo agudo', R`Si $\sin\alpha=0{,}6$ y $\alpha$ es agudo, calcula $\cos\alpha$ y $\tan\alpha$.`, R`$\cos\alpha=0{,}8$, $\tan\alpha=0{,}75$.`),
+        P('Con el cuadrante', R`a) $\tan\alpha=2$, $\alpha$ en el 3.<sup>er</sup> cuadrante. b) $\cos\alpha=-\frac13$, $\alpha$ en el 3.<sup>er</sup> cuadrante: calcula también $\sin2\alpha$ y $\cos2\alpha$.`, R`a) $\cos\alpha=-\frac1{\sqrt5}$, $\sin\alpha=-\frac2{\sqrt5}$. <br>b) $\sin\alpha=-\frac{2\sqrt2}3$, $\tan\alpha=2\sqrt2$, $\sin2\alpha=\frac{4\sqrt2}9$, $\cos2\alpha=-\frac79$.`),
+        P('Reducción', R`Calcula sin calculadora: $\sin150^\circ$, $\cos210^\circ$, $\tan300^\circ$, $\sin(-30^\circ)$, $\sin750^\circ$, $\cos(-120^\circ)$, $\tan1110^\circ$.`, R`$\frac12$, $-\frac{\sqrt3}2$, $-\sqrt3$, $-\frac12$, $\frac12$, $-\frac12$, $\frac{\sqrt3}3$.`),
+        P('En función de α', R`Expresa en función de las razones de $\alpha$: $\sin(180^\circ+\alpha)$, $\cos(90^\circ-\alpha)$, $\tan(360^\circ-\alpha)$.`, R`$-\sin\alpha$, $\sin\alpha$, $-\tan\alpha$.`),
+        G('Fórmulas e identidades'),
+        P('Suma de ángulos', R`Calcula $\sin75^\circ$, $\cos15^\circ$ y $\tan105^\circ$.`, R`$\frac{\sqrt6+\sqrt2}4$, $\frac{\sqrt6+\sqrt2}4$ y $-2-\sqrt3$.`),
+        P('Ángulo mitad', R`Si $\cos\alpha=\frac18$ con $\alpha$ agudo, calcula $\cos\frac\alpha2$.`, R`$\sqrt{\frac{9/8}2}=\frac34$.`),
+        P('Suma a producto', R`Calcula $\sin75^\circ+\sin15^\circ$.`, R`$2\sin45^\circ\cos30^\circ=\frac{\sqrt6}2$.`),
+        P('Identidades', R`Demuestra: a) $(\sin x+\cos x)^2=1+\sin2x$ b) $(1+\tan^2x)\cos^2x=1$ c) $\dfrac{\sin2x}{1+\cos2x}=\tan x$`, R`a) $\sin^2x+\cos^2x+2\sin x\cos x$. b) $\frac1{\cos^2x}\cos^2x=1$. c) Ver el ejemplo de la teoría.`),
+        G('Ecuaciones y sistemas'),
+        P('Ecuaciones sencillas', R`En $[0^\circ,360^\circ)$: a) $2\cos x-1=0$ b) $\sin^2x=\frac14$ c) $\tan x=-1$ (todas las soluciones)`, R`a) $60^\circ$, $300^\circ$. b) $30^\circ,150^\circ,210^\circ,330^\circ$. c) $135^\circ+180^\circ k$.`),
+        P('Con fórmulas', R`a) $\sin2x=\cos x$ b) $\cos2x+\sin x=0$ c) $\cos2x=\cos x$ (en $[0^\circ,360^\circ)$)`, R`a) $30^\circ,90^\circ,150^\circ,270^\circ$. b) $90^\circ,210^\circ,330^\circ$. c) $0^\circ,120^\circ,240^\circ$.`),
+        P('Sistema', R`$\begin{cases}\sin x+\cos y=1\\\sin x-\cos y=0\end{cases}$ en $[0^\circ,360^\circ)$.`, R`$\sin x=\cos y=\frac12$: $x\in\{30^\circ,150^\circ\}$, $y\in\{60^\circ,300^\circ\}$.`),
+        G('Resolución de triángulos'),
+        P('Rectángulo', R`Hipotenusa 10 y un ángulo de 35°. Resuelve el triángulo.`, R`Catetos $\approx5{,}74$ y $8{,}19$; ángulos 35°, 55° y 90°.`),
+        P('La sombra', R`Un árbol da una sombra de 12 m cuando el sol está a 40° de elevación. ¿Cuánto mide?`, R`$h=12\tan40^\circ\approx10{,}07$ m.`),
+        P('Teorema del seno', R`$A=40^\circ$, $B=65^\circ$, $c=12$. Resuelve el triángulo y halla el radio de la circunferencia circunscrita.`, R`$C=75^\circ$, $a\approx7{,}99$, $b\approx11{,}26$. $2R=\frac{12}{\sin75^\circ}\approx12{,}42$, $R\approx6{,}21$.`),
+        P('Tres lados', R`Resuelve el triángulo de lados 5, 7 y 8 y calcula su área.`, R`$A\approx38{,}21^\circ$, $B=60^\circ$, $C\approx81{,}79^\circ$. Área $10\sqrt3\approx17{,}32$.`),
+        P('Caso ambiguo', R`Resuelve el triángulo con $a=6$, $b=8$, $A=40^\circ$.`, R`$\sin B\approx0{,}857$: dos triángulos, con $B\approx58{,}99^\circ$, $C\approx81{,}01^\circ$, o con $B\approx121{,}01^\circ$, $C\approx18{,}99^\circ$.`),
+        P('Herón', R`Área del triángulo de lados 13, 14 y 15.`, R`$s=21$: $\sqrt{21\cdot8\cdot7\cdot6}=84$.`),
+        P('Dos barcos', R`Dos barcos salen del puerto con rumbos que forman 60°. Cuando uno ha recorrido 20 km y el otro 30 km, ¿qué distancia los separa?`, R`$d^2=400+900-2\cdot20\cdot30\cdot\frac12=700$: $d\approx26{,}46$ km.`),
+        P('Doble observación', R`Vemos lo alto de una torre con 30°; acercándonos 20 m, con 45°. ¿Altura?`, R`$10(\sqrt3+1)\approx27{,}32$ m.`)
       ],
       exams: [
         [
@@ -254,39 +407,90 @@
       ] },
 
     /* ------------------------------------------------------------------ 5 */
-    { n: 'T5', name: 'Geometría analítica', desc: 'Vectores, producto escalar, rectas, distancias, lugares geométricos y cónicas.',
-      mv: MV + 'BC1_05_Geometria.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%205%20Geometr%C3%ADa.pdf',
+    { n: 'T5', name: 'Geometría analítica', desc: 'Puntos y vectores, producto escalar, rectas, posiciones, distancias, lugares geométricos y cónicas.',
+
       theory: [
-        H('Vectores', R`Un vector $\vec{AB}=B-A$ tiene módulo, dirección y sentido. Con $\vec u=(u_1,u_2)$: $|\vec u|=\sqrt{u_1^2+u_2^2}$. Punto medio de $AB$: $\left(\frac{a_1+b_1}2,\frac{a_2+b_2}2\right)$. Tres puntos están alineados si $\vec{AB}$ y $\vec{AC}$ son proporcionales.`),
-        H('Producto escalar', R`$\vec u\cdot\vec v=u_1v_1+u_2v_2=|\vec u||\vec v|\cos\alpha$. Sirve para hallar ángulos: $\cos\alpha=\dfrac{\vec u\cdot\vec v}{|\vec u||\vec v|}$. Dos vectores son <b>perpendiculares</b> si $\vec u\cdot\vec v=0$. Una base es <b>ortonormal</b> si sus vectores son perpendiculares y de módulo 1.`),
+        H('Puntos en el plano', R`Cada punto tiene coordenadas $(x,y)$. Fórmulas básicas, con $A(a_1,a_2)$ y $B(b_1,b_2)$:
+          <div class="tbl"><table>
+          <tr><td>Distancia</td><td>$d(A,B)=\sqrt{(b_1-a_1)^2+(b_2-a_2)^2}$</td></tr>
+          <tr><td>Punto medio</td><td>$M=\left(\dfrac{a_1+b_1}2,\dfrac{a_2+b_2}2\right)$</td></tr>
+          <tr><td>Simétrico de $A$ respecto de $M$</td><td>$A'=2M-A$</td></tr>
+          <tr><td>Baricentro del triángulo $ABC$</td><td>$G=\left(\dfrac{a_1+b_1+c_1}3,\dfrac{a_2+b_2+c_2}3\right)$</td></tr></table></div>
+          <div class="ej"><b>Ejemplo resuelto.</b> $A(1,2)$, $B(7,10)$: $d=\sqrt{36+64}=10$ y $M(4,6)$.</div>`),
+        H('Vectores', R`El vector $\vec{AB}=B-A=(b_1-a_1,\ b_2-a_2)$ tiene <b>módulo</b> (longitud), <b>dirección</b> (la recta que lo contiene) y <b>sentido</b>. Vectores con las mismas componentes son <b>equipolentes</b>: representan el mismo vector libre.
+          <p>Módulo: $|\vec u|=\sqrt{u_1^2+u_2^2}$. Un vector <b>unitario</b> mide 1; el unitario en la dirección de $\vec u$ es $\frac{\vec u}{|\vec u|}$: para $(3,-4)$, $\left(\frac35,-\frac45\right)$.</p>`),
+        H('Operaciones con vectores', R`<b>Suma</b>: componente a componente (regla del paralelogramo). <b>Producto por un número</b> $k\vec u=(ku_1,ku_2)$: misma dirección, módulo multiplicado por $|k|$, y sentido contrario si $k<0$.
+          <p>Dos vectores no paralelos forman una <b>base</b>: cualquier vector se escribe como <b>combinación lineal</b> de ellos.</p>
+          <div class="ej"><b>Ejemplo resuelto.</b> Escribe $\vec w=(7,1)$ con $\vec u=(1,1)$ y $\vec v=(2,-1)$: $a+2b=7$, $a-b=1\Rightarrow b=2$, $a=3$. Así, $\vec w=3\vec u+2\vec v$.</div>
+          <b>Puntos alineados</b>: $A$, $B$, $C$ lo están si $\vec{AB}$ y $\vec{AC}$ son proporcionales. <b>Dividir un segmento</b> en $n$ partes: se suma a $A$ el vector $\frac1n\vec{AB}$ repetidas veces.`),
+        H('Producto escalar', R`<div class="ej">$\vec u\cdot\vec v=|\vec u|\,|\vec v|\cos\alpha=u_1v_1+u_2v_2$</div>
+          Propiedades: conmutativo ($\vec u\cdot\vec v=\vec v\cdot\vec u$), distributivo, y $\vec u\cdot\vec u=|\vec u|^2$.
+          <ul><li><b>Ángulo</b>: $\cos\alpha=\dfrac{\vec u\cdot\vec v}{|\vec u||\vec v|}$.</li>
+          <li><b>Perpendiculares</b>: $\vec u\cdot\vec v=0$. Un perpendicular a $(a,b)$ es $(-b,a)$.</li>
+          <li><b>Proyección</b> de $\vec u$ sobre $\vec v$: $\dfrac{\vec u\cdot\vec v}{|\vec v|}$.</li></ul>
+          Una base es <b>ortogonal</b> si sus vectores son perpendiculares y <b>ortonormal</b> si además miden 1, como $\vec i=(1,0)$, $\vec j=(0,1)$.`),
         H('Ecuaciones de la recta', R`Con un punto $P(p_1,p_2)$ y un vector director $\vec v=(v_1,v_2)$:
           <div class="tbl"><table>
           <tr><td>Vectorial</td><td>$(x,y)=(p_1,p_2)+t(v_1,v_2)$</td></tr>
           <tr><td>Paramétricas</td><td>$x=p_1+tv_1,\ y=p_2+tv_2$</td></tr>
           <tr><td>Continua</td><td>$\dfrac{x-p_1}{v_1}=\dfrac{y-p_2}{v_2}$</td></tr>
-          <tr><td>General</td><td>$Ax+By+C=0$, con vector $(-B,A)$ y normal $(A,B)$</td></tr>
-          <tr><td>Punto-pendiente</td><td>$y-p_2=m(x-p_1)$, con $m=\frac{v_2}{v_1}$</td></tr></table></div>`),
-        H('Posiciones, ángulos y distancias', R`Dos rectas son paralelas si sus vectores son proporcionales (coincidentes si además comparten un punto) y si no, se cortan. Ángulo: $\cos\alpha=\dfrac{|\vec u\cdot\vec v|}{|\vec u||\vec v|}$. <div class="ej">Distancia de un punto a una recta: $d(P,r)=\dfrac{|Ap_1+Bp_2+C|}{\sqrt{A^2+B^2}}$</div>`),
-        H('Lugares geométricos', R`<b>Mediatriz</b> de $AB$: puntos a igual distancia de $A$ y $B$ (recta perpendicular por el punto medio). <b>Bisectriz</b> de dos rectas: puntos a igual distancia de ambas, $\dfrac{|A_1x+B_1y+C_1|}{\sqrt{A_1^2+B_1^2}}=\dfrac{|A_2x+B_2y+C_2|}{\sqrt{A_2^2+B_2^2}}$.`),
-        H('Cónicas', R`<div class="tbl"><table>
-          <tr><th>Cónica</th><th>Ecuación reducida</th><th>Datos</th></tr>
-          <tr><td>Circunferencia</td><td>$(x-a)^2+(y-b)^2=r^2$</td><td>centro $(a,b)$, radio $r$</td></tr>
-          <tr><td>Elipse</td><td>$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$</td><td>$a^2=b^2+c^2$, focos $(\pm c,0)$, $e=\frac ca<1$</td></tr>
-          <tr><td>Hipérbola</td><td>$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$</td><td>$c^2=a^2+b^2$, asíntotas $y=\pm\frac bax$</td></tr>
-          <tr><td>Parábola</td><td>$y^2=2px$</td><td>foco $(\frac p2,0)$, directriz $x=-\frac p2$</td></tr></table></div>
-          La <b>hipérbola equilátera</b> tiene $a=b$; girada, su ecuación es $xy=k$.`)
+          <tr><td>General</td><td>$Ax+By+C=0$; vector director $(-B,A)$, normal $(A,B)$</td></tr>
+          <tr><td>Explícita</td><td>$y=mx+n$; pendiente $m$, ordenada en el origen $n$</td></tr>
+          <tr><td>Punto-pendiente</td><td>$y-p_2=m(x-p_1)$</td></tr></table></div>
+          La pendiente es $m=\frac{v_2}{v_1}=\tan\alpha$, donde $\alpha$ es el ángulo de inclinación. Por dos puntos: $m=\frac{b_2-a_2}{b_1-a_1}$.
+          <div class="ej"><b>Ejemplo resuelto.</b> Por $A(2,-1)$ con $\vec v=(3,4)$: $x=2+3t$, $y=-1+4t$; $\frac{x-2}3=\frac{y+1}4$; $4x-3y-11=0$; $y=\frac43x-\frac{11}3$.</div>`),
+        H('Posiciones relativas', R`Con $r:\ Ax+By+C=0$ y $s:\ A'x+B'y+C'=0$:
+          <div class="tbl"><table>
+          <tr><td>$\frac A{A'}\neq\frac B{B'}$</td><td>secantes (se cortan en un punto)</td></tr>
+          <tr><td>$\frac A{A'}=\frac B{B'}\neq\frac C{C'}$</td><td>paralelas</td></tr>
+          <tr><td>$\frac A{A'}=\frac B{B'}=\frac C{C'}$</td><td>coincidentes</td></tr></table></div>
+          Las <b>paralelas</b> a $Ax+By+C=0$ son $Ax+By+K=0$ y las <b>perpendiculares</b>, $Bx-Ay+K=0$; $K$ se halla con el punto.`),
+        H('Ángulos y distancias', R`<div class="tbl"><table>
+          <tr><td>Ángulo entre rectas</td><td>$\cos\alpha=\dfrac{|\vec u\cdot\vec v|}{|\vec u||\vec v|}$ o $\tan\alpha=\left|\dfrac{m_2-m_1}{1+m_1m_2}\right|$</td></tr>
+          <tr><td>Punto–recta</td><td>$d(P,r)=\dfrac{|Ap_1+Bp_2+C|}{\sqrt{A^2+B^2}}$</td></tr>
+          <tr><td>Entre paralelas $Ax+By+C=0$ y $Ax+By+C'=0$</td><td>$\dfrac{|C-C'|}{\sqrt{A^2+B^2}}$</td></tr></table></div>`),
+        H('Lugares geométricos', R`Un <b>lugar geométrico</b> es el conjunto de puntos que cumplen una condición. Se halla tomando un punto genérico $X(x,y)$ y escribiendo la condición.
+          <ul><li><b>Mediatriz</b> de $AB$: $d(X,A)=d(X,B)$. Es la perpendicular por el punto medio.</li>
+          <li><b>Bisectrices</b> de dos rectas: $d(X,r)=d(X,s)$. Salen dos rectas perpendiculares.</li>
+          <li><b>Circunferencia</b>: $d(X,C)=r$.</li></ul>
+          <div class="ej"><b>Ejemplo resuelto.</b> Mediatriz de $A(1,1)$, $B(5,3)$: $(x-1)^2+(y-1)^2=(x-5)^2+(y-3)^2\Rightarrow2x+y-8=0$.</div>`),
+        H('La circunferencia', R`<div class="ej">$(x-a)^2+(y-b)^2=r^2\qquad$ desarrollada: $x^2+y^2+Dx+Ey+F=0$, con centro $\left(-\frac D2,-\frac E2\right)$ y $r=\sqrt{\frac{D^2}4+\frac{E^2}4-F}$</div>
+          <b>Posición de una recta</b>: si la distancia del centro a la recta es menor que $r$, es secante; si es igual, tangente; si es mayor, exterior.
+          <div class="ej"><b>Ejemplo resuelto.</b> Circunferencia de centro $(2,1)$ tangente a $3x+4y+5=0$: $r=\frac{|6+4+5|}5=3$, así que $(x-2)^2+(y-1)^2=9$.</div>`),
+        H('La elipse', R`Puntos cuya <b>suma</b> de distancias a dos focos $F$ y $F'$ es constante, $2a$. Centrada en el origen y con focos en el eje $X$:
+          <div class="ej">$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1\qquad a^2=b^2+c^2\qquad$ focos $(\pm c,0)\qquad e=\dfrac ca<1$</div>
+          $a$ es el semieje mayor, $b$ el menor y $c$ la semidistancia focal. Cuanto más cerca de 0 está la excentricidad, más se parece a una circunferencia. Las órbitas de los planetas son elipses.`),
+        H('La hipérbola', R`Puntos cuya <b>diferencia</b> de distancias a dos focos es constante, $2a$:
+          <div class="ej">$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1\qquad c^2=a^2+b^2\qquad$ asíntotas $y=\pm\dfrac bax\qquad e=\dfrac ca>1$</div>
+          La <b>hipérbola equilátera</b> tiene $a=b$ y asíntotas perpendiculares; girada 45°, su ecuación es $xy=k$ (como $y=\frac kx$).`),
+        H('La parábola', R`Puntos que están a la misma distancia de un punto (el <b>foco</b>) y de una recta (la <b>directriz</b>):
+          <div class="ej">$y^2=2px$: foco $\left(\frac p2,0\right)$, directriz $x=-\frac p2\qquad x^2=2py$: foco $\left(0,\frac p2\right)$, directriz $y=-\frac p2$</div>
+          Las antenas parabólicas y los faros usan su propiedad: los rayos que llegan paralelos al eje se concentran en el foco.`),
+        H('Traslaciones y cónicas con centro (h, k)', R`Trasladar con el vector $(h,k)$ es sumarlo a cada punto. Una cónica con centro en $(h,k)$ se obtiene cambiando $x$ por $x-h$ e $y$ por $y-k$:
+          <div class="ej">$\dfrac{(x-1)^2}9+\dfrac{(y+2)^2}4=1$: elipse con centro $(1,-2)$, $a=3$, $b=2$, $c=\sqrt5$, focos $(1\pm\sqrt5,\ -2)$.</div>`)
       ],
       practice: [
-        P('1. Vectores', R`Con $\vec u=(2,-1)$ y $\vec v=(1,3)$, calcula $2\vec u-\vec v$, $\vec u\cdot\vec v$ y el ángulo que forman.`, R`$(3,-5)$; $\ \vec u\cdot\vec v=-1$; $\ \cos\alpha=\dfrac{-1}{\sqrt5\sqrt{10}}\Rightarrow\alpha\approx98{,}13^\circ$.`),
-        P('2. Perpendiculares', R`Halla $m$ para que $(m,2)$ y $(3,-6)$ sean perpendiculares.`, R`$3m-12=0\Rightarrow m=4$.`),
-        P('3. Ecuaciones de la recta', R`Escribe todas las ecuaciones de la recta que pasa por $A(2,-1)$ con vector director $(3,4)$.`, R`Paramétricas: $x=2+3t,\ y=-1+4t$. Continua: $\frac{x-2}3=\frac{y+1}4$. General: $4x-3y-11=0$. Explícita: $y=\frac{4x-11}{3}$.`),
-        P('4. Posición relativa', R`Estudia $r:\ x+2y-3=0$ y $s:\ 2x-y+4=0$.`, R`Las normales $(1,2)$ y $(2,-1)$ cumplen $(1,2)\cdot(2,-1)=0$: son <b>perpendiculares</b>. Se cortan en $(-1,2)$.`),
-        P('5. Mediatriz', R`Halla la mediatriz del segmento de extremos $A(1,1)$ y $B(5,3)$.`, R`Punto medio $(3,2)$, normal $\vec{AB}=(4,2)$: $4x+2y-16=0$, es decir, $2x+y-8=0$.`),
-        P('6. Distancia', R`Distancia de $P(1,-2)$ a $5x+12y-7=0$.`, R`$\dfrac{|5-24-7|}{13}=\dfrac{26}{13}=2$.`),
-        P('7. Bisectrices', R`Halla las bisectrices de $3x-4y=0$ y $4x-3y=0$.`, R`$3x-4y=\pm(4x-3y)$: $x+y=0$ y $x-y=0$.`),
-        P('8. Circunferencia', R`Ecuación de la circunferencia de centro $(-1,2)$ que pasa por $(2,6)$.`, R`$r=\sqrt{9+16}=5$: $(x+1)^2+(y-2)^2=25$.`),
-        P('9. Elipse', R`Elipse con focos $(\pm3,0)$ y eje mayor 10.`, R`$a=5$, $c=3$, $b=4$: $\dfrac{x^2}{25}+\dfrac{y^2}{16}=1$, $e=\frac35$.`),
-        P('10. Hipérbola y parábola', R`a) Focos, asíntotas y excentricidad de $\dfrac{x^2}{16}-\dfrac{y^2}9=1$. b) Foco y directriz de $y^2=8x$.`, R`a) $c=5$: focos $(\pm5,0)$, asíntotas $y=\pm\frac34x$, $e=\frac54$. <br>b) $p=4$: foco $(2,0)$, directriz $x=-2$.`)
+        G('Puntos y vectores'),
+        P('Distancia y punto medio', R`$A(1,2)$, $B(7,10)$.`, R`$d=10$, $M(4,6)$.`),
+        P('Baricentro y simétrico', R`a) Baricentro de $A(0,0)$, $B(6,0)$, $C(3,9)$. b) Simétrico de $A(1,2)$ respecto de $M(3,-1)$.`, R`a) $(3,3)$. b) $(5,-4)$.`),
+        P('Operaciones', R`Con $\vec u=(2,-1)$ y $\vec v=(1,3)$: $2\vec u-\vec v$, $\vec u\cdot\vec v$ y el ángulo que forman.`, R`$(3,-5)$; $-1$; $\alpha\approx98{,}13^\circ$.`),
+        P('Unitario', R`Vector unitario en la dirección de $(3,-4)$.`, R`$\left(\frac35,-\frac45\right)$.`),
+        P('Combinación lineal', R`Escribe $\vec w=(7,1)$ como combinación lineal de $\vec u=(1,1)$ y $\vec v=(2,-1)$.`, R`$\vec w=3\vec u+2\vec v$.`),
+        P('Perpendicular y proyección', R`a) $m$ para que $(m,2)\perp(3,-6)$. b) Proyección de $(3,4)$ sobre $(1,1)$.`, R`a) $m=4$. b) $\frac7{\sqrt2}\approx4{,}95$.`),
+        P('Dividir un segmento', R`Divide el segmento de $A(1,1)$ a $B(7,4)$ en tres partes iguales.`, R`$\frac13\vec{AB}=(2,1)$: puntos $(3,2)$ y $(5,3)$.`),
+        G('Rectas'),
+        P('Todas las ecuaciones', R`Recta por $A(2,-1)$ con vector $(3,4)$.`, R`$x=2+3t,\ y=-1+4t$; $\frac{x-2}3=\frac{y+1}4$; $4x-3y-11=0$; $y=\frac{4x-11}3$.`),
+        P('Por dos puntos', R`a) Por $A(1,2)$ y $B(4,-1)$. b) Pendiente e inclinación de la recta por $(1,1)$ y $(4,4)$, y de $y=-\sqrt3x$.`, R`a) $x+y-3=0$. b) $m=1$, 45°; $m=-\sqrt3$, 120°.`),
+        P('Posición relativa', R`a) $x+2y-3=0$ y $2x-y+4=0$. b) $2x-y+1=0$ y $4x-2y+5=0$.`, R`a) Perpendiculares, se cortan en $(-1,2)$. b) Paralelas.`),
+        P('Paralela y perpendicular', R`Por $P(1,-2)$: paralela a $3x-y+2=0$; perpendicular a $2x+y-3=0$ por $(1,1)$.`, R`$3x-y-5=0$; $x-2y+1=0$.`),
+        P('Ángulo', R`Ángulo entre $y=2x+1$ e $y=-3x+2$.`, R`$45^\circ$.`),
+        P('Distancias', R`a) De $P(1,-2)$ a $5x+12y-7=0$. b) Entre $3x+4y-2=0$ y $3x+4y+8=0$.`, R`a) 2. b) $\frac{10}5=2$.`),
+        G('Lugares geométricos y cónicas'),
+        P('Mediatriz y bisectrices', R`a) Mediatriz de $A(1,1)$, $B(5,3)$. b) Bisectrices de $3x-4y=0$ y $4x-3y=0$.`, R`a) $2x+y-8=0$. b) $x+y=0$ y $x-y=0$.`),
+        P('Circunferencias', R`a) Centro y radio de $x^2+y^2-4x+6y-3=0$. b) Circunferencia de centro $(-1,2)$ que pasa por $(2,6)$. c) De centro $(2,1)$ tangente a $3x+4y+5=0$.`, R`a) $(2,-3)$, $r=4$. b) $(x+1)^2+(y-2)^2=25$. c) $(x-2)^2+(y-1)^2=9$.`),
+        P('Recta y circunferencia', R`Posición de $x+y=7$ respecto de $x^2+y^2=25$.`, R`$d=\frac7{\sqrt2}\approx4{,}95<5$: secante, en $(3,4)$ y $(4,3)$.`),
+        P('Elipses', R`a) Focos $(\pm3,0)$ y eje mayor 10. b) Elementos de $9x^2+25y^2=225$. c) Elementos de $\frac{(x-1)^2}9+\frac{(y+2)^2}4=1$.`, R`a) $\frac{x^2}{25}+\frac{y^2}{16}=1$, $e=\frac35$. b) $\frac{x^2}{25}+\frac{y^2}9=1$: $a=5$, $b=3$, $c=4$. c) Centro $(1,-2)$, focos $(1\pm\sqrt5,-2)$.`),
+        P('Hipérbola y parábola', R`a) Focos, asíntotas y excentricidad de $\frac{x^2}{16}-\frac{y^2}9=1$. b) Foco y directriz de $y^2=8x$ y de $x^2=12y$.`, R`a) $(\pm5,0)$, $y=\pm\frac34x$, $e=\frac54$. b) $(2,0)$, $x=-2$; $(0,3)$, $y=-3$.`)
       ],
       exams: [
         [
@@ -308,7 +512,7 @@
 
     /* ------------------------------------------------------------------ 6 */
     { n: 'T6', name: 'Funciones', desc: 'Tipos de funciones, a trozos, interpolación, composición, inversa, dominio, recorrido, simetrías y signo.',
-      mv: MV + 'BC1_06_Funciones.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%206%20Funciones.pdf',
+
       tool: 'familias',
       theory: X.TH.funciones,
       practice: X.PR.funciones,
@@ -332,30 +536,9 @@
 
     /* ------------------------------------------------------------------ 7 */
     { n: 'T7', name: 'Límites y continuidad', desc: 'Límites laterales, asíntotas, indeterminaciones, continuidad y Bolzano.',
-      mv: MV + 'BC1_07_Limites.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%207%20L%C3%ADmites.pdf',
-      theory: [
-        H('Concepto de límite', R`$\displaystyle\lim_{x\to a}f(x)=L$ significa que, cuando $x$ se acerca a $a$, $f(x)$ se acerca a $L$. Los <b>límites laterales</b> se calculan acercándose por la izquierda ($a^-$) o por la derecha ($a^+$). El límite existe si los dos coinciden.`),
-        H('Asíntotas', R`<b>Vertical</b> $x=a$: $\lim_{x\to a}f(x)=\pm\infty$ (suele estar donde se anula el denominador). <b>Horizontal</b> $y=L$: $\lim_{x\to\pm\infty}f(x)=L$. <b>Oblicua</b> $y=mx+n$: $m=\lim\frac{f(x)}x$, $n=\lim\big(f(x)-mx\big)$. En las racionales hay oblicua cuando el numerador tiene un grado más que el denominador.`),
-        H('Operaciones con infinito', R`$\infty+\infty=\infty$, $\ k\cdot\infty=\infty$ ($k\neq0$), $\ \frac k\infty=0$, $\ \frac k0=\infty$ (mira el signo con los laterales). <br><b>Indeterminaciones</b>: $\frac\infty\infty,\ \frac00,\ \infty-\infty,\ 0\cdot\infty,\ 1^\infty$.`),
-        H('Cómo resolver las indeterminaciones', R`<div class="tbl"><table>
-          <tr><td>$\frac\infty\infty$</td><td>Comparar grados (o dividir por la mayor potencia).</td></tr>
-          <tr><td>$\frac00$ (polinomios)</td><td>Factorizar y simplificar.</td></tr>
-          <tr><td>$\frac00$ o $\infty-\infty$ con raíces</td><td>Multiplicar por el conjugado.</td></tr>
-          <tr><td>$1^\infty$</td><td>$\lim f^g=e^{\lim g\,(f-1)}$</td></tr></table></div>`),
-        H('Continuidad', R`$f$ es continua en $a$ si: 1) existe $f(a)$; 2) existe $\lim_{x\to a}f(x)$; 3) son iguales. Polinomios, exponenciales, senos y cosenos son continuos en todo $\mathbb R$; racionales, raíces y logaritmos, en su dominio.`),
-        H('Tipos de discontinuidad', R`<b>Evitable</b>: el límite existe pero no coincide con $f(a)$ (o $f(a)$ no existe). <b>De salto finito</b>: los laterales son finitos y distintos. <b>De salto infinito</b>: algún lateral es infinito (asíntota vertical). <b>Esencial</b>: algún lateral no existe.`),
-        H('Teorema de Bolzano', R`Si $f$ es continua en $[a,b]$ y $f(a)$, $f(b)$ tienen signos distintos, existe $c\in(a,b)$ con $f(c)=0$. Se usa para demostrar que una ecuación tiene solución.`)
-      ],
-      practice: [
-        P('1. Factorizando', R`$\displaystyle\lim_{x\to2}\frac{x^3-8}{x-2}$`, R`$\dfrac{(x-2)(x^2+2x+4)}{x-2}\to4+4+4=12$.`),
-        P('2. En el infinito', R`a) $\lim\dfrac{x^2+1}{3x^2-x}$ &nbsp; b) $\lim\dfrac{x+1}{x^2}$ &nbsp; c) $\lim\dfrac{x^3}{x^2+1}$ (con $x\to\infty$)`, R`a) $\frac13$ &nbsp; b) 0 &nbsp; c) $\infty$`),
-        P('3. Conjugado', R`a) $\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+4x}-x\right)$ &nbsp; b) $\displaystyle\lim_{x\to0}\frac{\sqrt{1+x}-1}{x}$`, R`a) $\dfrac{4x}{\sqrt{x^2+4x}+x}\to2$. <br>b) $\dfrac{x}{x(\sqrt{1+x}+1)}\to\frac12$.`),
-        P('4. Número e', R`$\displaystyle\lim_{x\to\infty}\left(1+\frac3x\right)^{2x}$`, R`$e^{\lim2x\cdot\frac3x}=e^6$.`),
-        P('5. Asíntotas', R`a) $f(x)=\dfrac{2x^2+3}{x^2-1}$ &nbsp; b) $g(x)=\dfrac{x^3}{x^2+1}$`, R`a) Verticales $x=\pm1$; horizontal $y=2$. <br>b) Oblicua: $m=1$, $n=\lim\dfrac{-x}{x^2+1}=0$: $y=x$.`),
-        P('6. Continuidad con parámetro', R`Halla $k$ para que sea continua $f(x)=\begin{cases}\dfrac{x^2-4}{x-2} & x\neq2\\k & x=2\end{cases}$`, R`$\lim_{x\to2}(x+2)=4\Rightarrow k=4$.`),
-        P('7. Clasifica', R`$f(x)=\begin{cases}x+1 & x<1\\3 & x=1\\x^2 & x>1\end{cases}$`, R`Laterales $2$ y $1$: discontinuidad de <b>salto finito</b> en $x=1$.`),
-        P('8. Bolzano', R`Demuestra que $x^3-3x+1=0$ tiene una raíz en $(0,1)$.`, R`$f(0)=1>0$, $f(1)=-1<0$ y $f$ es continua: por Bolzano hay una raíz.`)
-      ],
+
+      theory: X.TH.limites,
+      practice: X.PR.limites,
       exams: [
         [
           Q(3.5, R`Calcula: a) $\displaystyle\lim_{x\to3}\frac{x^2-9}{x-3}$ &nbsp; b) $\displaystyle\lim_{x\to\infty}\frac{2x^3-x}{5x^3+2}$ &nbsp; c) $\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)$`, R`a) 6 &nbsp; b) $\frac25$ &nbsp; c) $\frac12$`),
@@ -376,35 +559,10 @@
 
     /* ------------------------------------------------------------------ 8 */
     { n: 'T8', name: 'Derivadas', desc: 'Tasa de variación, definición, reglas, recta tangente, crecimiento y extremos.',
-      mv: MV + 'BC1_08_Derivadas.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%208%20Derivadas.pdf',
+
       tool: 'tangente',
-      theory: [
-        H('Tasa de variación media e instantánea', R`La <b>TVM</b> en $[a,b]$ es $\dfrac{f(b)-f(a)}{b-a}$: la pendiente de la recta secante. Si hacemos el intervalo cada vez más pequeño obtenemos la <b>tasa instantánea</b>, que es la derivada. (Mueve $h$ en la herramienta y verás la secante convertirse en tangente).`),
-        H('Derivada en un punto', R`$f'(a)=\displaystyle\lim_{h\to0}\frac{f(a+h)-f(a)}{h}$. Si las derivadas laterales (con $h\to0^-$ y $h\to0^+$) son distintas, la función no es derivable ahí: le pasa a $|x|$ en $x=0$, que tiene un "pico". Toda función derivable es continua.`),
-        H('Reglas de derivación', R`<div class="tbl"><table>
-          <tr><th>Función</th><th>Derivada</th><th>Función</th><th>Derivada</th></tr>
-          <tr><td>$k$</td><td>$0$</td><td>$x^n$</td><td>$nx^{n-1}$</td></tr>
-          <tr><td>$\sqrt x$</td><td>$\frac1{2\sqrt x}$</td><td>$e^x$</td><td>$e^x$</td></tr>
-          <tr><td>$a^x$</td><td>$a^x\ln a$</td><td>$\ln x$</td><td>$\frac1x$</td></tr>
-          <tr><td>$\sin x$</td><td>$\cos x$</td><td>$\cos x$</td><td>$-\sin x$</td></tr>
-          <tr><td>$\tan x$</td><td>$\frac1{\cos^2x}$</td><td>$\log_ax$</td><td>$\frac1{x\ln a}$</td></tr></table></div>
-          Producto: $(fg)'=f'g+fg'$. Cociente: $\left(\frac fg\right)'=\dfrac{f'g-fg'}{g^2}$. <b>Regla de la cadena</b>: $\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$.`),
-        H('Recta tangente', R`La derivada es la pendiente de la tangente: $y-f(a)=f'(a)(x-a)$.`),
-        H('Interpretación física', R`Si $s(t)$ es la posición, la velocidad es $v(t)=s'(t)$ y la aceleración $a(t)=v'(t)$.`),
-        H('Crecimiento, máximos y mínimos', R`Si $f'>0$ la función crece; si $f'<0$ decrece. Los extremos relativos están donde $f'(x)=0$ y la derivada cambia de signo (o donde $f''<0$: máximo; $f''>0$: mínimo). <b>Optimizar</b>: escribe la función a maximizar con una sola variable, derívala, iguala a cero y comprueba.`)
-      ],
-      practice: [
-        P('1. TVM', R`TVM de $f(x)=x^2-3x$ en $[1,4]$.`, R`$\dfrac{f(4)-f(1)}{3}=\dfrac{4-(-2)}{3}=2$.`),
-        P('2. Por definición', R`Calcula con la definición la derivada de $f(x)=\frac1x$ en $x=2$.`, R`$\displaystyle\lim_{h\to0}\frac{\frac1{2+h}-\frac12}{h}=\lim_{h\to0}\frac{-1}{2(2+h)}=-\frac14$.`),
-        P('3. Reglas', R`Deriva: a) $(x^2+1)(x^3-2)$ b) $\dfrac{x^2-1}{x^2+1}$ c) $\sin(x^2)$ d) $\ln(\sin x)$ e) $e^{3x}\cos x$ f) $\tan2x$`, R`a) $5x^4+3x^2-4x$ &nbsp; b) $\dfrac{4x}{(x^2+1)^2}$ &nbsp; c) $2x\cos(x^2)$ &nbsp; d) $\dfrac{\cos x}{\sin x}$ &nbsp; e) $e^{3x}(3\cos x-\sin x)$ &nbsp; f) $\dfrac{2}{\cos^22x}$`),
-        P('4. Tangente', R`Recta tangente a $f(x)=\sqrt x$ en $x=4$.`, R`$f(4)=2$, $f'(4)=\frac14$: $y=\frac x4+1$.`),
-        P('5. Derivadas laterales', R`¿Es derivable $|x-1|$ en $x=1$?`, R`Derivada por la izquierda $-1$, por la derecha $1$: no es derivable.`),
-        P('6. Física', R`La posición de un móvil es $s(t)=5t^2+2t$ (m). Halla la velocidad a los 3 s y la aceleración.`, R`$v(t)=10t+2$: $v(3)=32$ m/s. $a=10$ m/s².`),
-        P('7. Monotonía', R`Estudia el crecimiento de $f(x)=xe^{-x}$.`, R`$f'(x)=(1-x)e^{-x}$: crece en $(-\infty,1)$, decrece en $(1,\infty)$. Máximo $\left(1,\frac1e\right)$.`),
-        P('8. Extremos', R`Extremos relativos de $f(x)=x^4-2x^2$.`, R`$f'(x)=4x(x^2-1)$: máximo $(0,0)$; mínimos $(\pm1,-1)$.`),
-        P('9. Optimización', R`Con 40 m de valla queremos cercar un terreno rectangular junto a un río (ese lado no lleva valla). ¿Qué medidas dan área máxima?`, R`$2x+y=40$, $A(x)=x(40-2x)$, $A'(x)=40-4x=0\Rightarrow x=10$. Lados 10 m y 20 m, área 200 m².`),
-        P('10. Parámetro', R`Halla $a$ para que la tangente a $f(x)=ax^2+1$ en $x=1$ sea paralela a $y=4x$.`, R`$f'(1)=2a=4\Rightarrow a=2$.`)
-      ],
+      theory: X.TH.derivadas,
+      practice: X.PR.derivadas,
       exams: [
         [
           Q(3.5, R`Calcula, usando la definición, la derivada de $f(x)=x^2$ en $x=3$.`, R`$\displaystyle\lim_{h\to0}\frac{(3+h)^2-9}{h}=\lim_{h\to0}(6+h)=6$.`),
@@ -425,7 +583,7 @@
 
     /* ------------------------------------------------------------------ 9 */
     { n: 'T9', name: 'Probabilidad', desc: 'Sucesos, Laplace, Kolmogorov, árboles, tablas de contingencia y Bayes.',
-      mv: MV + 'BC1_09_Probabilidad.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%209%20Probabilidad.pdf',
+
       theory: [
         H('Experimentos y sucesos', R`Un experimento es <b>aleatorio</b> si no se puede predecir el resultado. El <b>espacio muestral</b> $E$ reúne todos los resultados posibles. Con los sucesos se opera: unión $A\cup B$ (ocurre $A$ o $B$), intersección $A\cap B$ (ocurren los dos), contrario $\bar A$. Son <b>incompatibles</b> si $A\cap B=\varnothing$. <br>Leyes de De Morgan: $\overline{A\cup B}=\bar A\cap\bar B$, $\ \overline{A\cap B}=\bar A\cup\bar B$.`),
         H('Asignar probabilidades', R`<b>Regla de Laplace</b> (si todos los resultados son igual de probables): $P(A)=\dfrac{\text{casos favorables}}{\text{casos posibles}}$. Si no, se estima con la <b>frecuencia relativa</b> repitiendo el experimento muchas veces.`),
@@ -464,26 +622,10 @@
 
     /* ----------------------------------------------------------------- 10 */
     { n: 'T10', name: 'Estadística', desc: 'Tablas, parámetros, estadística bidimensional, correlación y regresión.',
-      mv: MV + 'BC1_10_Estadistica.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%2010%20Estad%C3%ADstica.pdf',
+
       tool: 'regresion',
-      theory: [
-        H('Conceptos básicos', R`<b>Población</b>: todos los individuos; <b>muestra</b>: la parte que se estudia. Variables <b>cualitativas</b> (color) o <b>cuantitativas</b>, que pueden ser discretas (nº de hermanos) o continuas (altura).`),
-        H('Tablas de frecuencias', R`$f_i$ frecuencia absoluta, $F_i$ absoluta acumulada, $h_i=\frac{f_i}{N}$ relativa, $H_i$ relativa acumulada. Con datos <b>agrupados</b> en intervalos se usa la <b>marca de clase</b> (el punto medio).`),
-        H('Parámetros de posición', R`<b>Media</b> $\bar x=\dfrac{\sum f_ix_i}{N}$, <b>mediana</b> (el valor central de los datos ordenados), <b>moda</b> (el más repetido) y <b>cuartiles</b> (dejan por debajo el 25 %, 50 % y 75 %).`),
-        H('Parámetros de dispersión', R`Rango $=$ máximo $-$ mínimo. <div class="ej">Varianza $\sigma^2=\dfrac{\sum f_ix_i^2}{N}-\bar x^2\qquad$ desviación típica $\sigma=\sqrt{\sigma^2}$</div> El <b>coeficiente de variación</b> $CV=\dfrac{\sigma}{\bar x}$ permite comparar la dispersión de datos con medias distintas.`),
-        H('Estadística bidimensional', R`Se estudian dos variables a la vez en una <b>tabla de doble entrada</b>. Las frecuencias <b>marginales</b> son los totales de cada fila o columna; las <b>condicionadas</b>, las de una variable dentro de un valor de la otra. Las variables son <b>independientes</b> si las condicionadas son iguales a las marginales. La <b>nube de puntos</b> da una primera idea de la relación.`),
-        H('Covarianza, correlación y regresión', R`$\sigma_{xy}=\dfrac{\sum x_iy_i}{N}-\bar x\bar y$. <div class="ej">$r=\dfrac{\sigma_{xy}}{\sigma_x\sigma_y}\qquad y-\bar y=\dfrac{\sigma_{xy}}{\sigma_x^2}(x-\bar x)$</div>
-          $-1\le r\le1$: cerca de $\pm1$, relación lineal fuerte; cerca de 0, débil. La recta de regresión sirve para <b>predecir</b> si $|r|$ es alto y no nos alejamos mucho de los datos. Y ojo: <b>correlación no implica causalidad</b>.`)
-      ],
-      practice: [
-        P('1. Tipos de variables', R`Clasifica: color de ojos, número de hermanos, altura.`, R`Cualitativa; cuantitativa discreta; cuantitativa continua.`),
-        P('2. Parámetros', R`Notas: 4, 5, 5, 6, 6, 6, 7, 7, 8, 9. Calcula media, mediana, moda, rango, desviación típica y CV.`, R`Media 6,3; mediana 6; moda 6; rango 5; $\sigma^2=41{,}7-39{,}69=2{,}01$, $\sigma\approx1{,}42$; $CV\approx0{,}23$.`),
-        P('3. Datos agrupados', R`$[0,10)$: 5; $[10,20)$: 8; $[20,30)$: 7. Calcula la media y la desviación típica.`, R`Marcas 5, 15, 25. $\bar x=\frac{320}{20}=16$. $\sigma^2=\frac{6300}{20}-256=59$, $\sigma\approx7{,}68$.`),
-        P('4. Comparar dispersión', R`El grupo A tiene media 60 y $\sigma=6$; el B, media 20 y $\sigma=4$. ¿Cuál es relativamente más disperso?`, R`$CV_A=0{,}1$ y $CV_B=0{,}2$: el B.`),
-        P('5. Regresión', R`$x$: 2, 4, 6, 8; $y$: 3, 7, 5, 9. Calcula $\sigma_{xy}$, $r$ y la recta de regresión de $y$ sobre $x$.`, R`$\bar x=5$, $\bar y=6$, $\sigma_{xy}=34-30=4$, $\sigma_x^2=\sigma_y^2=5$. $r=0{,}8$. Recta: $y=0{,}8x+2$.`),
-        P('6. Independencia', R`Hombres: 20 fuman y 30 no. Mujeres: 20 fuman y 30 no. ¿Son independientes sexo y fumar?`, R`Sí: en los dos grupos fuma el 40 %, igual que en el total.`),
-        P('7. Causalidad', R`En verano se venden más helados y hay más ahogamientos. ¿Los helados provocan ahogamientos?`, R`No. Hay correlación porque las dos dependen de una tercera variable: el calor. Correlación no implica causalidad.`)
-      ],
+      theory: X.TH.estadistica,
+      practice: X.PR.estadistica,
       exams: [
         [
           Q(3.5, R`$x$: 1, 2, 3, 4, 5; $y$: 2, 4, 5, 4, 5. Calcula la covarianza, $r$ y la recta de regresión de $y$ sobre $x$. Estima $y$ para $x=6$.`, R`$\sigma_{xy}=1{,}2$, $\sigma_x^2=2$, $\sigma_y^2=1{,}2$, $r\approx0{,}77$. Recta $y=0{,}6x+2{,}2$; para $x=6$, $5{,}8$.`),
@@ -502,4 +644,16 @@
         ]
       ] }
   ];
+  /* Exámenes de 10 ejercicios: los 3 de cada examen más los del banco del tema */
+  const T = window.CC13_B1, XE = X.EX;
+  T[0].exams = fill(T[0].exams, XE.reales, XE.complejos);
+  T[1].exams = fill(T[1].exams, XE.algebra);
+  T[2].exams = fill(T[2].exams, EXC.suc);
+  T[3].exams = fill(T[3].exams, EXC.trig);
+  T[4].exams = fill(T[4].exams, EXC.geo);
+  T[5].exams = fill(T[5].exams, XE.funciones);
+  T[6].exams = fill(T[6].exams, XE.limites);
+  T[7].exams = fill(T[7].exams, XE.derivadas);
+  T[8].exams = fill(T[8].exams, XE.prob);
+  T[9].exams = fill(T[9].exams, XE.estadistica);
 })();
