@@ -1,5 +1,5 @@
 /* ClasesConCelia13 · 1º Bachillerato: bloques comunes a Ciencias (Matemáticas I) y Sociales (MACS I).
-   Teoría y ejercicios redactados para esta web siguiendo el índice de los libros de Marea Verde. */
+   Teoría y ejercicios redactados para esta web. */
 (() => {
   'use strict';
   const R = String.raw;
@@ -363,5 +363,532 @@
     P('Oferta y demanda', R`$D(p)=100-2p$ y $O(p)=3p-25$. Halla el equilibrio.`, R`$p=25$ €, cantidad 50.`)
   ];
 
-  window.CC13_B1X = { TH, PR, H, P, G };
+  /* ====================== LÍMITES Y CONTINUIDAD ====================== */
+  TH.limites = [
+    H('Idea intuitiva de límite', R`¿Qué le pasa a $f(x)=\dfrac{x^2-1}{x-1}$ cerca de $x=1$? En $x=1$ no existe (sale $\frac00$), pero podemos dar valores cada vez más cerca:
+      <div class="tbl"><table><tr><th>$x$</th><td>0,9</td><td>0,99</td><td>0,999</td><td>1,001</td><td>1,01</td><td>1,1</td></tr>
+      <tr><th>$f(x)$</th><td>1,9</td><td>1,99</td><td>1,999</td><td>2,001</td><td>2,01</td><td>2,1</td></tr></table></div>
+      Los valores se acercan a 2: decimos que $\displaystyle\lim_{x\to1}f(x)=2$.
+      <p><b>Definición</b>: $\displaystyle\lim_{x\to a}f(x)=L$ si podemos conseguir que $f(x)$ esté tan cerca de $L$ como queramos tomando $x$ suficientemente cerca de $a$ (sin llegar a ser $a$). Lo que vale la función justo en $a$ no importa para el límite.</p>`),
+    H('Límites laterales', R`$\displaystyle\lim_{x\to a^-}f(x)$ es el límite acercándose por la <b>izquierda</b> (valores menores que $a$) y $\displaystyle\lim_{x\to a^+}f(x)$ por la <b>derecha</b>.
+      <div class="ej">El límite existe si y solo si los dos laterales existen y son iguales.</div>
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=\dfrac{|x|}{x}$ vale $-1$ si $x<0$ y $1$ si $x>0$. $\lim_{x\to0^-}f(x)=-1$ y $\lim_{x\to0^+}f(x)=1$: no existe el límite en 0.</div>
+      Los laterales son imprescindibles en las funciones <b>a trozos</b> (en los puntos donde cambia la fórmula) y cuando sale $\frac k0$.`),
+    H('Tipos de límites', R`<div class="tbl"><table>
+      <tr><th>Tipo</th><th>Ejemplo</th><th>Gráficamente</th></tr>
+      <tr><td>Finito en un punto</td><td>$\lim_{x\to1}\frac{x^2-1}{x-1}=2$</td><td>la gráfica se acerca a un punto</td></tr>
+      <tr><td>Infinito en un punto</td><td>$\lim_{x\to0}\frac1{x^2}=+\infty$</td><td>asíntota vertical</td></tr>
+      <tr><td>Finito en el infinito</td><td>$\lim_{x\to\infty}\frac{2x+1}{x}=2$</td><td>asíntota horizontal</td></tr>
+      <tr><td>Infinito en el infinito</td><td>$\lim_{x\to\infty}x^2=+\infty$</td><td>rama infinita</td></tr></table></div>`),
+    H('Propiedades de los límites', R`Si $\lim f=A$ y $\lim g=B$ (finitos): $\ \lim(f\pm g)=A\pm B$; $\ \lim(f\cdot g)=A\cdot B$; $\ \lim\frac fg=\frac AB$ si $B\neq0$; $\ \lim f^n=A^n$; $\ \lim\sqrt[n]f=\sqrt[n]A$.
+      <p>Consecuencia práctica: en las funciones elementales (polinomios, racionales, raíces, exponenciales, logaritmos, senos…) <b>basta sustituir</b> si el punto está en el dominio: $\lim_{x\to2}(x^3-2x+1)=5$, $\ \lim_{x\to3}\sqrt{x+6}=3$.</p>`),
+    H('Operaciones con infinito e indeterminaciones', R`<div class="tbl"><table>
+      <tr><th>Operación</th><th>Resultado</th></tr>
+      <tr><td>$\infty+k$, $\ \infty+\infty$, $\ \infty\cdot\infty$</td><td>$\infty$</td></tr>
+      <tr><td>$k\cdot\infty$ ($k\neq0$)</td><td>$\pm\infty$ (regla de los signos)</td></tr>
+      <tr><td>$\dfrac k\infty$</td><td>$0$</td></tr>
+      <tr><td>$\dfrac k0$ ($k\neq0$)</td><td>$\pm\infty$: el signo se mira con los laterales</td></tr>
+      <tr><td>$k^{+\infty}$</td><td>$+\infty$ si $k>1$; $\ 0$ si $0\le k<1$</td></tr></table></div>
+      <b>Indeterminaciones</b> (el resultado depende de cada caso y hay que trabajar): $\ \infty-\infty,\ \ 0\cdot\infty,\ \ \dfrac\infty\infty,\ \ \dfrac00,\ \ 1^\infty,\ \ \infty^0,\ \ 0^0$.`),
+    H('Cómo calcular un límite', R`<ol><li><b>Sustituye.</b> Si sale un número, ese es el límite.</li>
+      <li>Si sale $\frac k0$, calcula los <b>laterales</b> para ver el signo del infinito.</li>
+      <li>Si sale una <b>indeterminación</b>, aplica la técnica que le corresponde:</li></ol>
+      <div class="tbl"><table>
+      <tr><th>Indeterminación</th><th>Técnica</th><th>Ejemplo</th></tr>
+      <tr><td>$\frac\infty\infty$</td><td>comparar grados (manda la mayor potencia)</td><td>$\lim_{x\to\infty}\frac{3x^2-x}{2x^2+5}=\frac32$</td></tr>
+      <tr><td>$\frac00$ con polinomios</td><td>factorizar (Ruffini) y simplificar</td><td>$\lim_{x\to2}\frac{x^2-5x+6}{x^2-4}=\lim_{x\to2}\frac{x-3}{x+2}=-\frac14$</td></tr>
+      <tr><td>$\frac00$ o $\infty-\infty$ con raíces</td><td>multiplicar y dividir por el conjugado</td><td>$\lim_{x\to0}\frac{\sqrt{x+4}-2}x=\lim\frac{1}{\sqrt{x+4}+2}=\frac14$</td></tr>
+      <tr><td>$\infty-\infty$ con fracciones</td><td>restar las fracciones</td><td>$\lim_{x\to1}\left(\frac1{x-1}-\frac2{x^2-1}\right)=\lim\frac1{x+1}=\frac12$</td></tr>
+      <tr><td>$1^\infty$</td><td>$\lim f^g=e^{\lim g(f-1)}$</td><td>$\lim_{x\to\infty}\left(1+\frac3x\right)^{2x}=e^6$</td></tr></table></div>
+      <b>Comparar grados</b> en $\frac\infty\infty$: si el de arriba es mayor, $\pm\infty$; si el de abajo es mayor, $0$; si son iguales, el cociente de los coeficientes principales. Las raíces cuentan con su grado partido por el índice: $\sqrt{x^2+3}$ "es de grado 1".`),
+    H('Asíntotas', R`<b>Verticales</b> $x=a$: $\lim_{x\to a}f(x)=\pm\infty$. Se buscan donde se anula un denominador (sin anularse el numerador) o en el borde del dominio de un logaritmo. Los laterales dicen si la gráfica sube o baja a cada lado.
+      <p><b>Horizontales</b> $y=L$: $\lim_{x\to\pm\infty}f(x)=L$. En las racionales hay cuando el grado de arriba es menor o igual que el de abajo.</p>
+      <p><b>Oblicuas</b> $y=mx+n$ (solo si no hay horizontal por ese lado): $m=\lim\frac{f(x)}x$, $n=\lim\big(f(x)-mx\big)$. En las racionales aparecen cuando el grado de arriba supera en 1 al de abajo, y la asíntota es el cociente de la división.</p>
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=\dfrac{x^2}{x-2}$. Vertical: $x=2$ ($\lim_{x\to2^-}=-\infty$, $\lim_{x\to2^+}=+\infty$). No hay horizontal. Dividiendo, $x^2=(x-2)(x+2)+4$: oblicua $y=x+2$.</div>
+      <b>Posición</b> respecto de la asíntota horizontal: se mira el signo de $f(x)-L$. Con $f(x)=\frac{2x+1}{x-1}$: $f(x)-2=\frac3{x-1}$, positivo si $x\to+\infty$ (la gráfica va por encima) y negativo si $x\to-\infty$ (por debajo).`),
+    H('Continuidad', R`$f$ es <b>continua en $a$</b> si se cumplen tres cosas: 1) existe $f(a)$; 2) existe $\lim_{x\to a}f(x)$; 3) son iguales. Intuitivamente, se dibuja sin levantar el lápiz.
+      <p>Polinomios, $e^x$, $\sin x$ y $\cos x$ son continuas en todo $\mathbb R$; las racionales, raíces y logaritmos lo son en su dominio. Así que, en la práctica, solo hay que estudiar los puntos fuera del dominio y los puntos donde cambia la definición en las funciones a trozos.</p>
+      <div class="ej"><b>Ejemplo resuelto.</b> ¿Qué $a$ hace continua $f(x)=\begin{cases}x^2+a & x\le2\\ax-1 & x>2\end{cases}$? En $x=2$: $f(2)=4+a$ y $\lim_{x\to2^+}=2a-1$. Igualando, $a=5$.</div>`),
+    H('Tipos de discontinuidad', R`<div class="tbl"><table>
+      <tr><th>Tipo</th><th>Qué pasa</th><th>Ejemplo</th></tr>
+      <tr><td>Evitable</td><td>existe el límite, pero no coincide con $f(a)$ o $f(a)$ no existe</td><td>$\frac{x^2-1}{x-1}$ en $x=1$</td></tr>
+      <tr><td>De salto finito</td><td>laterales finitos y distintos</td><td>$\frac{|x|}x$ en $x=0$</td></tr>
+      <tr><td>De salto infinito</td><td>algún lateral es infinito (asíntota vertical)</td><td>$\frac1x$ en $x=0$</td></tr>
+      <tr><td>Esencial</td><td>algún lateral no existe</td><td>$\sin\frac1x$ en $x=0$</td></tr></table></div>
+      Se llama "evitable" porque basta redefinir $f(a)$ como el valor del límite para que sea continua.`),
+    H('Propiedades de las funciones continuas', R`<b>Teorema de Bolzano</b>: si $f$ es continua en $[a,b]$ y $f(a)$ y $f(b)$ tienen signos distintos, existe al menos un $c\in(a,b)$ con $f(c)=0$.
+      <div class="ej"><b>Ejemplo resuelto.</b> $x^3+x-3=0$ tiene una raíz en $(1,2)$: $f(1)=-1<0$ y $f(2)=7>0$. Partiendo el intervalo por la mitad varias veces (<b>bisección</b>): $f(1{,}5)>0\Rightarrow(1;1{,}5)$; $f(1{,}25)>0\Rightarrow(1;1{,}25)$; $f(1{,}125)<0\Rightarrow(1{,}125;\ 1{,}25)$… La raíz es $x\approx1{,}213$.</div>
+      <b>Valores intermedios</b>: una función continua en $[a,b]$ toma todos los valores entre $f(a)$ y $f(b)$. <b>Weierstrass</b>: una función continua en un intervalo cerrado alcanza un máximo y un mínimo absolutos.
+      <p>¡Ojo! Si no es continua, Bolzano no sirve: $\frac1x$ cambia de signo en $[-1,1]$ pero nunca vale 0.</p>`)
+  ];
+  PR.limites = [
+    G('Concepto y laterales'),
+    P('Con una tabla', R`Estima con una tabla de valores $\displaystyle\lim_{x\to2}\frac{x^2-4}{x-2}$.`, R`$x=1{,}9\to3{,}9$; $1{,}99\to3{,}99$; $2{,}01\to4{,}01$; $2{,}1\to4{,}1$. El límite es 4 (simplificando: $x+2\to4$).`),
+    P('Laterales', R`a) $f(x)=\begin{cases}x+1 & x<1\\3-x & x\ge1\end{cases}$ en $x=1$. &nbsp; b) $g(x)=\dfrac{|x|}x$ en $x=0$.`, R`a) $2$ por los dos lados: el límite es 2. <br>b) $-1$ y $1$: no existe.`),
+    P('Sustitución directa', R`a) $\lim_{x\to2}(x^3-2x+1)$ &nbsp; b) $\lim_{x\to0}(e^x+\cos x)$ &nbsp; c) $\lim_{x\to3}\sqrt{x+6}$`, R`a) 5 &nbsp; b) 2 &nbsp; c) 3`),
+    P('Del tipo k/0', R`a) $\displaystyle\lim_{x\to2}\frac{x+1}{x-2}$ &nbsp; b) $\displaystyle\lim_{x\to-1}\frac1{(x+1)^2}$`, R`a) Por la izquierda $-\infty$, por la derecha $+\infty$: no existe (asíntota vertical). <br>b) $+\infty$ por los dos lados.`),
+    G('Indeterminaciones'),
+    P('∞/∞', R`a) $\lim\frac{3x^2-x}{2x^2+5}$ b) $\lim\frac{x+1}{x^2-3}$ c) $\lim\frac{x^3-1}{x^2+x}$ d) $\lim\frac{2x-1}{\sqrt{x^2+3}}$ (todos con $x\to+\infty$)`, R`a) $\frac32$ b) 0 c) $+\infty$ d) 2 (la raíz es "de grado 1").`),
+    P('0/0 factorizando', R`a) $\lim_{x\to2}\frac{x^2-5x+6}{x^2-4}$ b) $\lim_{x\to1}\frac{x^3-1}{x-1}$ c) $\lim_{x\to1}\frac{x^2+x-2}{x^2-1}$`, R`a) $\frac{x-3}{x+2}\to-\frac14$ b) $x^2+x+1\to3$ c) $\frac{x+2}{x+1}\to\frac32$`),
+    P('0/0 con raíces', R`a) $\lim_{x\to0}\frac{\sqrt{x+4}-2}{x}$ &nbsp; b) $\lim_{x\to9}\frac{x-9}{\sqrt x-3}$`, R`a) $\frac1{\sqrt{x+4}+2}\to\frac14$ &nbsp; b) $\sqrt x+3\to6$`),
+    P('∞ − ∞', R`a) $\lim_{x\to1}\left(\frac1{x-1}-\frac2{x^2-1}\right)$ b) $\lim_{x\to\infty}\left(\sqrt{x^2+4x}-x\right)$ c) $\lim_{x\to\infty}\left(\sqrt{x^2+x}-\sqrt{x^2-x}\right)$`, R`a) $\frac1{x+1}\to\frac12$ b) $\frac{4x}{\sqrt{x^2+4x}+x}\to2$ c) $\frac{2x}{\sqrt{x^2+x}+\sqrt{x^2-x}}\to1$`),
+    P('1 elevado a infinito', R`a) $\lim\left(1+\frac3x\right)^{2x}$ b) $\lim\left(\frac{x+2}{x-1}\right)^x$ c) $\lim\left(\frac{2x+1}{2x-3}\right)^{x+1}$ (con $x\to\infty$)`, R`a) $e^6$ b) $e^{\lim x\cdot\frac{3}{x-1}}=e^3$ c) $e^{\lim(x+1)\frac{4}{2x-3}}=e^2$`),
+    G('Asíntotas'),
+    P('Halla las asíntotas', R`a) $\frac{2x^2+3}{x^2-1}$ b) $\frac{x^2}{x-2}$ c) $\frac{3x}{x^2+1}$ d) $e^x$`, R`a) Verticales $x=\pm1$; horizontal $y=2$. b) Vertical $x=2$; oblicua $y=x+2$. c) Horizontal $y=0$. d) Horizontal $y=0$ cuando $x\to-\infty$.`),
+    P('Posición respecto de la asíntota', R`Estudia la posición de $f(x)=\frac{2x+1}{x-1}$ respecto de su asíntota horizontal.`, R`$y=2$. $f(x)-2=\frac3{x-1}$: por encima cuando $x\to+\infty$ y por debajo cuando $x\to-\infty$.`),
+    G('Continuidad'),
+    P('Un parámetro', R`Halla $a$ para que $f(x)=\begin{cases}x^2+a & x\le2\\ax-1 & x>2\end{cases}$ sea continua.`, R`$4+a=2a-1\Rightarrow a=5$.`),
+    P('Dos parámetros', R`Halla $a$ y $b$ para que sea continua $f(x)=\begin{cases}2x+a & x<1\\x^2+bx & 1\le x\le3\\12 & x>3\end{cases}$`, R`En 3: $9+3b=12\Rightarrow b=1$. En 1: $2+a=1+b=2\Rightarrow a=0$.`),
+    P('Clasifica las discontinuidades', R`a) $\frac{x^2-1}{x^2-x}$ &nbsp; b) $\begin{cases}x+1 & x<0\\x^2 & x\ge0\end{cases}$`, R`a) Evitable en $x=1$ (límite 2) y de salto infinito en $x=0$. b) Salto finito en $x=0$ (laterales 1 y 0).`),
+    P('Bolzano y bisección', R`Demuestra que $x^3+x-3=0$ tiene una raíz en $(1,2)$ y acércate a ella con tres pasos de bisección.`, R`$f(1)=-1$, $f(2)=7$. $f(1{,}5)=1{,}875>0$, $f(1{,}25)\approx0{,}20>0$, $f(1{,}125)\approx-0{,}45<0$: la raíz está en $(1{,}125;\ 1{,}25)$ (es $\approx1{,}213$).`),
+    P('¿Se puede aplicar Bolzano?', R`$f(x)=\frac1x$ en $[-1,1]$: $f(-1)<0$ y $f(1)>0$. ¿Tiene una raíz?`, R`No. No es continua en $x=0$, así que Bolzano no se puede aplicar, y de hecho $\frac1x$ nunca vale 0.`)
+  ];
+
+  /* ============================== DERIVADAS ============================== */
+  TH.derivadas = [
+    H('Tasa de variación media', R`La <b>TVM</b> de $f$ en $[a,b]$ mide cuánto cambia $f$ por cada unidad de $x$:
+      <div class="ej">$TVM[a,b]=\dfrac{f(b)-f(a)}{b-a}$</div>
+      Es la pendiente de la recta <b>secante</b> que une $(a,f(a))$ y $(b,f(b))$. Si $f$ es una posición y $x$ el tiempo, es la <b>velocidad media</b>.
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=x^2-3x$: $TVM[1,4]=\frac{4-(-2)}{3}=2$; $\ TVM[1;1{,}1]=\frac{-2{,}09-(-2)}{0{,}1}=-0{,}9$.</div>`),
+    H('Tasa instantánea y derivada en un punto', R`Si hacemos el intervalo cada vez más pequeño, la TVM se acerca a la <b>tasa de variación instantánea</b>, que es la <b>derivada</b>:
+      <div class="ej">$f'(a)=\displaystyle\lim_{h\to0}\frac{f(a+h)-f(a)}{h}$</div>
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=3x^2-x$ en $a=1$: $\dfrac{3(1+h)^2-(1+h)-2}{h}=\dfrac{5h+3h^2}{h}=5+3h\to5$. Así que $f'(1)=5$.</div>
+      En el ejemplo de la TVM, $TVM[1;1{,}1]=-0{,}9$ ya estaba muy cerca de $f'(1)=-1$. Mueve $h$ en la herramienta para verlo.`),
+    H('Interpretación geométrica: tangente y normal', R`$f'(a)$ es la <b>pendiente de la recta tangente</b> a la gráfica en $(a,f(a))$:
+      <div class="ej">Tangente: $y-f(a)=f'(a)(x-a)\qquad$ Normal (perpendicular): $y-f(a)=-\dfrac1{f'(a)}(x-a)$</div>
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=x^2-4x+3$ en $x=1$: $f(1)=0$, $f'(x)=2x-4$, $f'(1)=-2$. Tangente $y=-2x+2$; normal $y=\frac12x-\frac12$.</div>
+      Si $f'(a)>0$ la función crece en ese punto, si $f'(a)<0$ decrece, y si $f'(a)=0$ la tangente es horizontal.`),
+    H('Derivadas laterales y derivabilidad', R`Las <b>derivadas laterales</b> se calculan con $h\to0^-$ y $h\to0^+$. La función es <b>derivable</b> en $a$ si existen y son iguales.
+      <p>Toda función derivable es continua, pero no al revés: $|x|$ es continua en 0 y no es derivable (derivadas laterales $-1$ y $1$: la gráfica tiene un <b>pico</b>).</p>
+      <div class="ej"><b>Ejemplo resuelto.</b> ¿Es derivable $f(x)=\begin{cases}x^2 & x\le1\\2x-1 & x>1\end{cases}$ en $x=1$? Continua: $1=1$ ✓. Derivadas: por la izquierda $2x\to2$, por la derecha $2$. Sí es derivable.</div>`),
+    H('Función derivada y derivadas sucesivas', R`La <b>función derivada</b> $f'(x)$ da la derivada en cada punto. Derivándola otra vez se obtienen la segunda $f''$, la tercera $f'''$… $\ $Para $f(x)=x^4-2x^3$: $f'=4x^3-6x^2$, $f''=12x^2-12x$, $f'''=24x-12$.`),
+    H('Tabla de derivadas', R`<div class="tbl"><table>
+      <tr><th>Función</th><th>Derivada</th><th>Con la regla de la cadena</th></tr>
+      <tr><td>$k$</td><td>$0$</td><td></td></tr>
+      <tr><td>$x^n$</td><td>$nx^{n-1}$</td><td>$(f^n)'=n\,f^{n-1}f'$</td></tr>
+      <tr><td>$\sqrt x$</td><td>$\frac1{2\sqrt x}$</td><td>$(\sqrt f)'=\frac{f'}{2\sqrt f}$</td></tr>
+      <tr><td>$e^x$</td><td>$e^x$</td><td>$(e^f)'=f'e^f$</td></tr>
+      <tr><td>$a^x$</td><td>$a^x\ln a$</td><td>$(a^f)'=f'a^f\ln a$</td></tr>
+      <tr><td>$\ln x$</td><td>$\frac1x$</td><td>$(\ln f)'=\frac{f'}f$</td></tr>
+      <tr><td>$\log_ax$</td><td>$\frac1{x\ln a}$</td><td>$(\log_af)'=\frac{f'}{f\ln a}$</td></tr>
+      <tr><td>$\sin x$</td><td>$\cos x$</td><td>$(\sin f)'=f'\cos f$</td></tr>
+      <tr><td>$\cos x$</td><td>$-\sin x$</td><td>$(\cos f)'=-f'\sin f$</td></tr>
+      <tr><td>$\tan x$</td><td>$\frac1{\cos^2x}=1+\tan^2x$</td><td>$(\tan f)'=\frac{f'}{\cos^2f}$</td></tr></table></div>`),
+    H('Reglas de derivación', R`<div class="tbl"><table>
+      <tr><td>Suma</td><td>$(f\pm g)'=f'\pm g'$</td></tr>
+      <tr><td>Por una constante</td><td>$(k\,f)'=k\,f'$</td></tr>
+      <tr><td>Producto</td><td>$(f\cdot g)'=f'g+fg'$</td></tr>
+      <tr><td>Cociente</td><td>$\left(\dfrac fg\right)'=\dfrac{f'g-fg'}{g^2}$</td></tr>
+      <tr><td>Regla de la cadena</td><td>$\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$</td></tr></table></div>
+      <div class="ej"><b>Ejemplo resuelto.</b> $\left(\dfrac{2x+1}{x-3}\right)'=\dfrac{2(x-3)-(2x+1)\cdot1}{(x-3)^2}=\dfrac{-7}{(x-3)^2}$. <br>$\big(\ln(x^2+4)\big)'=\dfrac{2x}{x^2+4}$ (la de fuera es $\ln$, la de dentro $x^2+4$).</div>
+      Consejo: antes de derivar, simplifica. $\frac3{x^2}=3x^{-2}$ se deriva como potencia: $-6x^{-3}$.`),
+    H('Interpretación física', R`Si $s(t)$ es la posición de un móvil, la <b>velocidad</b> es $v(t)=s'(t)$ y la <b>aceleración</b> $a(t)=v'(t)=s''(t)$.
+      <div class="ej"><b>Ejemplo resuelto.</b> Lanzamos una pelota hacia arriba: $h(t)=20t-5t^2$ (m). $v(t)=20-10t$. Sube mientras $v>0$ y alcanza la altura máxima cuando $v=0$: $t=2$ s, $h=20$ m. Vuelve al suelo en $t=4$ s con $v=-20$ m/s.</div>`),
+    H('Crecimiento y decrecimiento', R`Si $f'(x)>0$ en un intervalo, $f$ es <b>creciente</b> en él; si $f'(x)<0$, <b>decreciente</b>.
+      <p><b>Método</b>: 1) dominio; 2) $f'(x)$; 3) puntos donde $f'=0$ o no existe; 4) tabla de signos de $f'$ en cada trozo.</p>
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=x^3-6x^2+9x+1$: $f'(x)=3(x-1)(x-3)$. Positiva en $(-\infty,1)$, negativa en $(1,3)$, positiva en $(3,\infty)$. Crece, decrece y vuelve a crecer.</div>`),
+    H('Máximos y mínimos', R`En un <b>máximo relativo</b> la función pasa de crecer a decrecer; en un <b>mínimo</b>, al revés. Allí $f'(a)=0$ (o $f'$ no existe). Dos criterios:
+      <ul><li><b>Signo de $f'$</b>: si cambia de $+$ a $-$, máximo; de $-$ a $+$, mínimo.</li>
+      <li><b>Segunda derivada</b>: si $f'(a)=0$ y $f''(a)<0$, máximo; si $f''(a)>0$, mínimo.</li></ul>
+      En el ejemplo anterior: máximo $(1,5)$ y mínimo $(3,1)$. <br>Los <b>extremos absolutos</b> en un intervalo cerrado $[a,b]$ se buscan comparando $f$ en los extremos del intervalo y en los puntos con $f'=0$.`),
+    H('Curvatura y puntos de inflexión', R`Si $f''>0$ la gráfica tiene forma de $\cup$ (<b>convexa</b>); si $f''<0$, forma de $\cap$ (<b>cóncava</b>). Donde cambia la curvatura hay un <b>punto de inflexión</b> ($f''=0$ y cambia de signo).
+      <div class="ej">$f(x)=x^4-6x^2$: $f''(x)=12x^2-12$. Convexa en $(-\infty,-1)\cup(1,\infty)$, cóncava en $(-1,1)$. Inflexión en $(\pm1,-5)$.</div>
+      (Algunos libros usan "cóncava" y "convexa" al revés: fíjate en el dibujo $\cup$ / $\cap$).`),
+    H('Optimización', R`Para maximizar o minimizar algo: 1) dibuja y nombra las variables; 2) escribe la función a optimizar; 3) usa la condición del enunciado para dejarla con <b>una sola variable</b>; 4) deriva e iguala a 0; 5) comprueba que es máximo o mínimo y que la solución tiene sentido.
+      <div class="ej"><b>Ejemplo resuelto.</b> De una cartulina de 12×12 cm cortamos un cuadrado de lado $x$ en cada esquina para hacer una caja sin tapa. $V(x)=x(12-2x)^2$. $V'(x)=(12-2x)(12-6x)=0\Rightarrow x=2$ ($x=6$ da volumen 0). Volumen máximo $V(2)=128$ cm³.</div>`),
+    H('Representación de funciones', R`Pasos: dominio · simetrías · cortes con los ejes · asíntotas · crecimiento y extremos · curvatura e inflexión · tabla de valores si hace falta · dibujo.
+      <div class="ej"><b>Ejemplo resuelto.</b> $f(x)=x^3-3x^2$. Dominio $\mathbb R$, sin simetría. Cortes: $x^2(x-3)=0\Rightarrow(0,0),(3,0)$. Sin asíntotas. $f'=3x(x-2)$: máximo $(0,0)$, mínimo $(2,-4)$. $f''=6x-6$: inflexión $(1,-2)$.</div>`),
+    H('Aplicaciones en economía', R`Si $C(q)$ es el coste de producir $q$ unidades, $C'(q)$ es el <b>coste marginal</b>: lo que cuesta, aproximadamente, producir una unidad más. Con ingresos $I(q)$, el <b>beneficio</b> es $B(q)=I(q)-C(q)$ y es máximo donde $B'(q)=0$ y $B''(q)<0$.
+      <div class="ej"><b>Ejemplo resuelto.</b> $I(q)=50q-q^2$ y $C(q)=10q+100$. $B(q)=-q^2+40q-100$, $B'(q)=-2q+40=0\Rightarrow q=20$ unidades, con beneficio máximo $B(20)=300$.</div>`)
+  ];
+  PR.derivadas = [
+    G('Tasa de variación y definición'),
+    P('TVM', R`Para $f(x)=x^2-3x$ calcula la TVM en $[1,4]$ y en $[1;\,1{,}1]$. ¿A qué valor se acerca?`, R`$2$ y $-0{,}9$. Se acerca a $f'(1)=-1$.`),
+    P('Por la definición', R`a) $f(x)=3x^2-x$ en $x=1$ &nbsp; b) $f(x)=\frac1x$ en $x=2$ &nbsp; c) $f(x)=\sqrt x$ en $x=4$`, R`a) $\frac{5h+3h^2}h\to5$. <br>b) $\frac{-1}{2(2+h)}\to-\frac14$. <br>c) Conjugado: $\frac1{\sqrt{4+h}+2}\to\frac14$.`),
+    G('Reglas de derivación'),
+    P('Potencias', R`a) $4x^5-3x^2+7$ b) $\frac3{x^2}$ c) $\sqrt[3]{x^2}$ d) $5\sqrt x$`, R`a) $20x^4-6x$ b) $-\frac6{x^3}$ c) $\frac2{3\sqrt[3]x}$ d) $\frac5{2\sqrt x}$`),
+    P('Producto y cociente', R`a) $x^2e^x$ b) $x\ln x$ c) $\frac{2x+1}{x-3}$ d) $\frac{\sin x}x$ e) $\frac{x^2-1}{x^2+1}$`, R`a) $(2x+x^2)e^x$ b) $\ln x+1$ c) $\frac{-7}{(x-3)^2}$ d) $\frac{x\cos x-\sin x}{x^2}$ e) $\frac{4x}{(x^2+1)^2}$`),
+    P('Regla de la cadena', R`a) $(x^2-3x)^5$ b) $\sqrt{1-x^2}$ c) $e^{x^2+1}$ d) $\ln(x^2+4)$ e) $\sin(3x-1)$ f) $\cos^2x$ g) $\tan(x^2)$ h) $2^{3x}$ i) $\ln\frac{x+1}{x-1}$`, R`a) $5(x^2-3x)^4(2x-3)$ b) $\frac{-x}{\sqrt{1-x^2}}$ c) $2xe^{x^2+1}$ d) $\frac{2x}{x^2+4}$ e) $3\cos(3x-1)$ f) $-2\sin x\cos x=-\sin2x$ g) $\frac{2x}{\cos^2(x^2)}$ h) $3\cdot2^{3x}\ln2$ i) $\frac1{x+1}-\frac1{x-1}=\frac{-2}{x^2-1}$`),
+    P('Derivadas sucesivas', R`Calcula hasta la tercera derivada de $x^4-2x^3$ y la derivada $n$-ésima de $e^{2x}$.`, R`$4x^3-6x^2$, $12x^2-12x$, $24x-12$. $\ (e^{2x})^{(n)}=2^ne^{2x}$.`),
+    G('Tangente, derivabilidad y física'),
+    P('Tangente y normal', R`Tangente y normal a $f(x)=x^2-4x+3$ en $x=1$.`, R`Tangente $y=-2x+2$; normal $y=\frac x2-\frac12$.`),
+    P('Tangentes horizontales', R`¿En qué puntos de $y=x^3-3x$ la tangente es horizontal?`, R`$3x^2-3=0\Rightarrow x=\pm1$: $(1,-2)$ y $(-1,2)$.`),
+    P('Derivabilidad', R`a) ¿Es derivable $\begin{cases}x^2 & x\le1\\2x-1 & x>1\end{cases}$ en $x=1$? b) ¿Y $|x-2|$ en $x=2$?`, R`a) Sí: continua y derivadas laterales iguales a 2. <br>b) No: derivadas laterales $-1$ y $1$.`),
+    P('Parámetros', R`Halla $a$ y $b$ para que $f(x)=\begin{cases}ax^2+1 & x\le1\\bx+3 & x>1\end{cases}$ sea derivable.`, R`Continua: $a+1=b+3$. Derivable: $2a=b$. Entonces $a=-2$, $b=-4$.`),
+    P('Lanzamiento vertical', R`$h(t)=20t-5t^2$. Velocidad al segundo, altura máxima y velocidad al llegar al suelo.`, R`$v(1)=10$ m/s. Altura máxima 20 m (en $t=2$). Llega al suelo en $t=4$ con $v=-20$ m/s.`),
+    G('Monotonía, extremos y curvatura'),
+    P('Polinómica', R`Monotonía y extremos de $f(x)=x^3-6x^2+9x+1$.`, R`Crece en $(-\infty,1)\cup(3,\infty)$, decrece en $(1,3)$. Máximo $(1,5)$, mínimo $(3,1)$.`),
+    P('Racional', R`Monotonía y extremos de $f(x)=\frac{x^2}{x-1}$.`, R`$f'(x)=\frac{x(x-2)}{(x-1)^2}$. Crece en $(-\infty,0)\cup(2,\infty)$, decrece en $(0,1)\cup(1,2)$. Máximo $(0,0)$, mínimo $(2,4)$.`),
+    P('Extremos absolutos', R`Máximo y mínimo absolutos de $f(x)=x^2-4x+1$ en $[0,3]$.`, R`$f(0)=1$, $f(2)=-3$, $f(3)=-2$. Máximo absoluto 1 (en $x=0$) y mínimo absoluto $-3$ (en $x=2$).`),
+    P('Curvatura', R`Curvatura e inflexión de $f(x)=x^4-6x^2$.`, R`Convexa ($\cup$) en $(-\infty,-1)\cup(1,\infty)$, cóncava ($\cap$) en $(-1,1)$. Inflexión $(\pm1,-5)$.`),
+    P('Representa', R`Representa $f(x)=x^3-3x^2$.`, R`Cortes $(0,0)$ y $(3,0)$; máximo $(0,0)$; mínimo $(2,-4)$; inflexión $(1,-2)$.`),
+    G('Optimización y economía'),
+    P('La caja', R`De una cartulina de 12×12 cm se cortan cuadrados de lado $x$ en las esquinas para hacer una caja sin tapa. ¿Qué $x$ da volumen máximo?`, R`$V=x(12-2x)^2$: $x=2$ cm, $V=128$ cm³.`),
+    P('Suma mínima', R`Dos números positivos tienen producto 16. ¿Cuáles tienen suma mínima?`, R`$S(x)=x+\frac{16}x$, $S'=1-\frac{16}{x^2}=0\Rightarrow x=4$: 4 y 4.`),
+    P('La ventana', R`Una ventana rectangular tiene 6 m de perímetro. ¿Qué medidas dan más luz (área máxima)?`, R`$A=x(3-x)$, $x=1{,}5$: un cuadrado de 1,5 m (2,25 m²).`),
+    P('Valla junto al río', R`Con 40 m de valla cercamos un terreno rectangular junto a un río (ese lado no lleva valla). ¿Área máxima?`, R`$A(x)=x(40-2x)$: $x=10$, lados 10 y 20 m, 200 m².`),
+    P('Beneficio máximo', R`$I(q)=50q-q^2$ y $C(q)=10q+100$. ¿Qué producción da beneficio máximo?`, R`$B=-q^2+40q-100$: $q=20$, $B=300$.`),
+    P('Coste marginal', R`$C(q)=q^3-6q^2+15q$. Calcula el coste marginal para $q=4$. Y si el coste medio es $q^2-10q+50$, ¿qué producción lo hace mínimo?`, R`$C'(4)=48-48+15=15$. Coste medio mínimo en $q=5$ (vale 25).`)
+  ];
+
+  /* ============================= ESTADÍSTICA ============================= */
+  TH.estadistica = [
+    H('El método estadístico', R`La estadística recoge, organiza y analiza datos para sacar conclusiones. <b>Población</b>: todos los individuos que queremos estudiar. <b>Muestra</b>: la parte que realmente estudiamos; debe ser <b>representativa</b> (elegida al azar y de tamaño suficiente). Fases: plantear la pregunta, recoger datos, organizarlos en tablas y gráficos, calcular parámetros e interpretar.`),
+    H('Tipos de variables', R`<div class="tbl"><table>
+      <tr><th>Tipo</th><th>Ejemplo</th></tr>
+      <tr><td>Cualitativa nominal</td><td>deporte favorito, color de ojos</td></tr>
+      <tr><td>Cualitativa ordinal</td><td>talla S/M/L, nivel de satisfacción</td></tr>
+      <tr><td>Cuantitativa discreta</td><td>nº de hermanos, nº de mensajes (valores aislados)</td></tr>
+      <tr><td>Cuantitativa continua</td><td>altura, tiempo (cualquier valor de un intervalo)</td></tr></table></div>`),
+    H('Tablas de frecuencias', R`<b>Ejemplo resuelto.</b> Número de hermanos de 20 alumnos:
+      <div class="tbl"><table><tr><th>$x_i$</th><th>$f_i$</th><th>$F_i$</th><th>$h_i$</th><th>$H_i$</th><th>$f_ix_i$</th><th>$f_ix_i^2$</th></tr>
+      <tr><td>0</td><td>3</td><td>3</td><td>0,15</td><td>0,15</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>7</td><td>10</td><td>0,35</td><td>0,50</td><td>7</td><td>7</td></tr>
+      <tr><td>2</td><td>6</td><td>16</td><td>0,30</td><td>0,80</td><td>12</td><td>24</td></tr>
+      <tr><td>3</td><td>3</td><td>19</td><td>0,15</td><td>0,95</td><td>9</td><td>27</td></tr>
+      <tr><td>4</td><td>1</td><td>20</td><td>0,05</td><td>1</td><td>4</td><td>16</td></tr>
+      <tr><th>Total</th><td>20</td><td></td><td>1</td><td></td><td>32</td><td>74</td></tr></table></div>
+      $f_i$ absoluta, $F_i$ absoluta acumulada, $h_i=\frac{f_i}N$ relativa (multiplicada por 100, el %), $H_i$ relativa acumulada. Las columnas $f_ix_i$ y $f_ix_i^2$ sirven para la media y la varianza.
+      <p>Con muchos valores o variables continuas se <b>agrupan en intervalos</b> y se usa la <b>marca de clase</b> (el punto medio de cada intervalo) como $x_i$.</p>`),
+    H('Gráficos', R`<ul><li><b>Diagrama de barras</b>: cualitativas y discretas.</li>
+      <li><b>Histograma</b>: datos agrupados; rectángulos pegados cuya área es proporcional a la frecuencia. El <b>polígono de frecuencias</b> une los puntos medios de sus techos.</li>
+      <li><b>Sectores</b>: cada sector mide $h_i\cdot360^\circ$.</li>
+      <li><b>Diagrama de caja</b>: dibuja mínimo, $Q_1$, mediana, $Q_3$ y máximo.</li></ul>`),
+    H('Parámetros de centralización y posición', R`<b>Media</b> $\bar x=\dfrac{\sum f_ix_i}{N}$. <b>Moda</b>: el valor más repetido. <b>Mediana</b>: el valor central de los datos ordenados (el primero cuya $F_i$ supera $\frac N2$; si alguna $F_i$ es justo $\frac N2$, la media de ese valor y el siguiente). <b>Cuartiles</b> $Q_1,Q_2,Q_3$: dejan por debajo el 25 %, 50 % y 75 % (se buscan igual, con $\frac N4$ y $\frac{3N}4$).
+      <div class="ej"><b>En el ejemplo de los hermanos.</b> $\bar x=\frac{32}{20}=1{,}6$. Moda 1. $\frac N2=10$ y $F=10$ justo en $x=1$: mediana $\frac{1+2}2=1{,}5$. $\frac N4=5$: $Q_1=1$. $\frac{3N}4=15$: $Q_3=2$.</div>`),
+    H('Parámetros de dispersión', R`Dicen si los datos están juntos o separados. <b>Rango</b> $=$ máx $-$ mín; <b>rango intercuartílico</b> $=Q_3-Q_1$.
+      <div class="ej">$\sigma^2=\dfrac{\sum f_ix_i^2}{N}-\bar x^2\qquad\sigma=\sqrt{\sigma^2}\qquad CV=\dfrac{\sigma}{\bar x}$</div>
+      <div class="ej"><b>En el ejemplo.</b> $\sigma^2=\frac{74}{20}-1{,}6^2=1{,}14$, $\sigma\approx1{,}07$, $CV\approx0{,}67$.</div>
+      El <b>coeficiente de variación</b> no tiene unidades y permite comparar la dispersión de datos con medias distintas (pesos en kg y alturas en cm, por ejemplo). En muchas distribuciones, la mayoría de datos está en $\bar x\pm\sigma$.`),
+    H('Estadística bidimensional: tablas de contingencia', R`Estudiamos dos variables a la vez. En una <b>tabla de doble entrada</b> aparecen las frecuencias <b>conjuntas</b> $f_{ij}$; los totales de filas y columnas son las frecuencias <b>marginales</b>; y las de una variable dentro de un valor de la otra, las <b>condicionadas</b>.
+      <div class="tbl"><table><tr><th></th><th>Fuma</th><th>No fuma</th><th>Total</th></tr>
+      <tr><th>Hombres</th><td>30</td><td>60</td><td>90</td></tr><tr><th>Mujeres</th><td>22</td><td>88</td><td>110</td></tr><tr><th>Total</th><td>52</td><td>148</td><td>200</td></tr></table></div>
+      Fuman el $\frac{52}{200}=26\,\%$ del total, pero el $\frac{30}{90}\approx33\,\%$ de los hombres y el $\frac{22}{110}=20\,\%$ de las mujeres. Las condicionadas no coinciden con la marginal: las variables <b>no son independientes</b>. Serían independientes si $\frac{f_{ij}}N=\frac{f_{i\cdot}}N\cdot\frac{f_{\cdot j}}N$ en todas las casillas.`),
+    H('Nube de puntos y covarianza', R`Con datos numéricos $(x_i,y_i)$ se dibuja la <b>nube de puntos</b> (diagrama de dispersión). Si los puntos suben, la relación es positiva; si bajan, negativa; si no se ve forma, no hay relación lineal.
+      <div class="ej">Covarianza: $\sigma_{xy}=\dfrac{\sum x_iy_i}{N}-\bar x\,\bar y$</div>
+      Su signo indica el sentido de la relación, pero su valor depende de las unidades. Para medir la fuerza se usa la correlación.`),
+    H('Correlación y rectas de regresión', R`<div class="ej">$r=\dfrac{\sigma_{xy}}{\sigma_x\,\sigma_y}\qquad-1\le r\le1$</div>
+      Cerca de $1$: relación lineal fuerte y positiva; cerca de $-1$, fuerte y negativa; cerca de 0, débil o nula.
+      <p><b>Recta de regresión de $y$ sobre $x$</b> (para predecir $y$): $\ y-\bar y=\dfrac{\sigma_{xy}}{\sigma_x^2}(x-\bar x)$. <br><b>De $x$ sobre $y$</b> (para predecir $x$): $\ x-\bar x=\dfrac{\sigma_{xy}}{\sigma_y^2}(y-\bar y)$.</p>
+      Las dos pasan por $(\bar x,\bar y)$ y el producto de sus pendientes $\frac{\sigma_{xy}}{\sigma_x^2}\cdot\frac{\sigma_{xy}}{\sigma_y^2}$ es $r^2$.
+      <div class="ej"><b>Ejemplo resuelto.</b> $x$: 2, 4, 6, 8; $y$: 3, 7, 5, 9. $\bar x=5$, $\bar y=6$, $\sigma_{xy}=\frac{136}4-30=4$, $\sigma_x^2=\sigma_y^2=5$. $r=\frac45=0{,}8$. Recta de $y$ sobre $x$: $y=0{,}8x+2$; de $x$ sobre $y$: $x=0{,}8y+0{,}2$.</div>`),
+    H('Predicción y causalidad', R`La recta sirve para <b>predecir</b> si $|r|$ es alto (por ejemplo, mayor que 0,8) y el valor está dentro del rango de los datos (<b>interpolar</b>). Fuera de él (<b>extrapolar</b>) la predicción es poco fiable.
+      <p><b>Correlación no implica causalidad</b>: en verano suben las ventas de helados y los ahogamientos, pero los helados no causan ahogamientos; las dos cosas dependen del calor.</p>`),
+    H('Regresión cuadrática y coeficiente de determinación', R`Si la nube tiene forma de curva, se ajusta una parábola $y=ax^2+bx+c$ (<b>regresión cuadrática</b>), normalmente con la calculadora o una hoja de cálculo.
+      <p>El <b>coeficiente de determinación</b> $R^2$ (en la lineal, $R^2=r^2$) indica qué parte de la variación de $y$ explica el modelo: con $r=0{,}9$, $R^2=0{,}81$, el 81 %. Cuanto más cerca de 1, mejor.</p>`)
+  ];
+  PR.estadistica = [
+    G('Estadística unidimensional'),
+    P('Tipos de variables', R`Clasifica: deporte favorito, talla de camiseta (S, M, L), número de mensajes al día, tiempo en llegar al instituto.`, R`Cualitativa nominal; cualitativa ordinal; cuantitativa discreta; cuantitativa continua.`),
+    P('Tabla completa', R`Número de hermanos de 20 alumnos: 0 (3 veces), 1 (7), 2 (6), 3 (3), 4 (1). Haz la tabla y calcula media, mediana, moda, cuartiles, desviación típica y CV.`, R`$\bar x=1{,}6$; mediana 1,5; moda 1; $Q_1=1$, $Q_3=2$; $\sigma^2=1{,}14$, $\sigma\approx1{,}07$; $CV\approx0{,}67$.`),
+    P('Lista de notas', R`4, 5, 5, 6, 6, 6, 7, 7, 8, 9. Calcula media, mediana, moda, rango, desviación típica y CV.`, R`Media 6,3; mediana 6; moda 6; rango 5; $\sigma\approx1{,}42$; $CV\approx0{,}23$.`),
+    P('Datos agrupados', R`$[0,10)$: 5; $[10,20)$: 8; $[20,30)$: 7. Calcula la media, la desviación típica y el intervalo modal.`, R`Marcas 5, 15, 25: $\bar x=16$, $\sigma^2=59$, $\sigma\approx7{,}68$. Intervalo modal $[10,20)$.`),
+    P('Diagrama de sectores', R`De 40 alumnos, 10 prefieren fútbol, 14 baloncesto, 6 tenis y 10 natación. ¿Cuántos grados mide cada sector?`, R`$90^\circ$, $126^\circ$, $54^\circ$ y $90^\circ$.`),
+    P('Media con un dato nuevo', R`La media de 4 números es 6. Añadimos el 11. ¿Cuál es la nueva media?`, R`$\frac{24+11}5=7$.`),
+    P('Comparar dispersión', R`Grupo A: media 60, $\sigma=6$. Grupo B: media 20, $\sigma=4$. ¿Cuál es relativamente más disperso?`, R`$CV_A=0{,}1$ y $CV_B=0{,}2$: el B.`),
+    G('Estadística bidimensional'),
+    P('Tabla de contingencia', R`De 200 personas, 90 son hombres (30 fuman) y 110 mujeres (22 fuman). ¿Qué porcentaje fuma en total, entre los hombres y entre las mujeres? ¿Son independientes?`, R`26 %, 33,3 % y 20 %. No son independientes.`),
+    P('Independencia', R`Hombres: 20 fuman y 30 no. Mujeres: 20 fuman y 30 no. ¿Son independientes sexo y fumar?`, R`Sí: en los dos grupos fuma el 40 %, igual que en el total.`),
+    P('Regresión (I)', R`$x$: 2, 4, 6, 8; $y$: 3, 7, 5, 9. Calcula $r$ y las dos rectas de regresión.`, R`$r=0{,}8$. $y=0{,}8x+2$ y $x=0{,}8y+0{,}2$ (el producto de pendientes es $0{,}64=r^2$).`),
+    P('Regresión (II)', R`$x$: 1, 2, 3, 4, 5; $y$: 10, 8, 7, 4, 1. Calcula $r$ y la recta de $y$ sobre $x$.`, R`$\sigma_{xy}=-4{,}4$, $r\approx-0{,}98$, $y=-2{,}2x+12{,}6$.`),
+    P('Desde las rectas', R`Las rectas de regresión son $y=0{,}5x+3$ y $x=1{,}2y-1$. Halla $\bar x$, $\bar y$ y $r$.`, R`Se cortan en $(\bar x,\bar y)=(6{,}5;\ 6{,}25)$. $r^2=0{,}5\cdot1{,}2=0{,}6$, $r\approx0{,}77$ (positivo porque las pendientes lo son).`),
+    P('Fiabilidad', R`Con $r=0{,}3$, ¿es fiable predecir con la recta de regresión? ¿Y con $r=-0{,}95$?`, R`Con 0,3 no (relación débil). Con $-0{,}95$ sí, dentro del rango de los datos.`),
+    P('Coeficiente de determinación', R`Si $r=0{,}9$, ¿qué porcentaje de la variación de $y$ explica la recta?`, R`$R^2=0{,}81$: el 81 %.`),
+    P('Causalidad', R`En verano se venden más helados y hay más ahogamientos. ¿Los helados causan ahogamientos?`, R`No: hay una tercera variable (el calor) que influye en las dos.`)
+  ];
+
+  /* ===================== EJERCICIOS DE EXAMEN (1 punto) ===================== */
+  // EX.tema = [examen1, examen2, examen3]; cada examen añade ejercicios a los que ya tenía hasta llegar a 10.
+  const E = (e, s) => ({ p: 1, e, s });
+  const EX = {};
+
+  EX.reales = [
+    [
+      E(R`Halla la fracción generatriz de $1{,}2\overline{45}$ y de $0{,}\overline{36}$.`, R`$\frac{1245-12}{990}=\frac{1233}{990}=\frac{137}{110}$ y $\frac{36}{99}=\frac4{11}$.`),
+      E(R`Simplifica $(x^3y^{-2})^2\cdot(x^{-1}y)^3$.`, R`$x^6y^{-4}\cdot x^{-3}y^3=\dfrac{x^3}{y}$.`),
+      E(R`Calcula $\sqrt{50}+\sqrt{18}-2\sqrt8$.`, R`$5\sqrt2+3\sqrt2-4\sqrt2=4\sqrt2$.`),
+      E(R`Calcula $\log_2\frac18+\log_381-\log0{,}01$.`, R`$-3+4-(-2)=3$.`)
+    ],
+    [
+      E(R`Resuelve $|2x-3|\le5$ y escribe el entorno $E(1,2)$ como intervalo.`, R`$-5\le2x-3\le5\Rightarrow[-1,4]$. $\ E(1,2)=(-1,3)$.`),
+      E(R`Simplifica $\dfrac{4^3\cdot9^2}{6^4\cdot2}$.`, R`$\dfrac{2^6\cdot3^4}{2^4\cdot3^4\cdot2}=2$.`),
+      E(R`Racionaliza $\dfrac3{2\sqrt3}$ y $\dfrac1{\sqrt7+\sqrt5}$.`, R`$\dfrac{\sqrt3}2$ y $\dfrac{\sqrt7-\sqrt5}{2}$.`),
+      E(R`Resuelve $2^{2x}-5\cdot2^x+4=0$.`, R`$t=2^x$: $t^2-5t+4=0\Rightarrow t=1,4\Rightarrow x=0,\ x=2$.`)
+    ],
+    [
+      E(R`Calcula y da el resultado en notación científica: $\dfrac{(6\cdot10^{-4})(5\cdot10^{9})}{2\cdot10^{3}}$.`, R`$\dfrac{30\cdot10^5}{2\cdot10^3}=15\cdot10^2=1{,}5\cdot10^3$.`),
+      E(R`Desarrolla $\log\dfrac{x^2\sqrt y}{10z}$.`, R`$2\log x+\frac12\log y-1-\log z$.`),
+      E(R`Resuelve $\log_2(x+3)-\log_2x=2$.`, R`$\frac{x+3}x=4\Rightarrow x=1$ (vale).`),
+      E(R`Ordena de menor a mayor $\sqrt2$, $\sqrt[3]3$ y $\sqrt[6]{10}$.`, R`Índice 6: $\sqrt[6]8<\sqrt[6]9<\sqrt[6]{10}$, es decir, $\sqrt2<\sqrt[3]3<\sqrt[6]{10}$.`)
+    ]
+  ];
+
+  EX.complejos = [
+    [
+      E(R`Calcula $(1-2i)^2+i^{13}$.`, R`$1-4i-4+i=-3-3i$.`),
+      E(R`Pasa $z=-2+2i$ a forma polar.`, R`$r=2\sqrt2$; 2.º cuadrante, $\alpha=135^\circ$: $2\sqrt2_{135^\circ}$.`),
+      E(R`Resuelve $x^2+2x+10=0$.`, R`$x=\frac{-2\pm\sqrt{-36}}2=-1\pm3i$.`)
+    ],
+    [
+      E(R`Calcula $\dfrac{3+i}{1-i}$.`, R`$\dfrac{(3+i)(1+i)}{2}=\dfrac{2+4i}2=1+2i$.`),
+      E(R`Pasa $3_{240^\circ}$ a forma binómica.`, R`$3\cos240^\circ+3i\sin240^\circ=-\frac32-\frac{3\sqrt3}2i$.`),
+      E(R`Calcula $\left(2_{15^\circ}\right)^6$ en binómica.`, R`$64_{90^\circ}=64i$.`)
+    ],
+    [
+      E(R`Halla $k$ para que $(k+i)(2-i)$ sea un número real.`, R`$(2k+1)+(2-k)i$: real si $k=2$.`),
+      E(R`Halla las raíces cuadradas de $-9i$.`, R`$-9i=9_{270^\circ}$: $3_{135^\circ}$ y $3_{315^\circ}$, es decir, $\pm\left(-\frac{3\sqrt2}2+\frac{3\sqrt2}2i\right)$.`),
+      E(R`Con $z_1=6_{100^\circ}$ y $z_2=3_{40^\circ}$, calcula $z_1z_2$ y $\frac{z_1}{z_2}$ (este en binómica).`, R`$18_{140^\circ}$; $\ 2_{60^\circ}=1+\sqrt3i$.`)
+    ]
+  ];
+
+  EX.fin = [
+    [
+      E(R`Un precio sube un 10 % y después otro 10 %. ¿Qué porcentaje ha subido en total?`, R`$1{,}1^2=1{,}21$: un 21 %.`),
+      E(R`Interés simple de 5000 € al 3 % anual durante 8 meses.`, R`$5000\cdot\frac{0{,}03}{12}\cdot8=100$ €.`),
+      E(R`Montante de 2000 € al 5 % compuesto anual durante 4 años.`, R`$2000\cdot1{,}05^4\approx2431{,}01$ €.`)
+    ],
+    [
+      E(R`Con un IVA del 21 % pagamos 60,50 €. ¿Cuánto costaba sin IVA?`, R`$\frac{60{,}50}{1{,}21}=50$ €.`),
+      E(R`TAE de un 3 % anual con capitalización semestral.`, R`$1{,}015^2-1\approx3{,}02\,\%$.`),
+      E(R`¿Cuántos años completos tardan 1000 € al 4 % compuesto en superar los 1500 €?`, R`$1{,}04^n>1{,}5\Rightarrow n>10{,}34$: 11 años.`)
+    ],
+    [
+      E(R`Un producto costaba 120 € en 2019 y 150 € en 2024. Número índice con base 2019.`, R`$\frac{150}{120}\cdot100=125$.`),
+      E(R`Ingresamos 500 € al principio de cada año durante 3 años al 2 %. ¿Capital final?`, R`$\dfrac{500\cdot1{,}02(1{,}02^3-1)}{0{,}02}\approx1560{,}80$ €.`),
+      E(R`Préstamo de 10 000 € a 3 años al 5 % anual. Cuota anual.`, R`$\dfrac{10\,000\cdot0{,}05\cdot1{,}05^3}{1{,}05^3-1}\approx3672{,}09$ €.`)
+    ]
+  ];
+
+  EX.algebra = [
+    [
+      E(R`Calcula $P(-2)$ para $P(x)=x^3-2x+4$. ¿Qué significa el resultado?`, R`$-8+4+4=0$: $x=-2$ es raíz y $(x+2)$ es factor.`),
+      E(R`Desarrolla $(x-3)^3$.`, R`$x^3-9x^2+27x-27$.`),
+      E(R`Divide por Ruffini $(2x^3-5x^2+3):(x-1)$.`, R`Coeficientes $2,-5,0,3$: cociente $2x^2-3x-3$, resto $0$.`),
+      E(R`Factoriza $x^3-x^2-4x+4$.`, R`$x^2(x-1)-4(x-1)=(x-1)(x-2)(x+2)$.`),
+      E(R`Simplifica $\dfrac{x^2-9}{x^2-6x+9}$.`, R`$\dfrac{(x-3)(x+3)}{(x-3)^2}=\dfrac{x+3}{x-3}$.`),
+      E(R`Resuelve $x^4-10x^2+9=0$.`, R`$t=1,9$: $x=\pm1,\ \pm3$.`),
+      E(R`Resuelve $2(x-1)-3<x+1$.`, R`$x<6$: $(-\infty,6)$.`)
+    ],
+    [
+      E(R`Divide $(x^3+2x^2-x+3):(x^2+1)$.`, R`Cociente $x+2$, resto $-2x+1$.`),
+      E(R`Halla $k$ para que $x^3-kx+6$ sea divisible por $x+2$.`, R`$P(-2)=-8+2k+6=0\Rightarrow k=1$.`),
+      E(R`Opera $\dfrac x{x-1}-\dfrac1{x+1}$.`, R`$\dfrac{x(x+1)-(x-1)}{x^2-1}=\dfrac{x^2+1}{x^2-1}$.`),
+      E(R`Resuelve $\dfrac3x+\dfrac2{x-1}=2$.`, R`$2x^2-7x+3=0\Rightarrow x=3,\ x=\frac12$.`),
+      E(R`Resuelve $\sqrt{2x+1}=x-1$.`, R`$x^2-4x=0\Rightarrow x=0,4$. Solo vale $x=4$.`),
+      E(R`Resuelve $x^2-2x-8\ge0$.`, R`$(-\infty,-2]\cup[4,\infty)$.`),
+      E(R`Resuelve $\begin{cases}x-y=1\\xy=6\end{cases}$`, R`$(3,2)$ y $(-2,-3)$.`)
+    ],
+    [
+      E(R`Halla las raíces de $2x^2-x-3$ y factorízalo.`, R`$x=-1$, $x=\frac32$: $(x+1)(2x-3)$.`),
+      E(R`Halla $k$ para que una solución de $x^2-7x+k=0$ sea 2. ¿Cuál es la otra?`, R`$4-14+k=0\Rightarrow k=10$. La suma es 7: la otra es 5.`),
+      E(R`Resuelve $x^3-7x+6=0$.`, R`$(x-1)(x-2)(x+3)=0$: $x=1,2,-3$.`),
+      E(R`Resuelve $\dfrac{x-2}{x+3}\ge0$.`, R`$(-\infty,-3)\cup[2,\infty)$.`),
+      E(R`Resuelve por Gauss: $\begin{cases}x+y-z=0\\x-y+z=2\\2x+y+z=7\end{cases}$`, R`Sumando las dos primeras, $x=1$; luego $y+z=5$ e $y-z=-1$: $(1,2,3)$.`),
+      E(R`Dos números suman 20 y su producto es 96. ¿Cuáles son?`, R`$x^2-20x+96=0$: 8 y 12.`),
+      E(R`Halla los vértices de la región $x+y\le5$, $x\ge1$, $y\ge0$.`, R`$(1,0)$, $(5,0)$ y $(1,4)$.`)
+    ]
+  ];
+
+  EX.funciones = [
+    [
+      E(R`Dominio de $f(x)=\sqrt{9-x^2}$.`, R`$9-x^2\ge0$: $[-3,3]$.`),
+      E(R`Dominio de $f(x)=\dfrac{x+2}{x^2-x-6}$.`, R`$x^2-x-6=(x-3)(x+2)$: $\mathbb R-\{-2,3\}$.`),
+      E(R`Recorrido de $f(x)=-x^2+4x$.`, R`Vértice $(2,4)$, parábola hacia abajo: $(-\infty,4]$.`),
+      E(R`¿Es par o impar $f(x)=\dfrac x{x^2+1}$?`, R`$f(-x)=\frac{-x}{x^2+1}=-f(x)$: impar.`),
+      E(R`Con $f(x)=2x+1$ y $g(x)=\sqrt x$, calcula $(g\circ f)(4)$ y $(f\circ g)(x)$.`, R`$g(9)=3$; $\ 2\sqrt x+1$.`),
+      E(R`Halla la inversa de $f(x)=\dfrac{x-5}2$.`, R`$f^{-1}(x)=2x+5$.`),
+      E(R`Cortes con los ejes y signo de $f(x)=x^2-x-2$.`, R`$(-1,0)$, $(2,0)$, $(0,-2)$. Negativa en $(-1,2)$ y positiva fuera.`)
+    ],
+    [
+      E(R`Dominio de $f(x)=\log(2x-6)$.`, R`$(3,\infty)$.`),
+      E(R`Dominio de $f(x)=\sqrt{\dfrac{x-1}{x+2}}$.`, R`$(-\infty,-2)\cup[1,\infty)$.`),
+      E(R`Halla la inversa de $f(x)=3^{x-1}$.`, R`$f^{-1}(x)=1+\log_3x$.`),
+      E(R`Si $f(x)=\begin{cases}x^2 & x<1\\3-x & x\ge1\end{cases}$, calcula $f(-2)$, $f(1)$ y $f(4)$.`, R`$4$, $2$ y $-1$.`),
+      E(R`Halla la recta que pasa por $(2,7)$ y $(5,16)$ y estima el valor en $x=3$.`, R`$y=3x+1$; en $x=3$, $10$.`),
+      E(R`Resuelve $|x+1|=3$.`, R`$x=2$ y $x=-4$.`),
+      E(R`Periodo de $\cos(3x)$ y recorrido de $2+\cos(3x)$.`, R`$\frac{2\pi}3$; $[1,3]$.`)
+    ],
+    [
+      E(R`Dominio de $f(x)=\dfrac1{x^2+4}$.`, R`$\mathbb R$ (el denominador nunca se anula).`),
+      E(R`Recorrido de $f(x)=\dfrac1{x-3}+2$.`, R`$\mathbb R-\{2\}$.`),
+      E(R`Con $f(x)=x^2-1$ y $g(x)=\frac1x$, calcula $(f\circ g)(x)$ y $(g\circ f)(2)$.`, R`$\frac1{x^2}-1$; $\ \frac13$.`),
+      E(R`Estudia la simetría de $x^4-x^2+1$ y de $x^3+x^2$.`, R`Par; ninguna.`),
+      E(R`Halla la parábola que pasa por $(-1,6)$, $(0,3)$ y $(1,2)$.`, R`$c=3$, $a-b=3$, $a+b=-1$: $y=x^2-2x+3$.`),
+      E(R`Demanda $D(p)=120-3p$ y oferta $O(p)=2p+20$. Equilibrio.`, R`$p=20$, cantidad 60.`),
+      E(R`Calcula $E(3{,}9)$, $E(-0{,}5)$ y $E(-2)$.`, R`$3$, $-1$ y $-2$.`)
+    ]
+  ];
+
+  EX.limites = [
+    [
+      E(R`$\displaystyle\lim_{x\to3}\frac{x^2-9}{x^2-2x-3}$`, R`$\frac{x+3}{x+1}\to\frac32$.`),
+      E(R`$\displaystyle\lim_{x\to\infty}\frac{4x^3-x}{2x^3+7}$`, R`$2$.`),
+      E(R`$\displaystyle\lim_{x\to\infty}\frac{x^2+1}{x+5}$`, R`$+\infty$.`),
+      E(R`$\displaystyle\lim_{x\to0}\frac{\sqrt{1+x}-\sqrt{1-x}}{x}$`, R`Conjugado: $\frac{2}{\sqrt{1+x}+\sqrt{1-x}}\to1$.`),
+      E(R`$\displaystyle\lim_{x\to\infty}\left(1+\frac2x\right)^{3x}$`, R`$e^6$.`),
+      E(R`Asíntotas de $f(x)=\dfrac{x+3}{x-1}$.`, R`Vertical $x=1$; horizontal $y=1$.`),
+      E(R`Halla $a$ para que $f(x)=\begin{cases}ax+3 & x<2\\x^2-1 & x\ge2\end{cases}$ sea continua.`, R`$2a+3=3\Rightarrow a=0$.`)
+    ],
+    [
+      E(R`$\displaystyle\lim_{x\to1}\frac{x^3-1}{x^2-1}$`, R`$\frac{x^2+x+1}{x+1}\to\frac32$.`),
+      E(R`Límites laterales de $\dfrac1{x-3}$ en $x=3$.`, R`$-\infty$ y $+\infty$.`),
+      E(R`$\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+2x}-x\right)$`, R`$\frac{2x}{\sqrt{x^2+2x}+x}\to1$.`),
+      E(R`$\displaystyle\lim_{x\to\infty}\left(\frac{x-1}{x+1}\right)^x$`, R`$e^{\lim x\cdot\frac{-2}{x+1}}=e^{-2}$.`),
+      E(R`Asíntotas de $f(x)=\dfrac{x^2+1}x$.`, R`Vertical $x=0$; oblicua $y=x$.`),
+      E(R`Clasifica la discontinuidad de $\dfrac{x^2-4}{x-2}$ en $x=2$.`, R`Evitable: el límite es 4.`),
+      E(R`Demuestra que $x^3-2x-5=0$ tiene una raíz entre 2 y 3.`, R`$f(2)=-1<0$, $f(3)=16>0$, continua: Bolzano.`)
+    ],
+    [
+      E(R`$\displaystyle\lim_{x\to2}\left(\frac1{x-2}-\frac4{x^2-4}\right)$`, R`$\frac{x+2-4}{x^2-4}=\frac1{x+2}\to\frac14$.`),
+      E(R`$\displaystyle\lim_{x\to-\infty}\frac{2x+1}{x-3}$`, R`$2$.`),
+      E(R`$\displaystyle\lim_{x\to4}\frac{\sqrt x-2}{x-4}$`, R`$\frac1{\sqrt x+2}\to\frac14$.`),
+      E(R`Asíntotas de $f(x)=\dfrac{3x^2}{x^2-4}$.`, R`Verticales $x=\pm2$; horizontal $y=3$.`),
+      E(R`Estudia la continuidad de $f(x)=\begin{cases}x+2 & x\le0\\2+x^2 & 0<x\le1\\4x-1 & x>1\end{cases}$`, R`En 0: $2=2$; en 1: $3=3$. Continua en $\mathbb R$.`),
+      E(R`Discontinuidades de $f(x)=\dfrac{x}{x^2-x}$.`, R`$x=0$: evitable (límite $-1$). $x=1$: salto infinito.`),
+      E(R`Halla $k$: $f(x)=\begin{cases}\dfrac{x^2+x-2}{x-1} & x\neq1\\k & x=1\end{cases}$ continua.`, R`$x+2\to3$: $k=3$.`)
+    ]
+  ];
+
+  EX.derivadas = [
+    [
+      E(R`TVM de $f(x)=x^3$ en $[1,3]$.`, R`$\frac{27-1}2=13$.`),
+      E(R`Derivada por la definición de $f(x)=x^2+2x$ en $x=1$.`, R`$\frac{4h+h^2}h\to4$.`),
+      E(R`Deriva $(3x^2-2)^4$.`, R`$24x(3x^2-2)^3$.`),
+      E(R`Deriva $x^3e^{2x}$.`, R`$x^2e^{2x}(3+2x)$.`),
+      E(R`Tangente a $f(x)=x^3-2x$ en $x=1$.`, R`$f(1)=-1$, $f'(1)=1$: $y=x-2$.`),
+      E(R`Monotonía de $f(x)=x^3-3x^2$.`, R`$f'=3x(x-2)$: crece en $(-\infty,0)\cup(2,\infty)$, decrece en $(0,2)$.`),
+      E(R`Extremos de $f(x)=2x^3-3x^2-12x$.`, R`$f'=6(x-2)(x+1)$: máximo $(-1,7)$, mínimo $(2,-20)$.`)
+    ],
+    [
+      E(R`Deriva $\ln(3x^2+1)$.`, R`$\frac{6x}{3x^2+1}$.`),
+      E(R`Deriva $\dfrac{x-1}{x+1}$.`, R`$\frac2{(x+1)^2}$.`),
+      E(R`Deriva $\sin^2(2x)$.`, R`$4\sin2x\cos2x=2\sin4x$.`),
+      E(R`Deriva $\sqrt{x^3+1}$.`, R`$\frac{3x^2}{2\sqrt{x^3+1}}$.`),
+      E(R`Recta normal a $f(x)=\sqrt x$ en $x=4$.`, R`$f'(4)=\frac14$: normal $y=-4x+18$.`),
+      E(R`Punto de $f(x)=x^2+2$ donde la tangente es paralela a $y=4x$.`, R`$2x=4$: $(2,6)$.`),
+      E(R`De todos los rectángulos de área 100, ¿cuál tiene perímetro mínimo?`, R`$P=2x+\frac{200}x$, $x=10$: un cuadrado de 10, perímetro 40.`)
+    ],
+    [
+      E(R`¿Es derivable $f(x)=\begin{cases}3x-1 & x<2\\x^2+1 & x\ge2\end{cases}$ en $x=2$?`, R`Continua ($5=5$), pero derivadas 3 y 4: no es derivable.`),
+      E(R`Curvatura e inflexión de $f(x)=x^4-4x^3$.`, R`$f''=12x(x-2)$: convexa en $(-\infty,0)\cup(2,\infty)$, cóncava en $(0,2)$. Inflexión en $(0,0)$ y $(2,-16)$.`),
+      E(R`Extremos absolutos de $f(x)=x^3-3x$ en $[0,2]$.`, R`$f(0)=0$, $f(1)=-2$, $f(2)=2$: máximo 2, mínimo $-2$.`),
+      E(R`Si $s(t)=t^3-6t^2+9t$, ¿cuándo se para el móvil? ¿Cuándo es nula la aceleración?`, R`$v=3(t-1)(t-3)=0$: en $t=1$ y $t=3$. $a=6t-12=0$: $t=2$.`),
+      E(R`Halla $a$ y $b$ para que $x^2+ax+b$ tenga un mínimo en $(2,-1)$.`, R`$4+a=0\Rightarrow a=-4$; $4-8+b=-1\Rightarrow b=3$.`),
+      E(R`$B(q)=-2q^2+120q-1000$. ¿Producción y beneficio máximos?`, R`$q=30$, $B=800$.`),
+      E(R`Monotonía y extremos de $f(x)=\dfrac{e^x}x$.`, R`$f'=\frac{e^x(x-1)}{x^2}$: decrece en $(-\infty,0)\cup(0,1)$, crece en $(1,\infty)$. Mínimo $(1,e)$.`)
+    ]
+  ];
+
+  EX.estadistica = [
+    [
+      E(R`Clasifica: nivel de estudios, número de suspensos, peso, marca de móvil.`, R`Cualitativa ordinal, cuantitativa discreta, cuantitativa continua, cualitativa nominal.`),
+      E(R`Media, mediana y moda de: 2, 3, 3, 5, 7, 8, 8, 8, 10.`, R`Media $\frac{54}9=6$; mediana 7; moda 8.`),
+      E(R`Desviación típica de 2, 4, 6, 8.`, R`$\bar x=5$; $\sigma^2=\frac{120}4-25=5$; $\sigma\approx2{,}24$.`),
+      E(R`De 50 alumnos, 20 van en bus. ¿Cuántos grados mide ese sector?`, R`$\frac{20}{50}\cdot360^\circ=144^\circ$.`),
+      E(R`Si $\sigma_{xy}=6$, $\sigma_x=2$ y $\sigma_y=4$, calcula $r$ e interprétalo.`, R`$r=\frac6{8}=0{,}75$: correlación positiva bastante fuerte.`),
+      E(R`Con $\bar x=4$, $\bar y=10$, $\sigma_x^2=2$ y $\sigma_{xy}=3$, halla la recta de $y$ sobre $x$ y estima $y$ para $x=5$.`, R`Pendiente $1{,}5$: $y=1{,}5x+4$. Para $x=5$: $11{,}5$.`),
+      E(R`¿Qué significa $R^2=0{,}64$?`, R`Que la recta explica el 64 % de la variación de $y$ ($|r|=0{,}8$).`)
+    ],
+    [
+      E(R`Tabla: $x_i$ 1, 2, 3, 4 con $f_i$ 2, 5, 8, 5. Calcula la media y la moda.`, R`$\bar x=\frac{2+10+24+20}{20}=2{,}8$; moda 3.`),
+      E(R`En esa tabla, halla la mediana y los cuartiles.`, R`$F_i$: 2, 7, 15, 20. Mediana 3 ($F$ supera 10 en $x=3$). $Q_1=2$ ($\frac N4=5$), $Q_3=3{,}5$ (15 es justo $\frac{3N}4$: media de 3 y 4).`),
+      E(R`Media de los datos agrupados $[0,4)$: 3, $[4,8)$: 5, $[8,12)$: 2.`, R`Marcas 2, 6, 10: $\frac{6+30+20}{10}=5{,}6$.`),
+      E(R`Media 12 y $\sigma=3$ frente a media 40 y $\sigma=6$. ¿Cuál es más disperso?`, R`$CV$: $0{,}25$ y $0{,}15$. El primero.`),
+      E(R`De 80 personas, 50 son mujeres (20 leen a diario) y 30 hombres (12 leen). ¿Son independientes sexo y lectura?`, R`$\frac{20}{50}=0{,}4$ y $\frac{12}{30}=0{,}4$: sí.`),
+      E(R`$x$: 1, 2, 3; $y$: 2, 4, 9. Calcula la covarianza.`, R`$\bar x=2$, $\bar y=5$; $\frac{2+8+27}3-10=\frac73\approx2{,}33$.`),
+      E(R`Las rectas $y=2x-1$ y $x=0{,}3y+1$ son de regresión. Calcula $\bar x$, $\bar y$ y $r$.`, R`Corte: $x=0{,}3(2x-1)+1\Rightarrow0{,}4x=0{,}7$, $\bar x=1{,}75$, $\bar y=2{,}5$. $r^2=0{,}6$, $r\approx0{,}77$.`)
+    ],
+    [
+      E(R`Rango, varianza y CV de 10, 12, 14, 16, 18.`, R`Rango 8; $\bar x=14$; $\sigma^2=8$; $\sigma\approx2{,}83$; $CV\approx0{,}20$.`),
+      E(R`¿Qué gráfico usarías para la estatura de 100 alumnos agrupada en intervalos? ¿Y para el deporte favorito?`, R`Histograma; diagrama de barras o de sectores.`),
+      E(R`La media de 5 notas es 6. ¿Qué nota hace falta en la sexta para que la media sea 6,5?`, R`$30+x=39\Rightarrow x=9$.`),
+      E(R`Con $r=-0{,}2$, ¿tiene sentido predecir con la recta?`, R`No: la relación lineal es muy débil.`),
+      E(R`$x$: 0, 1, 2, 3; $y$: 1, 3, 5, 7. Calcula $r$ y la recta.`, R`Los puntos están en la recta $y=2x+1$: $r=1$.`),
+      E(R`Predecir el peso de un adulto con una recta hecha con niños de 6 a 10 años, ¿es fiable?`, R`No: es extrapolar fuera del rango de los datos.`),
+      E(R`Pon un ejemplo de correlación sin causalidad.`, R`Por ejemplo, número de bomberos en un incendio y daños: los dos dependen del tamaño del incendio.`)
+    ]
+  ];
+
+  EX.prob = [
+    [
+      E(R`Lanzamos un dado. ¿Probabilidad de sacar un número primo?`, R`$\{2,3,5\}$: $\frac12$.`),
+      E(R`$P(A)=0{,}45$, $P(B)=0{,}3$, $P(A\cap B)=0{,}15$. Calcula $P(A\cup B)$ y $P(\bar A)$.`, R`$0{,}6$ y $0{,}55$.`),
+      E(R`$A$ y $B$ son incompatibles, $P(A)=0{,}3$ y $P(B)=0{,}5$. Calcula $P(A\cup B)$.`, R`$0{,}8$.`),
+      E(R`Lanzamos dos dados. ¿Probabilidad de que la suma sea 8?`, R`$(2,6),(3,5),(4,4),(5,3),(6,2)$: $\frac5{36}$.`),
+      E(R`Baraja española (40 cartas): probabilidad de sacar un rey o una copa.`, R`$\frac{4+10-1}{40}=\frac{13}{40}$.`),
+      E(R`Urna con 3 bolas blancas y 7 negras. Dos extracciones con reemplazamiento: $P(\text{2 blancas})$.`, R`$0{,}3^2=0{,}09$.`),
+      E(R`$P(A\cap B)=0{,}12$ y $P(B)=0{,}4$. Calcula $P(A|B)$.`, R`$0{,}3$.`)
+    ],
+    [
+      E(R`Lanzamos 4 monedas. ¿Probabilidad de al menos una cruz?`, R`$1-\frac1{16}=\frac{15}{16}$.`),
+      E(R`$A$ y $B$ independientes, $P(A)=0{,}2$ y $P(B)=0{,}5$. Calcula $P(A\cup B)$.`, R`$0{,}2+0{,}5-0{,}1=0{,}6$.`),
+      E(R`De 100 alumnos, 60 aprueban Mates, 50 Física y 40 las dos. $P(\text{Física}|\text{Mates})$ y $P(\text{ninguna})$.`, R`$\frac{40}{60}=\frac23$; $1-0{,}7=0{,}3$.`),
+      E(R`Bolsa con 4 bolas rojas y 2 azules; sacamos 2 sin reemplazamiento. $P(\text{2 azules})$.`, R`$\frac26\cdot\frac15=\frac1{15}$.`),
+      E(R`El 60 % son chicas y el 40 % chicos. Llevan gafas el 30 % de las chicas y el 20 % de los chicos. $P(\text{gafas})$.`, R`$0{,}18+0{,}08=0{,}26$.`),
+      E(R`En el ejercicio anterior, si alguien lleva gafas, ¿probabilidad de que sea chica?`, R`$\frac{0{,}18}{0{,}26}=\frac9{13}\approx0{,}69$.`),
+      E(R`Si $P(A\cup B)=0{,}7$, calcula $P(\bar A\cap\bar B)$.`, R`$0{,}3$ (De Morgan).`)
+    ],
+    [
+      E(R`Lanzamos una moneda 3 veces. Escribe el espacio muestral y calcula $P(\text{exactamente una cara})$.`, R`8 resultados: CCC, CCX, …, XXX. $\frac38$.`),
+      E(R`$P(A)=0{,}6$ y $P(B|A)=0{,}5$. Calcula $P(A\cap B)$.`, R`$0{,}3$.`),
+      E(R`Si $P(A\cap B)=0{,}25$, calcula $P(\bar A\cup\bar B)$.`, R`$0{,}75$.`),
+      E(R`Urna 1: 2 blancas y 3 negras. Urna 2: 4 blancas y 1 negra. Pasamos una bola de la 1 a la 2 y sacamos una de la 2. $P(\text{blanca})$.`, R`$\frac25\cdot\frac56+\frac35\cdot\frac46=\frac{11}{15}$.`),
+      E(R`Una enfermedad afecta al 5 %. El test da positivo en el 90 % de enfermos y en el 5 % de sanos. Si das positivo, ¿probabilidad de estar enfermo?`, R`$\frac{0{,}045}{0{,}045+0{,}0475}\approx0{,}49$.`),
+      E(R`Lanzamos un dado hasta sacar un 6. ¿Probabilidad de que salga por primera vez en la tercera tirada?`, R`$\left(\frac56\right)^2\frac16=\frac{25}{216}$.`),
+      E(R`¿Son lo mismo sucesos incompatibles e independientes? Pon un ejemplo.`, R`No. Par e impar en un dado son incompatibles pero no independientes (si ocurre uno, el otro no puede).`)
+    ]
+  ];
+
+  EX.comb = [
+    [
+      E(R`¿De cuántas formas se ordenan las letras de LIBRO?`, R`$5!=120$.`),
+      E(R`¿Cuántos números de 3 cifras distintas se forman con los dígitos del 1 al 6?`, R`$V_{6,3}=120$.`),
+      E(R`¿Cuántos equipos de 5 se pueden formar con 10 personas?`, R`$\binom{10}5=252$.`),
+      E(R`¿Cuántas contraseñas de 4 letras (26 letras, con repetición) hay?`, R`$26^4=456\,976$.`)
+    ],
+    [
+      E(R`¿Cuántos anagramas tiene BANANA?`, R`$\frac{6!}{3!\,2!}=60$.`),
+      E(R`Comprueba que $\binom73+\binom74=\binom84$.`, R`$35+35=70$ ✓`),
+      E(R`Coeficiente de $x^2$ en $(x+3)^5$.`, R`$\binom53\cdot3^3=270$.`),
+      E(R`Con 5 chicos y 4 chicas, ¿cuántas comisiones de 2 chicos y 2 chicas hay?`, R`$\binom52\binom42=60$.`)
+    ],
+    [
+      E(R`¿De cuántas formas se sientan 6 personas alrededor de una mesa redonda?`, R`Fijando una, $5!=120$.`),
+      E(R`Elegimos 3 números de 10. ¿Probabilidad de acertar los 3?`, R`$\frac1{\binom{10}3}=\frac1{120}$.`),
+      E(R`Sacamos 3 cartas de 40. ¿Probabilidad de que las 3 sean oros?`, R`$\frac{\binom{10}3}{\binom{40}3}=\frac{120}{9880}=\frac3{247}$.`),
+      E(R`Lanzamos 3 monedas. ¿Probabilidad de exactamente 1 cara?`, R`$\frac{\binom31}{8}=\frac38$.`)
+    ]
+  ];
+
+  EX.dist = [
+    [
+      E(R`$X$ = número de caras al lanzar 2 monedas. Tabla, media y desviación típica.`, R`$P(0)=\frac14$, $P(1)=\frac12$, $P(2)=\frac14$. $\mu=1$, $\sigma^2=1{,}5-1=0{,}5$, $\sigma\approx0{,}71$.`),
+      E(R`$X\sim B(5;0{,}5)$. Calcula $P(X=3)$.`, R`$\binom53\frac1{32}=\frac{10}{32}=0{,}3125$.`),
+      E(R`$X\sim B(4;0{,}1)$. Calcula $P(X\ge1)$.`, R`$1-0{,}9^4=0{,}3439$.`),
+      E(R`Media y desviación típica de $B(100;0{,}2)$.`, R`$\mu=20$, $\sigma=\sqrt{16}=4$.`),
+      E(R`Calcula $P(Z\le0{,}84)$ y $P(Z>2)$.`, R`$0{,}7995$ y $0{,}0228$.`),
+      E(R`Calcula $P(Z\le-0{,}5)$.`, R`$1-0{,}6915=0{,}3085$.`),
+      E(R`$X\sim N(50,10)$. Calcula $P(X<65)$.`, R`$P(Z<1{,}5)=0{,}9332$.`)
+    ],
+    [
+      E(R`Un juego da 3 € con probabilidad 0,2 y quita 1 € con probabilidad 0,8. ¿Ganancia esperada?`, R`$0{,}6-0{,}8=-0{,}2$ €.`),
+      E(R`$X\sim B\!\left(6,\frac13\right)$. Calcula $P(X=2)$.`, R`$15\cdot\frac19\cdot\frac{16}{81}=\frac{240}{729}\approx0{,}329$.`),
+      E(R`Calcula $P(-1{,}5\le Z\le1{,}5)$.`, R`$2\cdot0{,}9332-1=0{,}8664$.`),
+      E(R`Halla $k$ con $P(Z\le k)=0{,}975$.`, R`$k=1{,}96$.`),
+      E(R`$X\sim N(170,8)$. ¿Qué porcentaje está entre 162 y 186?`, R`$P(-1\le Z\le2)=0{,}9772-0{,}1587=0{,}8185$: 81,85 %.`),
+      E(R`$B(200;0{,}5)$. Aproxima $P(X\le90)$ con la normal.`, R`$N(100;\ 7{,}07)$: $P(X'\le90{,}5)=P(Z\le-1{,}34)\approx0{,}09$.`),
+      E(R`Error máximo de un intervalo al 95 % con $\sigma=12$ y $n=36$.`, R`$1{,}96\cdot\frac{12}6=3{,}92$.`)
+    ],
+    [
+      E(R`$P(X=x)=kx$ para $x=1,2,3,4$. Halla $k$ y la media.`, R`$10k=1\Rightarrow k=0{,}1$. $\mu=0{,}1(1+4+9+16)=3$.`),
+      E(R`$X\sim B(n,p)$ con $\mu=6$ y $\sigma^2=4{,}2$. Halla $n$ y $p$.`, R`$q=\frac{4{,}2}6=0{,}7$, $p=0{,}3$, $n=20$.`),
+      E(R`Calcula $P(Z\ge1{,}28)$.`, R`$\approx0{,}10$.`),
+      E(R`Cociente intelectual $N(100,15)$. ¿Qué porcentaje supera 130?`, R`$P(Z>2)=0{,}0228$: 2,28 %.`),
+      E(R`En $N(100,15)$, ¿qué valor deja por debajo el 90 %?`, R`$100+1{,}28\cdot15=119{,}2$.`),
+      E(R`Intervalo al 99 % para la media con $n=64$, $\bar x=50$, $\sigma=8$.`, R`$50\pm2{,}575\cdot1$: $(47{,}425;\ 52{,}575)$.`),
+      E(R`Tamaño de muestra para un error menor que 2 con $\sigma=10$ al 95 %.`, R`$\left(\frac{1{,}96\cdot10}2\right)^2=96{,}04$: 97.`)
+    ]
+  ];
+
+  window.CC13_B1X = { TH, PR, H, P, G, EX };
 })();
