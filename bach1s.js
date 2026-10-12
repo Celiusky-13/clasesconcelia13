@@ -1,12 +1,11 @@
 /* ClasesConCelia13 · 1º Bachillerato Sociales: Matemáticas Aplicadas a las Ciencias Sociales I.
-   Sigue los 8 capítulos del libro de Marea Verde (CC BY-NC-SA); teoría, ejemplos y ejercicios redactados para esta web. */
+   Teoría, ejemplos y ejercicios redactados para esta web. */
 (() => {
   'use strict';
   const R = String.raw;
   const { TH, PR, H, P, G } = window.CC13_B1X;
   const C = window.CC13_B1 || [];
   const Q = (p, e, s) => ({ p, e, s });
-  const MV = 'https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/';
   const byName = n => C.find(t => t.name === n) || { theory: [], practice: [], exams: [[], [], []] };
 
   /* ------------------------------------------------ Matemática financiera */
@@ -133,20 +132,11 @@
     P('Intervalo para una proporción', R`De 400 encuestados, 160 votarán al partido A. Intervalo al 95 % para la proporción de votantes.`, R`$\hat p=0{,}4$: $0{,}4\pm1{,}96\sqrt{\frac{0{,}24}{400}}=0{,}4\pm0{,}048$, es decir, $(0{,}352;\ 0{,}448)$.`)
   ];
 
-  /* -------------------------------------------------- Extras de otros temas */
-  const TH_ECO = [H('Aplicaciones en economía', R`Si $C(q)$ es el <b>coste</b> de producir $q$ unidades, $C'(q)$ es el <b>coste marginal</b>: lo que cuesta, aproximadamente, producir una unidad más. Con ingresos $I(q)$, el <b>beneficio</b> es $B(q)=I(q)-C(q)$ y es máximo donde $B'(q)=0$ y $B''(q)<0$.
-    <div class="ej"><b>Ejemplo resuelto.</b> $B(q)=-q^2+40q-300$: $B'(q)=-2q+40=0\Rightarrow q=20$ unidades, con beneficio $B(20)=100$. Como $B''=-2<0$, es un máximo.</div>`)];
-  const PR_ECO = [G('Economía'),
-    P('Coste mínimo', R`El coste medio de producir $q$ unidades es $C(q)=q^2-10q+50$. ¿Qué producción lo hace mínimo?`, R`$C'(q)=2q-10=0\Rightarrow q=5$, con coste $25$.`),
-    P('Beneficio máximo', R`$B(q)=-q^2+40q-300$. ¿Cuántas unidades dan beneficio máximo y cuánto es?`, R`$q=20$, $B(20)=100$.`)];
-  const TH_REG2 = [H('Regresión cuadrática y coeficiente de determinación', R`Si la nube de puntos tiene forma de curva, se puede ajustar una parábola $y=ax^2+bx+c$ (<b>regresión cuadrática</b>), normalmente con la calculadora o la hoja de cálculo.
-    <p>El <b>coeficiente de determinación</b> $R^2=r^2$ (en la lineal) dice qué parte de la variación de $y$ explica el modelo: con $r=0{,}9$, $R^2=0{,}81$, el 81 %. Cuanto más cerca de 1, mejores predicciones.</p>`)];
-
   const T = name => byName(name);
 
   window.CC13_B1S = [
     { n: 'T1', name: 'Números reales y matemática financiera', desc: 'Reales, potencias, radicales, notación científica, logaritmos, interés y préstamos.',
-      mv: MV + 'BS1%2001%20Reales.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%201%20Reales.pdf', tool: 'financiera',
+ tool: 'financiera',
       theory: [...TH.reales, ...TH.potencias, ...TH.radicales, ...TH.notacion, ...TH.logaritmos, ...TH_FIN],
       practice: [...PR.reales, ...PR.potencias, ...PR.radicales, ...PR.notacion, ...PR.logaritmos, ...PR_FIN],
       exams: [
@@ -167,22 +157,22 @@
         ]
       ] },
     { n: 'T2', name: 'Álgebra', desc: 'Polinomios, fracciones algebraicas, ecuaciones de todo tipo, inecuaciones, Gauss y sistemas no lineales.',
-      mv: MV + 'BS1%2002%20ALGEBRA.pdf', mvr: MV + 'Respuestas%20BC1%20Cap%C3%ADtulo%202%20%C3%81lgebra.pdf', tool: 'ruffini',
+ tool: 'ruffini',
       theory: TH.algebra, practice: PR.algebra, exams: T('Álgebra').exams },
     { n: 'T3', name: 'Funciones', desc: 'Tipos de funciones, interpolación, a trozos, oferta y demanda, composición, inversa y características.',
-      mv: MV + 'BS1%2003%20Funciones.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%203%20Funciones.pdf', tool: 'familias',
+ tool: 'familias',
       theory: TH.funciones, practice: PR.funciones, exams: T('Funciones').exams },
     { n: 'T4', name: 'Límites y continuidad', desc: 'Límites laterales, indeterminaciones, asíntotas y tipos de discontinuidad.',
-      mv: MV + 'BS1%2004%20Limites.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%204%20L%C3%ADmites.pdf',
-      theory: T('Límites y continuidad').theory, practice: [G('Límites y continuidad'), ...T('Límites y continuidad').practice], exams: T('Límites y continuidad').exams },
+
+      theory: T('Límites y continuidad').theory, practice: T('Límites y continuidad').practice, exams: T('Límites y continuidad').exams },
     { n: 'T5', name: 'Derivadas', desc: 'Tasa de variación, reglas, tangente, crecimiento, extremos y aplicaciones a la economía.',
-      mv: MV + 'BS1%2005%20Derivadas.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%205%20Derivadas.pdf', tool: 'tangente',
-      theory: [...T('Derivadas').theory, ...TH_ECO], practice: [G('Derivadas'), ...T('Derivadas').practice, ...PR_ECO], exams: T('Derivadas').exams },
+ tool: 'tangente',
+      theory: T('Derivadas').theory, practice: T('Derivadas').practice, exams: T('Derivadas').exams },
     { n: 'T6', name: 'Estadística', desc: 'Tablas y parámetros, estadística bidimensional, correlación y regresión.',
-      mv: MV + 'BS1%2006%20Estadistica.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%206%20Estad%C3%ADstica.pdf', tool: 'regresion',
-      theory: [...T('Estadística').theory, ...TH_REG2], practice: [G('Estadística'), ...T('Estadística').practice], exams: T('Estadística').exams },
+ tool: 'regresion',
+      theory: T('Estadística').theory, practice: T('Estadística').practice, exams: T('Estadística').exams },
     { n: 'T7', name: 'Probabilidad y combinatoria', desc: 'Sucesos, Laplace, árboles, Bayes, permutaciones, variaciones, combinaciones y binomio de Newton.',
-      mv: MV + 'BS1%2007%20Probabilidad.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%207%20Prob.pdf',
+
       theory: [...T('Probabilidad').theory, ...TH_COMB], practice: [G('Probabilidad'), ...T('Probabilidad').practice, ...PR_COMB],
       exams: [
         [
@@ -202,7 +192,7 @@
         ]
       ] },
     { n: 'T8', name: 'Distribuciones de probabilidad', desc: 'Variable aleatoria, binomial, normal, aproximación e intervalos de confianza.',
-      mv: MV + 'BS1%2008%20Distribuciones.pdf', mvr: MV + 'Respuestas%20BS1%20Cap%C3%ADtulo%208%20Distribuciones.pdf', tool: 'normal',
+ tool: 'normal',
       theory: TH_DIST, practice: PR_DIST,
       exams: [
         [
@@ -222,4 +212,10 @@
         ]
       ] }
   ];
+  /* Exámenes de 10 ejercicios */
+  const XE = window.CC13_B1X.EX, S = window.CC13_B1S;
+  const fill = (base, ...extra) => base.map((ex, k) => [...ex.map(q => ({ ...q, p: 1 })), ...extra.flatMap(x => x[k])]);
+  S[0].exams = fill(S[0].exams, XE.reales, XE.fin);
+  S[6].exams = fill(S[6].exams, XE.comb, XE.prob.map(e => e.slice(0, 3)));
+  S[7].exams = fill(S[7].exams, XE.dist);
 })();
