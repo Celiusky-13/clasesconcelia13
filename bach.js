@@ -525,7 +525,7 @@
     const root = document.querySelector(`[data-bach="${key}"]`);
     if (!root) return;
     const grid = $('.bach-topics', root), area = $('.bach-exam', root);
-    let sel = null, tab = 'teoria', ex = 0, timer = null, left = MINUTES * 60;
+    let sel = null, tab = 'teoria', ex = 0, timer = null, left = MINUTES * 60, mins = MINUTES;
 
     function drawTopics() {
       grid.innerHTML = '';
@@ -547,7 +547,7 @@
       const c = $('.clock', area); if (!c) return;
       c.textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
       c.classList.toggle('low', left <= 300);
-      const btn = $('[data-timer]', area); if (btn) btn.textContent = timer ? 'Pausar' : (left < MINUTES * 60 ? 'Seguir' : 'Empezar cronómetro');
+      const btn = $('[data-timer]', area); if (btn) btn.textContent = timer ? 'Pausar' : (left < mins * 60 ? 'Seguir' : 'Empezar cronómetro');
     }
 
     function theoryHTML(t) {
@@ -568,14 +568,14 @@
     function examHTML(t) {
       const qs = t.exams[ex];
       return `<div class="exam-head"><h3>Examen de prueba ${ex + 1}</h3>
-          <div class="row"><span class="clock">45:00</span><button class="btn" type="button" data-timer>Empezar cronómetro</button></div></div>
+          <div class="row"><span class="clock">${mins}:00</span><button class="btn" type="button" data-timer>Empezar cronómetro</button></div></div>
         <div class="seg" role="group" aria-label="Elegir examen">
           ${[0, 1, 2].map(k => `<button type="button" data-ex="${k}" aria-pressed="${k === ex}">Examen ${k + 1}</button>`).join('')}
         </div>
-        <p class="small">Tiempo orientativo: ${MINUTES} minutos. Hazlo en papel, luego abre las soluciones y ponte nota en cada ejercicio (de 0,1 en 0,1, como en la PAU).</p>
+        <p class="small">${qs.length} ejercicios · tiempo orientativo: ${mins} minutos. Hazlo en papel, luego abre las soluciones y ponte nota en cada ejercicio (de 0,1 en 0,1).</p>
         <ol class="bach-qs">
           ${qs.map((q, k) => `<li>
-            <div class="q-top"><b>Ejercicio ${k + 1}</b><span class="pill">${fmtNum(q.p)} puntos</span></div>
+            <div class="q-top"><b>Ejercicio ${k + 1}</b><span class="pill">${fmtNum(q.p)} ${q.p === 1 ? 'punto' : 'puntos'}</span></div>
             <div class="q-body">${safeAll(q.e)}</div>
             <details><summary>Ver solución</summary><div class="q-sol">${safeAll(q.s)}</div></details>
             <label class="self">Mi nota: <input class="input" type="text" inputmode="decimal" placeholder="0" maxlength="4" id="bq-${key}-${sel}-${ex}-${k}"> / ${fmtNum(q.p)}</label>
@@ -606,7 +606,8 @@
     }
 
     function drawTopic(scroll) {
-      stopTimer(); left = MINUTES * 60;
+      stopTimer();
+      { const tt = sel === null ? null : topics[sel]; mins = tt && tt.exams[ex] && tt.exams[ex].length >= 10 ? 60 : MINUTES; } left = mins * 60;
       if (sel === null) { area.hidden = true; return; }
       const t = topics[sel];
       const tabs = [t.theory && ['teoria', 'Teoría'], t.practice && ['ejercicios', 'Ejercicios'], ['examenes', 'Exámenes']].filter(Boolean);
@@ -615,7 +616,6 @@
       area.innerHTML = `
         <div class="topic-head">
           <div><span class="eyebrow">${t.n}</span><h3 class="topic-title"></h3></div>
-          ${t.mv ? `<div class="mv"><a href="${t.mv}" target="_blank" rel="noopener">Libro de Marea Verde (PDF)</a>${t.mvr ? ` · <a href="${t.mvr}" target="_blank" rel="noopener">Soluciones (PDF)</a>` : ''}</div>` : ''}
         </div>
         ${tabs.length > 1 ? `<div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === tab}">${l}</button>`).join('')}</div>` : ''}
         <div class="tab-body">${tab === 'teoria' ? theoryHTML(t) : tab === 'ejercicios' ? practiceHTML(t) : examHTML(t)}</div>`;
